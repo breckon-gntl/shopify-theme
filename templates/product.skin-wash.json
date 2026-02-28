@@ -357,6 +357,14 @@
         "padding_top": 80,
         "padding_bottom": 80
       }
+    },
+    "sticky_atc_sw": {
+      "type": "sticky-atc",
+      "settings": {
+        "badge_1": "Secure Checkout",
+        "badge_2": "Easy Returns",
+        "shipping_note": "$5 shipping or free over $125"
+      }
     }
   },
   "order": [
@@ -364,6 +372,7 @@
     "1770677414f972bf28",
     "related",
     "section_faq_4mrHcA",
-    "1743609767405fe28f"
+    "1743609767405fe28f",
+    "sticky_atc_sw"
   ]
 }
