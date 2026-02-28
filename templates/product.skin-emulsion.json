@@ -1,0 +1,508 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "liquid_Pa6Pch": {
+          "type": "liquid",
+          "name": "Title (Liquid)",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<div class=\"headline-pdp-container\">\n<h1 class=\"skin-he\">{{ \"SKIN\" }}</h1>\n<h1 class=\"wash-he\">{{ \"EMULSION\" }}</h1>\n\n{% assign rating_raw = product.metafields.reviews.rating.value %}\n{% assign rating = rating_raw | slice: 0, 3 %}\n\n<div class=\"product__rating\" role=\"img\" aria-label=\"{{ rating }} out of 5.0 stars\">\n  <span class=\"product__rating__value\" aria-hidden=\"true\">{{ rating }}</span>\n  <span aria-hidden=\"true\" class=\"product__rating__star\"></span>\n</div>\n\n\n</div>"
+          }
+        },
+        "title_jY9Xr4": {
+          "type": "title",
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": true,
+            "show_rating_count": false,
+            "padding_bottom": 20
+          }
+        },
+        "klaviyo_reviews_average_rating_cmPiBx": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/average-rating/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "price_size": 5,
+            "padding_bottom": 40
+          }
+        },
+        "variants": {
+          "type": "variant-selectors",
+          "settings": {
+            "option_size_swatch": 30,
+            "option_size_radio": 50,
+            "option_space": 0,
+            "padding_bottom": 8
+          }
+        },
+        "subscriptions": {
+          "type": "subscription",
+          "disabled": true,
+          "settings": {
+            "subscriptions_enable_selectors": true,
+            "padding_bottom": 20
+          }
+        },
+        "quantity": {
+          "type": "quantity",
+          "disabled": true,
+          "settings": {
+            "show_quantity": true,
+            "padding_bottom": 20
+          }
+        },
+        "sizes-remaining": {
+          "type": "size-remaining",
+          "disabled": true,
+          "settings": {
+            "info_page": "",
+            "title": "",
+            "show_remaining": true,
+            "show_remaining_style": "low",
+            "countdown": 10,
+            "padding_bottom": 0
+          }
+        },
+        "buttons": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": true,
+            "enable_gift_card_recipient": true,
+            "padding_bottom": 20
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "style": "tabs",
+            "enable_description": true,
+            "read_more": true,
+            "icon_description": "",
+            "description_expanded": true,
+            "title_1": "Benefits",
+            "icon_name_1": "",
+            "raw_content_1": "<ul><li><strong>Soften, Firm, + Strengthen</strong>: Leaves skin radically soft, visibly toned, and deeply supported from the inside out </li><li><strong>Weightless Comfort</strong>: Enjoy non-greasy hydration with a beautiful rose petal finish – never oily or shiny</li><li><strong>Universal Hydration</strong>: Safe and effective for all skin types, including sensitive and acne-prone skin</li><li><strong>Comprehensive Protection</strong>: Rich in antioxidants and amino acids that soothe, condition, and shield skin from environmental damage</li><li><strong>Long-Lasting Results</strong>: Continuous hydration that leaves skin feeling soft, smooth, and bouncy</li></ul>",
+            "title_2": "Key Ingredients",
+            "icon_name_2": "",
+            "raw_content_2": "<p>Japanese botanicals meet modern hydration science.</p><ul><li><strong>Rice Ferment Filtrate:</strong> Improves texture and elasticity with skin-smoothing amino acids.</li><li><strong>Ume Plum Extract:</strong> Brightens skin tone and protects against glycation-induced aging.</li><li><strong>Squalane + Hemisqualane:</strong> Skin-mimicking emollients that hydrate without clogging pores.</li><li><strong>Sodium Hyaluronate</strong>: Draws water deep into skin for long-lasting plumpness.</li><li><strong>Rice Bran Extract:</strong> Antioxidant-rich and packed with vitamins to defend and soften.</li><li><strong>Arginine:</strong> An essential amino acid that supports hydration and barrier repair.</li></ul><p>Full ingredients: Water, Propanediol, C15-19 Alkane, Caprylic/Capric Triglyceride, Glyceryl Stearate, Squalane, Rosa Damascena Flower Water, Stearic Acid, Glycerin, Leuconostoc/Rice Ferment Filtrate Extract, Prunus Mume Fruit Extract, Sodium Hyaluronate, Dipotassium Glycyrrhizate, Oryza Sativa (Rice) Bran Extract, Arginine, Hydroxypropylmethylcellulose Stearoxy Ether, Behenyl Alcohol, Polyglyceryl-10 Stearate, Ethylhexylglycerin, Phenoxyethanol.</p>",
+            "title_3": "How to Use",
+            "icon_name_3": "",
+            "raw_content_3": "<p><strong>Morning Ritual:</strong></p><p><strong>Cleanse</strong>: Apply Skin Wash to wet hands and massage onto damp face and body. Rinse thoroughly.</p><p><strong>Hydrate</strong>: Apply Skin Emulsion to face and body while skin is still slightly damp for optimal absorption. Layer as needed for extra cushion around eye area or dry patches. </p><p><strong>Evening Ritual:</strong></p><p><strong>Cleanse</strong>: Use Skin Wash to remove makeup, SPF, and daily impurities.</p><p><strong>Hydrate</strong>: Apply a generous layer of Skin Emulsion to your face and body as the final step to seal in moisture and support overnight repair. Layer as needed for additional hydration. </p>",
+            "title_4": "",
+            "icon_name_4": "",
+            "raw_content_4": "",
+            "title_5": "",
+            "icon_name_5": "",
+            "raw_content_5": "",
+            "padding_bottom": 20
+          }
+        },
+        "upsell": {
+          "type": "upsell",
+          "disabled": true,
+          "settings": {
+            "title": "Buy it with",
+            "upsell_type": "product_single",
+            "product": "",
+            "upsell_product_list": [],
+            "upsell_list_limit": 1,
+            "padding_bottom": 20
+          }
+        },
+        "pickup": {
+          "type": "pickup",
+          "disabled": true,
+          "settings": {
+            "padding_bottom": 20
+          }
+        },
+        "sharing": {
+          "type": "sharing",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share",
+            "target_device": "",
+            "padding_bottom": 20
+          }
+        }
+      },
+      "block_order": [
+        "liquid_Pa6Pch",
+        "title_jY9Xr4",
+        "klaviyo_reviews_average_rating_cmPiBx",
+        "price",
+        "variants",
+        "subscriptions",
+        "quantity",
+        "sizes-remaining",
+        "buttons",
+        "description",
+        "upsell",
+        "pickup",
+        "sharing"
+      ],
+      "custom_css": [
+        ".headline-pdp-container {display: flex; gap: 8px;}",
+        ".skin-he {font-family: \"PPNeueMontreal\" !important; font-size: 3rem; line-height: 3.8rem; margin-bottom: 0px;}",
+        ".wash-he {font-family: \"PPEditorialNew\"; font-size: 2.6rem; line-height: 3.8rem; margin: 0px 8px 0px 0px;}",
+        ".product__rating {align-items: flex-start !important; margin-top: 8px;}",
+        "legend > span:nth-child(2) {display: none;}"
+      ],
+      "name": "Product Template _ Skin Emulsion",
+      "settings": {
+        "layout": "thumbnails-left@slides",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--accent",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": true,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper",
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    },
+    "section_double_NTFVxc": {
+      "type": "section-double",
+      "blocks": {
+        "text_xCLdBB": {
+          "type": "text",
+          "settings": {
+            "kicker": "SOFTENS. FIRMS. STRENGTHENS.",
+            "title": "The results you'd expect from your facial cream, now for your entire body.",
+            "text": "<ul><li><strong>Deep hydration, zero heaviness.</strong> Sinks in instantly. No oiliness, no residue.</li><li><strong>Use it everywhere.</strong> Safe for face, body, hands, and even under eyes.</li><li><strong>Boosts skin barrier health. </strong>Japanese phytoactives actives help strengthen your barrier and firm skin’s appearance. </li><li><strong>Fragrance-free. Silicone-free. Acne-safe ingredients.</strong> Made without pore-cloggers or sensitizing ingredients. </li></ul>",
+            "font_size": 5,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "text_color": "text--neutral",
+            "bg_color": ""
+          }
+        },
+        "image_GeNJFK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl0904_196.jpg",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "enable_overlay_text": false,
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn"
+          }
+        }
+      },
+      "block_order": [
+        "text_xCLdBB",
+        "image_GeNJFK"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "section > div > div > div:nth-child(1) {display: flex; align-content: center; justify-content: center;}",
+        "section > div > div > div:nth-child(1) > div > div > div > div > p {max-width: 480px; font-size: 17px;}",
+        ".kicker__line:after {display: none;}",
+        "h2 {max-width: 400px;}",
+        ".standard__cta {font-weight: normal; font-family: \"PPEditorialNew\" !important; border: 1px solid black; padding: 12px 14px;}"
+      ],
+      "name": "SE Benefits",
+      "settings": {
+        "height": "use_screen_two_thirds",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "#f9f8f4",
+        "preload_image": false,
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_icons_ex8k7C": {
+      "type": "section-icons",
+      "blocks": {
+        "icon_block_abBcYn": {
+          "type": "icon_block",
+          "settings": {
+            "icon_name": "icon-basket-return",
+            "icon_alt": "shopify://shop_images/rice.png",
+            "icon_color": "#aaaaaa",
+            "title": "Rice Ferment Filtrate",
+            "text": "<p>Improves texture and elasticity with skin-smoothing amino acids.</p>",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "icon_block_RKcVQ8": {
+          "type": "icon_block",
+          "settings": {
+            "icon_name": "icon-basket-return",
+            "icon_alt": "shopify://shop_images/squalene.png",
+            "icon_color": "#aaaaaa",
+            "title": "Squalane + Hemisqualane",
+            "text": "<p>Skin-mimicking emollients that hydrate without clogging pores.</p>",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "icon_block_MpYccN": {
+          "type": "icon_block",
+          "settings": {
+            "icon_name": "icon-basket-return",
+            "icon_alt": "shopify://shop_images/glycerin.png",
+            "icon_color": "#aaaaaa",
+            "title": "Glycerin + Sodium Hyaluronate",
+            "text": "<p>Draws water deep into skin for long-lasting plumpness.</p>",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "icon_block_D9QhNi": {
+          "type": "icon_block",
+          "settings": {
+            "icon_name": "icon-basket-return",
+            "icon_alt": "shopify://shop_images/ume.png",
+            "icon_color": "#aaaaaa",
+            "title": "Ume Plum Extract",
+            "text": "<p>Brightens skin tone and protects against glycation-induced aging.</p>",
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "icon_block_abBcYn",
+        "icon_block_RKcVQ8",
+        "icon_block_MpYccN",
+        "icon_block_D9QhNi"
+      ],
+      "name": "SE Ingredients",
+      "settings": {
+        "title": "",
+        "bg": "palette--light bg--neutral",
+        "icons_size": 60,
+        "icon_alignment": "icon--top",
+        "layout": "grid--stacked",
+        "align_text": "text-center",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "177067757586bfd23b": {
+      "type": "apps",
+      "blocks": {
+        "moast_carousel_xracKU": {
+          "type": "shopify://apps/moast/blocks/carousel/1ac7547b-5443-446c-868c-7fab4566ee16",
+          "settings": {
+            "dynamic": false,
+            "feed": "a235f0b4-151c-41e6-b0de-bd0e81bf963b",
+            "feed_usage": "back_up",
+            "header": "",
+            "slide_type": "cards",
+            "product_cards": "none",
+            "autoplay_mode": "none",
+            "autoscroll_duration": 0,
+            "slide_size": "250",
+            "border": 0,
+            "border_color": "linear-gradient(to right, #833ab4, #fd1d1d, #fcb045)",
+            "slide_rounding": "20",
+            "slide_spacing": 16,
+            "padding_top": 40,
+            "pagination": "below",
+            "alignment": "center",
+            "click_action": "fullscreen",
+            "float_location": "bottom_right",
+            "float_size": "medium",
+            "show_captions": false,
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "moast_carousel_xracKU"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_hero_NBRHRi": {
+      "type": "section-hero",
+      "blocks": {
+        "text_G7WpfK": {
+          "type": "text",
+          "name": "Testimonial",
+          "settings": {
+            "richtext": "<h2>\"I love how moisturizing but non-greasy this formula is. My skin feels <em>softer and smoother</em>. It also works well under sunscreen and makeup – no separation or pilling.\"</h2>",
+            "text_size": 5
+          }
+        }
+      },
+      "block_order": [
+        "text_G7WpfK"
+      ],
+      "custom_css": [
+        ".btn--medium {font-size: 16px; font-family: \"PPEditorialNew\" !important; padding: 12px 16px 14px 16px; color: #fff6e4; border-color: #fff6e4; border-radius: none; transition: all 400ms ease-in-out;}",
+        ".btn--medium:hover {border-color: black; background: black;}",
+        "h5 {font-family: \"PPNeueMontreal\" !important; font-size: 1.8rem !important;}"
+      ],
+      "name": "Testimonial",
+      "settings": {
+        "image": "shopify://shop_images/bottle_shadow.gif",
+        "height": "use_screen_two_thirds",
+        "overlay_opacity": 20,
+        "overlay_color": "#000000",
+        "enable_overlay_text": false,
+        "preload_image": false,
+        "content_width": 2000,
+        "text_align": "align--middle-center",
+        "text_color": "text--white",
+        "color_bg": "hero__content--transparent",
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_faq_DJnzd7": {
+      "type": "section-faq",
+      "blocks": {
+        "text_jQpt3T": {
+          "type": "text",
+          "settings": {
+            "title": "Can I really use it on my face and body?",
+            "content": "<p>Yes. Skin Emulsion is formulated to facial-grade standards, the same quality and ingredients you'd find in premium face care. We formulate and produce in Japan using advanced emulsion technology, with ingredients like squalane, hyaluronic acid, and rice ferment. If it's good enough for your face, it's incredible everywhere else.</p>"
+          }
+        },
+        "text_bBNczc": {
+          "type": "text",
+          "settings": {
+            "title": "What is the texture like?",
+            "content": "<p>It's lightweight and oil-free, designed to absorb quickly without any greasy after-feel. In our consumer study, 100% of participants agreed it didn't feel greasy or sticky. It's rich enough to hydrate deeply but never heavy.</p>"
+          }
+        },
+        "text_RY9JHL": {
+          "type": "text",
+          "settings": {
+            "title": "What does it smell like?",
+            "content": "<p>Skin Emulsion is fragrance-free, but we use rose water for its hydrating benefits, which imparts a pleasant, mild scent. It's subtle and natural, not perfumed or overpowering.</p>"
+          }
+        },
+        "text_yY3XL9": {
+          "type": "text",
+          "settings": {
+            "title": "Is it safe for sensitive skin, pregnancy, and kids?",
+            "content": "<p>Yes. Skin Emulsion is dermatologist-tested and clinically proven safe for sensitive skin. It's safe for use during pregnancy and nursing, and gentle enough for kids. It's also fragrance-free, vegan, and formulated to EU clean standards.</p><p>As with any new product during pregnancy or for young children, we recommend checking with your doctor or pediatrician.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_jQpt3T",
+        "text_bBNczc",
+        "text_RY9JHL",
+        "text_yY3XL9"
+      ],
+      "custom_css": [
+        ".standard__kicker {font-weight: normal; font-family: \"PPEditorialNew\" !important; font-size: 48px;}"
+      ],
+      "name": "Skin Emulsion FAQs",
+      "settings": {
+        "title": "FAQs",
+        "title_align": "text-left",
+        "title_size": 4,
+        "heading_size": 5,
+        "text_size": 5,
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related": {
+      "type": "related",
+      "disabled": true,
+      "settings": {
+        "heading": "Complete The Ritual",
+        "bg": "palette--light bg--neutral",
+        "grid_large": 3,
+        "grid_medium": 3,
+        "grid_small": 1.2,
+        "related_products_enable": true,
+        "limit": 3,
+        "product_recommendations_heading": "",
+        "show_recently_viewed": true,
+        "product_recently_limit": 3,
+        "product_recently_minimum": 3,
+        "product_recently_heading": "",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1743609767405fe28f": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_reviews_product_reviews_pk7nnh": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/product-reviews/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "klaviyo_reviews_product_reviews_pk7nnh"
+      ],
+      "custom_css": [
+        ".kl_reviews__summary__header {font-weight: normal; font-family: \"PPEditorialNew\" !important; font-size: 48px;}"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--accent",
+        "width": "wrapper",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_double_NTFVxc",
+    "section_icons_ex8k7C",
+    "177067757586bfd23b",
+    "section_hero_NBRHRi",
+    "section_faq_DJnzd7",
+    "related",
+    "1743609767405fe28f"
+  ]
+}

@@ -1,0 +1,116 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "section_liquid_7QFTYM": {
+      "type": "section-liquid",
+      "custom_css": [
+        ".c-section {width: 100%; display: flex; justify-content: center; align-items: center; background-color: rgb(249, 248, 244);}",
+        ".c-container {padding: 60px; max-width: 767px; margin: auto;}",
+        "button.needsclick.go2534619395.kl-private-reset-css-Xuajs1 {background-color: black !important; color: white !important;}",
+        ".go1622492024.go1622492024.go1622492024:hover {border-color: #000 !important;}",
+        ".go1622492024.go1622492024.go1622492024:focus-visible {outline-color: rgba(0, 0, 0, 0.6) !important;}"
+      ],
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"c-section\"><div class=\"c-container\"><div class=\"klaviyo-form-R5NcFR\"></div></div></div>"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "linklist-1": {
+          "type": "linklist",
+          "settings": {
+            "linklist": "test-footer-menu-col-1-specio",
+            "title": "Company",
+            "accordion_default": ""
+          }
+        },
+        "linklist-2": {
+          "type": "linklist",
+          "settings": {
+            "linklist": "foot-menu-3",
+            "title": "",
+            "accordion_default": "accordion-is-open"
+          }
+        },
+        "text-3": {
+          "type": "text",
+          "settings": {
+            "title": "Support",
+            "text": "<p>Email us at:<br/><a href=\"mailto:hello@gntlskin.com\" title=\"mailto:hello@gntlskin.com\">hello@gntlskin.com</a></p>",
+            "text_size": 4,
+            "accordion_default": ""
+          }
+        },
+        "image_CWXAAb": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "image": "shopify://shop_images/Gntl_Website_Badges_Master_f17e5036-7d3f-43b7-9fa0-f805402907ab.png",
+            "image_max_limit": 300,
+            "image_link": "",
+            "accordion_default": ""
+          }
+        },
+        "social": {
+          "type": "social",
+          "settings": {
+            "title": "All you need is less.",
+            "text_size": 6,
+            "enable_follow_on_shop": false
+          }
+        }
+      },
+      "block_order": [
+        "linklist-1",
+        "linklist-2",
+        "text-3",
+        "image_CWXAAb",
+        "social"
+      ],
+      "custom_css": [
+        "footer > div > div > div > div.footer__block.footer__aside > div > div > h3 {font-size: clamp(1.5rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); font-family: PPEditorialNew; line-height: 3.4rem; margin-bottom: 24px;}"
+      ],
+      "settings": {
+        "menu_position": "left",
+        "footer_image": "shopify://shop_images/Gntl.svg",
+        "logo_max_limit": 120,
+        "width": "wrapper--full",
+        "padding_top": 80,
+        "padding_bottom": 24
+      }
+    },
+    "subfooter": {
+      "type": "subfooter",
+      "custom_css": [
+        "div.subfooter__item.subfooter__item--copyright > span:nth-child(3) > a {display: none;}"
+      ],
+      "settings": {
+        "footer_secondary_linklist": "footer",
+        "footer_payment_enable": false,
+        "footer_social_enable": false,
+        "show_locale_selector": true,
+        "show_currency_selector": true,
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "section_liquid_7QFTYM",
+    "footer",
+    "subfooter"
+  ]
+}

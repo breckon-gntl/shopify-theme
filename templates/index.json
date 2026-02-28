@@ -1,0 +1,1056 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section_hero_azhF8p": {
+      "type": "section-hero",
+      "blocks": {
+        "kicker_w6dYPc": {
+          "type": "kicker",
+          "settings": {
+            "kicker": "",
+            "enable_line": false,
+            "text_size": 4
+          }
+        },
+        "heading_cbkhtK": {
+          "type": "heading",
+          "settings": {
+            "title": "All you need is less.",
+            "text_size": 10
+          }
+        },
+        "text_MaPf9F": {
+          "type": "text",
+          "settings": {
+            "richtext": "<p>Fewer bottles. Fewer decisions. Facial-grade care that supports all skin, head-to-toe.</p>",
+            "text_size": 5
+          }
+        },
+        "button_KyWTDa": {
+          "type": "button",
+          "settings": {
+            "link_text_1": "Start here",
+            "link_1": "shopify://collections/all",
+            "button_size_1": "btn--medium",
+            "button_style_1": "btn",
+            "button_color_1": "btn--black",
+            "link_text_2": "",
+            "link_2": "",
+            "button_size_2": "btn--long",
+            "button_style_2": "btn-text-thick-line",
+            "button_color_2": "btn--white",
+            "link_text_3": "",
+            "link_3": "",
+            "button_size_3": "btn--long",
+            "button_style_3": "btn-text-thick-line",
+            "button_color_3": "btn--white"
+          }
+        }
+      },
+      "block_order": [
+        "kicker_w6dYPc",
+        "heading_cbkhtK",
+        "text_MaPf9F",
+        "button_KyWTDa"
+      ],
+      "name": "Image banner",
+      "settings": {
+        "image": "shopify://shop_images/Gntl0511DNG-15.jpg",
+        "height": "use_screen_two_thirds",
+        "overlay_opacity": 0,
+        "overlay_color": "#000000",
+        "enable_overlay_text": false,
+        "preload_image": false,
+        "content_width": 450,
+        "text_align": "align--middle-left",
+        "text_color": "text--white",
+        "color_bg": "hero__content--transparent",
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "logos": {
+      "type": "section-logos",
+      "blocks": {
+        "logo_image_ttt4rC": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/popsugar-vector-logo.png",
+            "link": "",
+            "new_tab": true,
+            "width": 210,
+            "spacing": 50
+          }
+        },
+        "logo-3": {
+          "type": "logo_image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/beauty-independent-logo.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 60
+          }
+        },
+        "logo_image_7Jdzax": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Cosmopolitan_gives_Gntl_best_skincare_award.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 165,
+            "spacing": 50
+          }
+        },
+        "logo_image_ipM9WE": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_in_Business_of_Fashion.png",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 50
+          }
+        },
+        "logo-2": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/WWD_Gntl_Skincare_for_everywhere.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 180,
+            "spacing": 30
+          }
+        },
+        "logo_image_NKYMCe": {
+          "type": "logo_image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/pop-sugar.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 30
+          }
+        },
+        "logo-1": {
+          "type": "logo_image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/elle-logo.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 50
+          }
+        },
+        "logo_image_bC8Gp3": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_in_Well_Good_5d8ebe3f-3f55-434d-a98a-655c31ed3705.png",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 50
+          }
+        },
+        "logo_image_KyK43q": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_in_CEW.png",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 50
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_ttt4rC",
+        "logo-3",
+        "logo_image_7Jdzax",
+        "logo_image_ipM9WE",
+        "logo-2",
+        "logo_image_NKYMCe",
+        "logo-1",
+        "logo_image_bC8Gp3",
+        "logo_image_KyK43q"
+      ],
+      "name": "Press",
+      "settings": {
+        "title": "",
+        "bg": "palette--light bg--accent",
+        "enable_marquee": true,
+        "marquee_speed": 50,
+        "width": "wrapper--none",
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
+    "section_hero_Ln6EWq": {
+      "type": "section-hero",
+      "blocks": {
+        "text_U44kf9": {
+          "type": "text",
+          "settings": {
+            "richtext": "<h2>Less effort. More consistency.</h2>",
+            "text_size": 2
+          }
+        },
+        "text_7FkyT3": {
+          "type": "text",
+          "settings": {
+            "richtext": "<p>When care is simple, it becomes a ritual. When it becomes a ritual, it lasts.</p>",
+            "text_size": 6
+          }
+        },
+        "button_ptY7d9": {
+          "type": "button",
+          "settings": {
+            "link_text_1": "Shop Two-Step Ritual 10% Off",
+            "link_1": "shopify://products/2-step-ritual",
+            "button_size_1": "btn--large",
+            "button_style_1": "btn",
+            "button_color_1": "btn--black",
+            "link_text_2": "",
+            "link_2": "shopify://pages/contact",
+            "button_size_2": "btn--long",
+            "button_style_2": "btn-text-thick-line",
+            "button_color_2": "btn--neutral",
+            "link_text_3": "",
+            "link_3": "",
+            "button_size_3": "btn--long",
+            "button_style_3": "btn-text-thick-line",
+            "button_color_3": "btn--white"
+          }
+        }
+      },
+      "block_order": [
+        "text_U44kf9",
+        "text_7FkyT3",
+        "button_ptY7d9"
+      ],
+      "custom_css": [],
+      "name": "SE Testimonial",
+      "settings": {
+        "image": "shopify://shop_images/Gntl0511DNG-8.jpg",
+        "height": "use_screen_three_quarters",
+        "overlay_opacity": 0,
+        "overlay_color": "#000000",
+        "enable_overlay_text": true,
+        "preload_image": true,
+        "content_width": 450,
+        "text_align": "align--bottom-center",
+        "text_color": "text--invert",
+        "color_bg": "hero__content--transparent",
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_logos_CVk93i": {
+      "type": "section-logos",
+      "blocks": {
+        "logo_image_EMpyz7": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_Skincare_for_everywhere_Benefit__Biobased_packaging_4fcaf7ec-5f7e-4f8b-ab7a-27debcbca692.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 50
+          }
+        },
+        "logo_image_JNnV3k": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_Skincare_for_everywhere_Benefit_536d0f91-9c41-4dbf-bc5c-616391c027b5.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 50
+          }
+        },
+        "logo_image_B7R7eK": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_Skincare_for_everywhere_Benefit__For_all_skin_types_ages_e0e1d8dd-0baa-4d44-b031-dd9c99382f03.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 50
+          }
+        },
+        "logo_image_6AkLmt": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_Skincare_for_everywhere_Benefit__PH_Balanced_3781b8e6-0cfb-4e80-8627-c1b217221099.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 50
+          }
+        },
+        "logo_image_p4jr3b": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_Skincare_for_everywhere_Benefit_-1_357e7c80-59bc-43d7-8a06-4e92cf693077.svg",
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 50
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_EMpyz7",
+        "logo_image_JNnV3k",
+        "logo_image_B7R7eK",
+        "logo_image_6AkLmt",
+        "logo_image_p4jr3b"
+      ],
+      "custom_css": [
+        "div > div > div > div > div > div > div > div.logo-bar__scale > div > div {width: fit-content; padding: 0px;}",
+        ".hero__content__wrapper.section-padding,.brick__section .section-padding,.section-padding,.section-without-title:not(.section-without-title--skip) {padding: 10px;}"
+      ],
+      "name": "Values Scroll",
+      "settings": {
+        "title": "",
+        "bg": "palette--dark bg--invert",
+        "enable_marquee": true,
+        "marquee_speed": 60,
+        "width": "wrapper--full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_double_Ma6jwp": {
+      "type": "section-double",
+      "blocks": {
+        "image_7nTxpw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl-Holiday-Party.jpg",
+            "overlay_opacity": 100,
+            "overlay_color": "rgba(0,0,0,0)",
+            "enable_overlay_text": false,
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn"
+          }
+        },
+        "text_f3MxpU": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Gifts Under $45",
+            "text": "<p>Give the gift of less— and better.</p><p>Each Gntl essential is facial-grade, recyclable, and designed to simplify routines without compromising results. </p><p>Thoughtfully made in the US and Japan, each formula delivers visible results with fewer steps, so your gift becomes something they’ll reach for every day.</p>",
+            "font_size": 5,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "shopify://products/skin-wash",
+            "button_color": "btn--black",
+            "button_style": "btn-text-thick-line",
+            "text_color": "text--neutral",
+            "bg_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "image_7nTxpw",
+        "text_f3MxpU"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "name": "SE Benefits",
+      "settings": {
+        "height": "use_screen_two_thirds",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "#f9f8f4",
+        "preload_image": false,
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "1747415066439901de": {
+      "type": "apps",
+      "blocks": {
+        "moast_shoppable_video_ugc_carousel_HVR4bq": {
+          "type": "shopify://apps/moast/blocks/carousel/1ac7547b-5443-446c-868c-7fab4566ee16",
+          "settings": {
+            "dynamic": false,
+            "feed": "",
+            "feed_usage": "back_up",
+            "header": "",
+            "slide_type": "cards",
+            "product_cards": "none",
+            "autoplay_mode": "all",
+            "autoscroll_duration": 0,
+            "slide_size": "250",
+            "border": 0,
+            "border_color": "linear-gradient(90deg, rgba(131, 58, 180, 1), rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%)",
+            "slide_rounding": "6",
+            "slide_spacing": 16,
+            "padding_top": 2,
+            "pagination": "overlay",
+            "alignment": "center",
+            "click_action": "fullscreen",
+            "float_location": "bottom_right",
+            "float_size": "medium",
+            "show_captions": false,
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "moast_shoppable_video_ugc_carousel_HVR4bq"
+      ],
+      "disabled": true,
+      "name": "Moast",
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_logos_CkEtAz": {
+      "type": "section-logos",
+      "blocks": {
+        "logo_image_LQLebb": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_506.png",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        },
+        "logo_image_GBKCRU": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_507.png",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        },
+        "logo_image_n6w8PR": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_503.png",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        },
+        "logo_image_H7YcYk": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_505.png",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        },
+        "logo_image_yWTAEN": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_503.png",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_LQLebb",
+        "logo_image_GBKCRU",
+        "logo_image_n6w8PR",
+        "logo_image_H7YcYk",
+        "logo_image_yWTAEN"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".kicker-flourished {font-size: clamp(1.5rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); font-family: \"PPEditorialNew\" !important;}",
+        ".kicker-flourished:after {display: none;}",
+        "div.logo-bar__scale > div:nth-child(1) {align-items: top !important;}"
+      ],
+      "name": "General Testimonials",
+      "settings": {
+        "title": "For the love of less.",
+        "bg": "palette--light bg--accent",
+        "enable_marquee": true,
+        "marquee_speed": 28,
+        "width": "wrapper--none",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "collection_split_dK9hg7": {
+      "type": "collection-split",
+      "name": "Products with image",
+      "settings": {
+        "collection": "holiday-2025-collection",
+        "product_list": [],
+        "image": "shopify://shop_images/Gntl0511-834.jpg",
+        "sticky_image_enable": true,
+        "swap": false,
+        "overlay_opacity": 0,
+        "overlay_color": "#000000",
+        "kicker": "",
+        "heading": "",
+        "text_color": "text--white",
+        "link_text": "View products",
+        "link": "",
+        "button_color": "btn--white",
+        "button_style": "btn",
+        "grid_large": 2,
+        "grid_small": 1.2,
+        "limit": 10,
+        "bg": "palette--light bg--neutral",
+        "object_position": "center-center",
+        "width": "wrapper--none",
+        "padding_top": 24,
+        "padding_bottom": 0
+      }
+    },
+    "1763449499bc3a5fb7": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_reviews_featured_reviews_carousel_9WAJEp": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/featured-reviews-carousel/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {}
+        },
+        "moast_carousel_tbHKCa": {
+          "type": "shopify://apps/moast/blocks/carousel/1ac7547b-5443-446c-868c-7fab4566ee16",
+          "settings": {
+            "dynamic": false,
+            "feed": "",
+            "feed_usage": "back_up",
+            "header": "<p>Simple routines. Real results.</p>",
+            "slide_type": "cards",
+            "product_cards": "none",
+            "autoplay_mode": "sequential",
+            "autoscroll_duration": 0,
+            "slide_size": "250",
+            "border": 0,
+            "border_color": "linear-gradient(to right, #833ab4, #fd1d1d, #fcb045)",
+            "slide_rounding": "20",
+            "slide_spacing": 16,
+            "padding_top": 40,
+            "pagination": "overlay",
+            "alignment": "center",
+            "click_action": "fullscreen",
+            "float_location": "bottom_right",
+            "float_size": "medium",
+            "show_captions": false,
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "klaviyo_reviews_featured_reviews_carousel_9WAJEp",
+        "moast_carousel_tbHKCa"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_columns_rT4BiY": {
+      "type": "section-columns",
+      "blocks": {
+        "text_block_QYLLAR": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Gntl_Skin_Wash_for_everywhere.jpg",
+            "shape_class": "",
+            "title": "Skin Wash",
+            "text": "<h6>Facial-grade skincare for everywhere</h6>",
+            "button_label": "Shop now →",
+            "button_link": "shopify://products/skin-wash",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "video_button_color": "text--white"
+          }
+        },
+        "text_block_w8GpMk": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Gntl0904_17_FINAL.jpg",
+            "shape_class": "",
+            "title": "Skin Emulsion",
+            "text": "<h6>Our new, weightless does-it-all moisturizer for all skin</h6>",
+            "button_label": "Shop now →",
+            "button_link": "shopify://products/skin-wash",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "video_button_color": "text--white"
+          }
+        },
+        "text_block_t8e4BU": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Screenshot_2025-06-21_at_21.28.34.png",
+            "shape_class": "",
+            "title": "The 2-Step Ritual",
+            "text": "<h6>One system, complete care.</h6>",
+            "button_label": "Shop now →",
+            "button_link": "shopify://products/skin-wash",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "video_button_color": "text--white"
+          }
+        },
+        "text_block_iAyjhy": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Gntl_Skincare_for_everywhere_Credo_Product_Images_9.jpg",
+            "shape_class": "",
+            "title": "Subscribe & Save",
+            "text": "<h6>Get 10% OFF the <br/>normal price</h6>",
+            "button_label": "Subscribe →",
+            "button_link": "shopify://products/skin-wash",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "enable_video": false,
+            "video_link": "",
+            "video_button_color": "text--white"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_QYLLAR",
+        "text_block_w8GpMk",
+        "text_block_t8e4BU",
+        "text_block_iAyjhy"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "div.accent-title-large.strong.mb-r4 {font-family: \"PPEditorialNew\" !important; font-size: clamp(1rem, calc(0.8rem + 2vw), 2rem); line-height: clamp(1.2em, calc(1rem + 1vw), 1em); font-weight: normal;}",
+        "h6 {font-family: \"PPNeueMontreal\" !important; font-size: 1.1rem;}",
+        ".btn--neutral,.btn--outline {font-size: 16px; font-family: \"PPEditorialNew\" !important; padding: 12px 16px 14px 16px; border-radius: none !important; min-width: fit-content;}"
+      ],
+      "name": "All Products",
+      "settings": {
+        "title": "Shop All",
+        "bg": "palette--light bg--accent",
+        "align_text": "text-center",
+        "scale_image": true,
+        "wh_ratio": 0.7,
+        "grid_large": 4,
+        "grid_medium": 4,
+        "grid_mobile": 1.2,
+        "progress_bar_mobile": true,
+        "width": "wrapper",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "section_hero_xNXcf8": {
+      "type": "section-hero",
+      "blocks": {
+        "image_qqdPtJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_five_star_award_winning_product.png",
+            "image_max_limit": 100,
+            "image_link": ""
+          }
+        },
+        "heading_KhWBmw": {
+          "type": "heading",
+          "settings": {
+            "title": "3x Award Winning Cleanser",
+            "text_size": 10
+          }
+        },
+        "spacer_FDkm3T": {
+          "type": "spacer",
+          "settings": {
+            "spacer_padding": 40,
+            "show_line": false
+          }
+        },
+        "image_WfGBN3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_three_time_award_winning_skincare_product.png",
+            "image_max_limit": 900,
+            "image_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_qqdPtJ",
+        "heading_KhWBmw",
+        "spacer_FDkm3T",
+        "image_WfGBN3"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "div.hero__title.heading-size-10 > p {font-size: clamp(1.5rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); font-family: \"PPEditorialNew\" !important;}"
+      ],
+      "name": "Awards",
+      "settings": {
+        "image": "shopify://shop_images/IG_Post.jpg",
+        "height": "use_image",
+        "overlay_opacity": 0,
+        "overlay_color": "#000000",
+        "enable_overlay_text": false,
+        "preload_image": false,
+        "content_width": 2000,
+        "text_align": "align--middle-center",
+        "text_color": "text--bright--secondary",
+        "color_bg": "hero__content--transparent",
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_logos_MNBcE3": {
+      "type": "section-logos",
+      "blocks": {
+        "logo_image_UchikG": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/image_19.jpg",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        },
+        "logo_image_B4zMpN": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/image_17.jpg",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 50
+          }
+        },
+        "logo_image_7F9waf": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/image_20.jpg",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 50
+          }
+        },
+        "logo_image_C9YAgV": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/0e461f9d-0842-4d90-9044-2473010fe4a6_1.jpg",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        },
+        "logo_image_Knpaah": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/image_21.jpg",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        },
+        "logo_image_6LWRxz": {
+          "type": "logo_image",
+          "settings": {
+            "link": "",
+            "new_tab": true,
+            "width": 140,
+            "spacing": 50
+          }
+        },
+        "logo_image_88HgFi": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/20241113_Say_Ya_Photography_336_1.jpg",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        },
+        "logo_image_Rrdyq4": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/73783134910__0EC40137-8D06-4DE9-93A1-84BD5EEC4BEB_1.jpg",
+            "link": "",
+            "new_tab": true,
+            "width": 300,
+            "spacing": 25
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_UchikG",
+        "logo_image_B4zMpN",
+        "logo_image_7F9waf",
+        "logo_image_C9YAgV",
+        "logo_image_Knpaah",
+        "logo_image_6LWRxz",
+        "logo_image_88HgFi",
+        "logo_image_Rrdyq4"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "div.logo-bar__scale {height: 550px;}",
+        "h2 {font-size: clamp(1.5rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); font-family: PPEditorialNew-Light;}",
+        ".kicker-flourished:after {display: none;}"
+      ],
+      "settings": {
+        "title": "",
+        "bg": "palette--light bg--accent",
+        "enable_marquee": true,
+        "marquee_speed": 60,
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "double": {
+      "type": "section-double",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "name": "About Us",
+          "settings": {
+            "kicker": "",
+            "title": "",
+            "text": "<h4>The future is Gntl.</h4><h4></h4><p>We challenge overconsumption and cluttered routines with thoughtfully designed, universal essentials, each crafted to replace five or more products for everyone in our households. </p>",
+            "font_size": 5,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "Learn More →",
+            "button_url": "shopify://pages/about",
+            "button_color": "btn--primary",
+            "button_style": "btn--outline btn--long",
+            "text_color": "text--invert",
+            "bg_color": "#35322a"
+          }
+        },
+        "video_bNMmfd": {
+          "type": "video",
+          "settings": {
+            "video_bg": "shopify://files/videos/GNTL_BRAND VIDEO_9x16_SOCIAL.mp4",
+            "object_position": "center-center",
+            "video_link": "https://youtu.be/HEouwaCR9JM?si=4vR9iGW2bx-60CXp",
+            "popup_text": "",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn"
+          }
+        }
+      },
+      "block_order": [
+        "text",
+        "video_bNMmfd"
+      ],
+      "custom_css": [
+        "h4:nth-child(1) {font-size: clamp(1.5rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); font-family: PPEditorialNew !important; line-height: 3.4rem;}",
+        "section > div > div > div:nth-child(1) > div > div {max-width: 540px;}",
+        ".kicker__line:after {display: none;}",
+        ".standard__cta {font-size: 16px; font-family: \"PPEditorialNew-Light\"; padding: 12px 16px 14px 16px; color: #fff6e4; border-color: #fff6e4; border-radius: none; min-width: fit-content;}"
+      ],
+      "name": "Brand Video (About Us)",
+      "settings": {
+        "height": "use_screen_one_half",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "#35322a",
+        "preload_image": false,
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "newsletter-index-section": {
+      "type": "section-newsletter",
+      "disabled": true,
+      "custom_css": [
+        "div > div > div > h2 {font-size: clamp(1.5rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); font-family: PPEditorialNew; line-height: 3.4rem; margin-bottom: 0px;}",
+        ".kicker-flourished:after {display: none;}",
+        "div > div > div > div.rte.body-size-4 {max-width: 400px; margin-bottom: 40px;}",
+        "div > div > div {display: flex; flex-direction: column; align-items: center;}"
+      ],
+      "settings": {
+        "title": "Clean Slate",
+        "richtext": "<p>What is Clean Slate? A monthly refresher for your inbox, with tips on sustainability, simplicity, wellness, mindfulness, and everything else that makes us feel good. ☁️</p>",
+        "bg": "palette--dark bg--invert",
+        "width": "wrapper--narrow",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "section_columns_EydhxY": {
+      "type": "section-columns",
+      "blocks": {
+        "text_block_JCCB3F": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/katie-rollins-dupe.jpg",
+            "shape_class": "",
+            "title": "For People.",
+            "text": "<p>Simple, nourishing ingredients for all bodies, skin types, and stages of life.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn--soft",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "video_button_color": "text--white"
+          }
+        },
+        "text_block_KK3Xm4": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/DTS_Caldo_019.jpg",
+            "shape_class": "",
+            "title": "For Planet.",
+            "text": "<p>Minimizing our impact in every detail — from clean formulas to refillable packaging.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn--soft",
+            "enable_video": false,
+            "video_link": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "video_button_color": "text--white"
+          }
+        },
+        "text_block_WJyzfP": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/101224_Gntl_0297.jpg",
+            "shape_class": "",
+            "title": "For Less.",
+            "text": "<p>Multi-purpose products for fewer steps, fewer purchases, and less waste. </p>",
+            "button_label": "",
+            "button_link": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn--soft",
+            "enable_video": false,
+            "video_link": "",
+            "video_button_color": "text--white"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_JCCB3F",
+        "text_block_KK3Xm4",
+        "text_block_WJyzfP"
+      ],
+      "disabled": true,
+      "name": "Values Trio",
+      "settings": {
+        "title": "",
+        "bg": "palette--light bg--accent",
+        "align_text": "text-center",
+        "scale_image": true,
+        "wh_ratio": 0.8,
+        "grid_large": 3,
+        "grid_medium": 3,
+        "grid_mobile": 1.2,
+        "progress_bar_mobile": false,
+        "width": "wrapper",
+        "padding_top": 100,
+        "padding_bottom": 60
+      }
+    },
+    "17695842226021e9a9": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7b1e264_NAPPzM": {
+          "type": "ai_gen_block_7b1e264",
+          "settings": {
+            "alignment": "flex-start",
+            "mobile_alignment": "flex-start",
+            "spacing_top": 8,
+            "spacing_bottom": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7b1e264_NAPPzM"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "section_hero_azhF8p",
+    "logos",
+    "section_hero_Ln6EWq",
+    "section_logos_CVk93i",
+    "section_double_Ma6jwp",
+    "1747415066439901de",
+    "section_logos_CkEtAz",
+    "collection_split_dK9hg7",
+    "1763449499bc3a5fb7",
+    "section_columns_rT4BiY",
+    "section_hero_xNXcf8",
+    "section_logos_MNBcE3",
+    "double",
+    "newsletter-index-section",
+    "section_columns_EydhxY",
+    "17695842226021e9a9"
+  ]
+}

@@ -1,0 +1,44 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {
+        "kicker": "",
+        "kicker_size": 3,
+        "show_title": false,
+        "title_size": 8,
+        "show_content": true,
+        "content_size": 5,
+        "align_text": "text-center",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--accent",
+        "width": "wrapper--narrow",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "section_liquid_UNKTHb": {
+      "type": "section-liquid",
+      "custom_css": [
+        ".hero-container-wrapper-waitlist {background-image: url(\"https://cdn.shopify.com/s/files/1/0454/4790/5438/files/Gntl0511DNG-8_1.jpg\"); background-size: cover !important; background-repeat: no-repeat; width: 100vw; height: 70vh; display: flex; justify-content: center; align-items: center;}"
+      ],
+      "settings": {
+        "custom_liquid": "<div class=\"hero-container-wrapper-waitlist\">\n<div class=\"klaviyo-form-RAU2Xq\"></div>\n<div>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_liquid_UNKTHb"
+  ]
+}

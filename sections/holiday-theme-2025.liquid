@@ -1,0 +1,207 @@
+{% schema %}
+{
+  "name": "Holiday Hero",
+  "tag": "section",
+  "class": "gntl-holiday-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Background Image"
+    },
+    {
+  "type": "url",
+  "id": "button_link",
+  "label": "Button Link"
+  },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Holiday Hero",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="gntl-holiday-hero-wrapper">
+  <div class="gntl-hero-container">
+    <div class="gntl-hero-holiday-layout holiday-gntl-left" style="background-image: url({{ section.settings.left_image | image_url }});">
+      <div class="gntl-left-inner">
+      </div>
+    </div>
+    <div class="gntl-hero-holiday-layout gntl-right" style="background-image: url({{ section.settings.right_image | image_url }});">
+      <div class="holiday-gntl-hero-content">
+        <h3 class="para-text">Limited-edition holiday set for<br>when staying in feels better than going out.</h3>
+        {% if section.settings.button_link %}
+  <a href="{{ section.settings.button_link }}" class="gntl-button">Shop The Reset Kit →</a>
+{% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+
+  
+.para-text{
+  font-size: 2rem;
+  font-family: "PPEditorialNew-Light", serif;
+  font-weight: 100;
+  color: #F5F3EE;
+}
+
+.gntl-holiday-hero-wrapper {
+  width: 100vw;
+  height: 90vh;
+  min-height: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+.gntl-hero-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.gntl-hero-holiday-layout {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(95%);
+  position: relative;
+}
+
+.holiday-gntl-left {
+  display: flex;
+  align-items: center;
+}
+
+.gntl-left-inner {
+  padding: 0 0 4.5vw 1.5vw;
+}
+
+.gntl-hero-headline {
+  text-transform: uppercase;
+  font-size: 10vw;
+  line-height: 45%;
+  font-family: "PPEditorialNew-Light", serif;
+  font-weight: 100;
+  color: #F5F3EE;
+  margin: 0;
+}
+
+.gntl-meets {
+  font-size: 2vw;
+  position: relative;
+  top: -1.5vw;
+}
+
+.holiday-gntl-hero-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  color: #F5F3EE;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-end;
+  padding-bottom:40px;
+}
+
+.gntl-overline {
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  font-family: "PPEditorialNew", sans-serif;
+  margin: 0;
+}
+
+.gntl-headline {
+  font-family: "PPEditorialNew", serif;
+  font-weight: 100;
+  margin: 0;
+  font-size: 4vw;
+  text-transform: uppercase;
+  line-height: 90%;
+  color: #F5F3EE;
+}
+
+.gntl-skin {
+  font-family: "PPNeueMontreal", sans-serif;
+}
+
+.gntl-emulsion {
+  font-family: "PPEditorialNew", serif !important;
+  all: unset;
+  font-style:italic;
+  text-transform: uppercase;
+}
+
+.gntl-subtext {
+  font-family: "PPNeueMontreal", sans-serif;
+  margin-top: 0.5em;
+  font-size: 16px;
+}
+
+.gntl-button {
+  font-size: 16px;
+  padding: 12px 10px;
+  background: #1D1D1D;
+  color: #F5F3EE;
+  border: none;
+  border-radius: 2px;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+
+  .gntl-holiday-hero{
+  height:150vh;
+}
+
+  .gntl-hero-wrapper{
+    min-height:1440px;
+  }
+  .gntl-hero-holiday-layout {
+    height: 150vh !important;
+    min-height:400px;
+    }
+  
+  .gntl-hero-container {
+    flex-direction: column;
+    height: 150vh;
+  }
+
+  .gntl-left-inner {
+    padding: 3vw 5vw;
+  }
+
+  .gntl-hero-headline {
+    font-size: 14vw;
+    line-height: 8vw;
+    padding-bottom: 10vw;
+  }
+
+  .gntl-meets {
+    font-size: 4vw;
+    top: -2vw;
+  }
+
+  .gntl-headline {
+    font-size: 14vw;
+    line-height: 15vw;
+  }
+}
+</style>

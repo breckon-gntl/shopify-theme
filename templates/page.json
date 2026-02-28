@@ -1,0 +1,344 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {
+        "kicker": "The future of sustainability is less.",
+        "kicker_size": 3,
+        "show_title": true,
+        "title_size": 8,
+        "show_content": true,
+        "content_size": 5,
+        "align_text": "text-center",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_richtext_Rj8rEB": {
+      "type": "section-richtext",
+      "blocks": {
+        "text_wa4h9z": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The future of sustainability is less. <br/><br/></p>",
+            "text_size": 9,
+            "text_columns": 1
+          }
+        }
+      },
+      "block_order": [
+        "text_wa4h9z"
+      ],
+      "custom_css": [
+        "section > div > div > div.rte.body-size-9.columns--1 > p {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1rem, calc(1em + 1vw), 1.8em);}",
+        "section > div > div > div.standard__image {display: flex; justify-content: center;}",
+        "section > div > div > div.standard__image > div {width: 20vw !important;}",
+        "section > div {display: flex; align-items: flex-end; height: 50vh;}"
+      ],
+      "settings": {
+        "align_text": "text-center",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "content_width": 1450,
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_liquid_Lca6qH": {
+      "type": "section-liquid",
+      "custom_css": [
+        "#sus-line-container {width: 100vw; height: 30vh; display: flex; justify-content: center; overflow: hidden;}",
+        "#sus-line {width: 1px; height: 60vh; background-color: black; transform: translate(0px, -30vh); animation: 4s linemove infinite;}"
+      ],
+      "settings": {
+        "custom_liquid": "<div id=\"sus-line-container\">\n\n<div id=\"sus-line\"></div>\n</div>\n<style>\n\n@keyframes linemove {\n  0%   {\ntransform:translate(0px,-60vh);\n}\n  100% {\ntransform:translate(0px,30vh);\n}\n</style>"
+      }
+    },
+    "section_richtext_hTjedb": {
+      "type": "section-richtext",
+      "blocks": {
+        "text_kmCaUq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Beauty and skincare brands create 120 billion units of packaging each year. At Gntl, we believe that true sustainability is rooted in simplicity. In a world that constantly demands more, we embrace the quiet power of less by designing experiential, multitasking formulas that replace 5+ items in a routine. We know that fewer, better things can create a lasting impact on our skin <em>and </em>our planet. </p>",
+            "text_size": 2,
+            "text_columns": 1
+          }
+        }
+      },
+      "block_order": [
+        "text_kmCaUq"
+      ],
+      "custom_css": [
+        "p {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 1.9rem); line-height: clamp(1rem, calc(1em + 1vw), 1.3em);}"
+      ],
+      "settings": {
+        "align_text": "text-center",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "content_width": 850,
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_liquid_ptckkX": {
+      "type": "section-liquid",
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"rpg-widget\"><script src=\"https://static.repurpose.global/2ff5ac2f-be80-448c-a02f-60f197686f40/e6968e7d-0fae-4f96-b5d7-df27366aee66/impact_panel/widget_impact_panel.js\"></script></div>"
+      }
+    },
+    "section_double_Ue3faL": {
+      "type": "section-double",
+      "blocks": {
+        "image_XR76Yr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gntl_girl_and_mom_playing_together.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "enable_overlay_text": false,
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn"
+          }
+        },
+        "text_icjTg6": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "For People",
+            "text": "<p><strong>Sensitive-Skin Friendly:</strong> Gentle enough for all skin, head to toe, child to adult.</p><p><strong>Credo Dirty List™ Approved:</strong> Free from 2700+ potentially harmful ingredients.</p><p></p><p><strong>Safe, Unisex Scent:</strong> Ageless, genderless botanical fragrance both EU-compliant and tested for sensitive skin.</p><p></p><p><strong>EU Clean Standards:</strong> Meets the highest purity and safety standards for people and the planet.</p>",
+            "font_size": 4,
+            "text_columns": 2,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "text_color": "text--neutral",
+            "bg_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_XR76Yr",
+        "text_icjTg6"
+      ],
+      "custom_css": [
+        "h2 {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em);}",
+        "p {font-size: 1rem;}"
+      ],
+      "settings": {
+        "height": "use_screen_three_quarters",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "",
+        "preload_image": false,
+        "width": "wrapper--full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_double_p8eAxD": {
+      "type": "section-double",
+      "blocks": {
+        "image_qyNrMc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DTS_Caldo_019.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "enable_overlay_text": false,
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn"
+          }
+        },
+        "text_68jY7C": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "For Planet",
+            "text": "<p><strong>RSPO Certified:</strong> Our ingredients are forest-safe and free from palm oil.</p><p><strong>Petroleum-Free:</strong> We prioritize plant-based alternatives for a cleaner footprint.</p><p><strong>Fully Recyclable Packaging:</strong> Designed to be easily recyclable to minimize waste.</p><p><strong>Responsible Packaging Consulting:</strong> Partnered with Better Future Factory to determine the most sustainable packaging solutions.</p><p><strong>FSC-Certified Paperboard:</strong> Uses paperboard boxes certified by the Forest Stewardship Council.</p>",
+            "font_size": 4,
+            "text_columns": 2,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "text_color": "text--neutral",
+            "bg_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_qyNrMc",
+        "text_68jY7C"
+      ],
+      "custom_css": [
+        "h2 {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em);}",
+        "p {font-size: 1rem;}"
+      ],
+      "settings": {
+        "height": "use_screen_three_quarters",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "",
+        "preload_image": false,
+        "width": "wrapper--full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_double_9dxCpn": {
+      "type": "section-double",
+      "blocks": {
+        "image_DDreAm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1011_GNTL209.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "enable_overlay_text": false,
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn"
+          }
+        },
+        "text_BAYLc3": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "For Less",
+            "text": "<p>We believe in doing more with less. Less waste, less complexity, and less impact on the planet. </p><p>Our products are intentionally formulated to replace multiple items in our homes, reducing waste and simplifying our routines. </p>",
+            "font_size": 4,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "text_color": "text--neutral",
+            "bg_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_DDreAm",
+        "text_BAYLc3"
+      ],
+      "custom_css": [
+        "h2 {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em);}",
+        "p {font-size: 1rem;}"
+      ],
+      "settings": {
+        "height": "use_screen_three_quarters",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "",
+        "preload_image": false,
+        "width": "wrapper--full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_gallery_text_KQTVaX": {
+      "type": "section-gallery-text",
+      "blocks": {
+        "text_3Pc6HP": {
+          "type": "text",
+          "settings": {
+            "title": "The Gntl Standard",
+            "title_size": 3,
+            "text": "<p>At Gntl, we believe in minimalist skincare that works effortlessly for both face and body. Our high-performance formulations are crafted with purpose, delivering exceptional results through simplified routines while maintaining our commitment to conscious ingredient selection.</p>",
+            "body_size": 5,
+            "text_align": "text-left"
+          }
+        },
+        "text_hk7PBN": {
+          "type": "text",
+          "settings": {
+            "title": "Our Clean Commitment ",
+            "title_size": 3,
+            "text": "<p>We believe in minimalist, multifunctional skincare that's genuinely clean. Our products are formulated without over 2,700 ingredients that are restricted or prohibited by the EU and major clean beauty retailers.</p><p>We thoughtfully exclude: </p><p>Parabens, Phthalates, Mineral oil + petroleum derivatives, Formaldehyde & formaldehyde-releasing agents, Oxybenzone + octinoxate, Coal tar, Hydroquinone, Triclosan + triclocarban, BHA + BHT, Aluminum salts, Lead & mercury, PEGs + ethoxylated ingredients, Nanoparticles, Silicones, Synthetic dyes, Talc, Ethanolamines (like DEA, TEA, MEA), Sodium Lauryl Sulfate (SLS), Propylene Glycol, and many others...</p><p>Our clean philosophy promise means <strong>everything you want, and nothing you don’t</strong>: effective, luxurious skincare that puts your well-being and the planet first. Gntl’s alignment with the Credo Clean Standard is our commitment to you – delivering results you can feel good about, with safety and sustainability at the forefront.</p>",
+            "body_size": 5,
+            "text_align": "text-left"
+          }
+        },
+        "text_az3RQk": {
+          "type": "text",
+          "settings": {
+            "title": "Contact us",
+            "title_size": 3,
+            "text": "<p>If you have any suggestions on how Gntl can improve our impact, please drop us a line at <a href=\"mailto:hello@gntlskin.com\"><span style=\"text-decoration:underline\">hello@gntlskin.com</span></a>.</p>",
+            "body_size": 5,
+            "text_align": "text-left"
+          }
+        }
+      },
+      "block_order": [
+        "text_3Pc6HP",
+        "text_hk7PBN",
+        "text_az3RQk"
+      ],
+      "custom_css": [
+        "h2 {font-family: \"PPEditorialNew\" !important; font-weight: 400; font-size: 2rem;}"
+      ],
+      "settings": {
+        "bg": "palette--light bg--neutral",
+        "grid_large": 1,
+        "grid_medium": 1,
+        "grid_mobile": 1,
+        "width": "wrapper--full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_richtext_Rj8rEB",
+    "section_liquid_Lca6qH",
+    "section_richtext_hTjedb",
+    "section_liquid_ptckkX",
+    "section_double_Ue3faL",
+    "section_double_p8eAxD",
+    "section_double_9dxCpn",
+    "section_gallery_text_KQTVaX"
+  ]
+}

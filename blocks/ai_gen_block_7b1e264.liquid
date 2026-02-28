@@ -1,0 +1,117 @@
+{% doc %}
+  @prompt
+    Add Klaviyo star rating widget under the product title on the product page. Insert this code snippet: <div class="klaviyo-star-rating-widget" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}"></div>. The widget should appear directly below the product name/title.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-klaviyo-rating-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    margin-top: {{ block.settings.spacing_top }}px;
+    margin-bottom: {{ block.settings.spacing_bottom }}px;
+  }
+
+  .ai-klaviyo-rating-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: {{ block.settings.alignment }};
+    align-items: center;
+  }
+
+  .ai-klaviyo-rating-{{ ai_gen_id }} .klaviyo-star-rating-widget {
+    display: inline-block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-klaviyo-rating-wrapper-{{ ai_gen_id }} {
+      justify-content: {{ block.settings.mobile_alignment }};
+    }
+  }
+{% endstyle %}
+
+<div class="ai-klaviyo-rating-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-klaviyo-rating-wrapper-{{ ai_gen_id }}">
+    <div class="klaviyo-star-rating-widget" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Klaviyo star rating",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Desktop alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "mobile_alignment",
+      "label": "Mobile alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "spacing_top",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "spacing_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Klaviyo star rating"
+    }
+  ]
+}
+{% endschema %}

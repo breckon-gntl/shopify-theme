@@ -1,0 +1,325 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {
+        "kicker": "tet",
+        "kicker_size": 3,
+        "show_title": true,
+        "title_size": 8,
+        "show_content": true,
+        "content_size": 5,
+        "align_text": "text-center",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper--narrow",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "hero": {
+      "type": "section-hero",
+      "blocks": {
+        "text_9VGbY4": {
+          "type": "text",
+          "settings": {
+            "richtext": "<p>We’re Gntl. We believe in a world of radically minimalist essentials, where every item on our shelf holds meaning, beauty, and function. We make facial-quality skincare for the entire body and embrace the luxury of less.</p><p>Our simplified, thoughtfully crafted, multi-functional formulas serve all bodies, skin types, and stages of life. By reducing the number of products in our routines, we create space for something greater: meaningful connections with ourselves and the world around us that are more than skin-deep.<br/><br/>Gntl is a call to slow down, honor our bodies with intimate care, and make conscious choices that are gentler on the planet. The more we simplify, the more we savor the small moments: the soft rhythm of rain against a window, the warm glow of a sunset on the horizon, the scent of sandalwood drifting through the air, and the pleasure of suds sliding over damp skin.<br/><br/>Gntl is a celebration of radical simplicity—a return to the essentials and a gentle reminder that all you need is less.</p>",
+            "text_size": 5
+          }
+        }
+      },
+      "block_order": [
+        "text_9VGbY4"
+      ],
+      "custom_css": [
+        "p {font-family: \"PPEditorialNew\" !important; line-height: clamp(1.2em, calc(1.2em + 1vw), 1rem); font-size: clamp(1.25rem, calc(1.5rem + 2vw), 1.7rem); padding: 16px 0px;}",
+        "div > div > div > div.hero__content__wrapper.align--middle-center > div > div {max-width: none !important;}"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Gntl0511DNG-22.jpg",
+        "height": "use_screen_full",
+        "overlay_opacity": 50,
+        "overlay_color": "#000000",
+        "enable_overlay_text": false,
+        "preload_image": true,
+        "content_width": 2000,
+        "text_align": "align--middle-center",
+        "text_color": "text--white",
+        "color_bg": "hero__content--transparent",
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_columns_CHBbLx": {
+      "type": "section-columns",
+      "blocks": {
+        "text_block_ALw37y": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/All_you_need_is_less._Gntl.png",
+            "shape_class": "",
+            "title": "",
+            "text": "<p>“I didn't give a sh*t about body wash until I tried this Skin Wash”</p><p>- Renee Rodriguez, Pop Sugar</p><p><a href=\"https://www.popsugar.com/beauty/gntl-skin-wash-review-49329624\">Read article</a> </p>",
+            "button_label": "",
+            "button_link": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn--soft",
+            "enable_video": false,
+            "video_link": "",
+            "video_button_color": "text--white"
+          }
+        },
+        "text_block_LcFhJC": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Gntl_simplified_skincare_well_good.png",
+            "shape_class": "",
+            "title": "",
+            "text": "<p>“This 6-in-1 full-body cleanser will cut multiple steps out of your beauty routine, and make it more eco-friendly in the process”</p><p>- Casey Clark, Well + Good</p><p><a href=\"https://www.wellandgood.com/gntl-skin-wash/\">Read article</a> </p>",
+            "button_label": "",
+            "button_link": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn--soft",
+            "enable_video": false,
+            "video_link": "",
+            "video_button_color": "text--white"
+          }
+        },
+        "text_block_A7axXX": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify://shop_images/Beauty_Independent.png",
+            "shape_class": "",
+            "title": "",
+            "text": "<p>“Skinimalism, multifunctionality and sustainability are coming together in a big way at Gntl.” </p><p>- Robin Mosley, Beauty Independent</p><p><a href=\"https://www.beautyindependent.com/new-brand-gntl-multifunctional-product-skin-wash/\"><span style=\"text-decoration:underline\">Read article</span></a></p>",
+            "button_label": "",
+            "button_link": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn--soft",
+            "enable_video": false,
+            "video_link": "",
+            "video_button_color": "text--white"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_ALw37y",
+        "text_block_LcFhJC",
+        "text_block_A7axXX"
+      ],
+      "custom_css": [
+        "div > div > div > div > div.column__image > div {height: 300px;}",
+        "div > div > h2 {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); margin-bottom: 24px;}",
+        "div > div > h2:after {display: none;}",
+        "img {object-position: left !important;}"
+      ],
+      "settings": {
+        "title": "Gntl in the press",
+        "bg": "palette--light bg--neutral",
+        "align_text": "text-left",
+        "scale_image": false,
+        "wh_ratio": 1,
+        "grid_large": 3,
+        "grid_medium": 3,
+        "grid_mobile": 1.2,
+        "progress_bar_mobile": false,
+        "width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "custom-content-1": {
+      "type": "section-custom-content",
+      "blocks": {
+        "custom-content-1-0": {
+          "type": "video",
+          "settings": {
+            "video_bg": "shopify://files/videos/IMG_2726.MOV",
+            "object_position": "center-center",
+            "video_link": "",
+            "popup_text": "",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn"
+          }
+        },
+        "custom-content-1-1": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "Our origins",
+            "text": "<p>The skincare industry equates efficacy with an endless stream of products, convincing us that more steps, more ingredients, and more purchases are the only ways to achieve results. Behind the scenes, we know that’s not true: it’s overconsumption disguised as self-care.</p><p>Our solution? Thoughtfully crafted, multi-functional formulas designed to nourish all skin, head to toe. With fewer, better ingredients, Gntl offers a more effective approach to self-care — one that delivers real results while being kinder to both our bodies and the planet.</p>",
+            "font_size": 5,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "text_color": "text--neutral",
+            "bg_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "custom-content-1-0",
+        "custom-content-1-1"
+      ],
+      "custom_css": [
+        "h2 {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em);}"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "",
+        "preload_image": false,
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom-content-2": {
+      "type": "section-custom-content",
+      "blocks": {
+        "custom-content-2-0": {
+          "type": "text",
+          "settings": {
+            "kicker": "",
+            "title": "A note from our founder",
+            "text": "<p>Sydney Dake is a product developer and brand builder with a knack for creating innovative, viral beauty solutions. She’s developed some of your most beloved cosmetic and skincare products and helped build mission-driven beauty startups.<br/><br/></p><h6>In my years in the beauty industry, I saw firsthand how the market pushes excess. I believe we've been conditioned to equate efficacy with an endless stream of products and steps—when in reality, results come from doing less, but doing it well. My approach to care is rooted in the belief that 80% of your results come from just 20% of your effort, and that self-care should be a practice in mindfulness, not excess.<br/><br/>xo, Sydney Dake </h6>",
+            "font_size": 5,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "text_color": "text--neutral",
+            "bg_color": "#fff8e9"
+          }
+        },
+        "custom-content-2-1": {
+          "type": "video",
+          "settings": {
+            "object_position": "center-top",
+            "image": "shopify://shop_images/Edited_Headshot_SD.heic",
+            "video_link": "",
+            "popup_text": "",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "link_text": "",
+            "link": "shopify://pages/faq",
+            "button_color": "btn--white",
+            "button_style": "btn--soft"
+          }
+        }
+      },
+      "block_order": [
+        "custom-content-2-0",
+        "custom-content-2-1"
+      ],
+      "custom_css": [
+        "h2 {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em);}",
+        "> section > div > div > div:nth-child(1) > div > div > div > div > h6 {border-left: solid black 4px; padding: 16px; font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 1.4rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1rem);}"
+      ],
+      "settings": {
+        "height": "use_screen_three_quarters",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "#f5f3ee",
+        "preload_image": false,
+        "width": "wrapper",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "section_video_3Qx9Hf": {
+      "type": "section-video",
+      "blocks": {
+        "heading_rFzBjW": {
+          "type": "heading",
+          "settings": {
+            "title": "The future of sustainability is fewer, better things.",
+            "text_size": 10
+          }
+        },
+        "text_nhj6gE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We recognize that conscious consumption is impossible without conscious creation. The onus is on companies like us to create the simpler, more sustainable world we dream about. Our formulas follow the stringent <span style=\"text-decoration:underline\">EU regulation clean standards</span>, are <span style=\"text-decoration:underline\">Credo Dirty List</span>-approved, and feature fully recyclable packaging. </p><p>Read more about our practices <a href=\"https://gntlskin.com/pages/sustainability\" title=\"https://gntlskin.com/pages/sustainability\"><span style=\"text-decoration:underline\">here</span></a>.</p>",
+            "text_size": 6
+          }
+        },
+        "video_rzwTdY": {
+          "type": "video",
+          "settings": {
+            "video_link": "https://youtu.be/HEouwaCR9JM?si=4vR9iGW2bx-60CXp",
+            "popup_text": "",
+            "button_width": 80,
+            "button_color": "text--white"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rFzBjW",
+        "text_nhj6gE",
+        "video_rzwTdY"
+      ],
+      "custom_css": [
+        "div > div > div > div.hero__content__wrapper.align--middle-center > div > div.hero__title.heading-size-10 > p {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em);}",
+        " {font-family: \"PPEditorialNew\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em);}"
+      ],
+      "settings": {
+        "height": "use_screen_two_thirds",
+        "color_bg": "palette--light bg--neutral",
+        "video_bg": "shopify://files/videos/GNTL_BRAND VIDEO_9x16_SOCIAL.mp4",
+        "object_position": "center-center",
+        "preload_image": false,
+        "text_align": "align--middle-center",
+        "text_color": "text--white",
+        "overlay_opacity": 40,
+        "overlay_color": "#000000",
+        "enable_overlay_text": false,
+        "width": "wrapper--none",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero",
+    "section_columns_CHBbLx",
+    "custom-content-1",
+    "custom-content-2",
+    "section_video_3Qx9Hf"
+  ]
+}

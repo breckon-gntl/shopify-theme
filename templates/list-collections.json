@@ -1,0 +1,53 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "secondary": {
+      "type": "section-list-collections-products",
+      "blocks": {
+        "list-collections-products-block-0": {
+          "type": "all_collections",
+          "settings": {
+            "title": "",
+            "link_text": "",
+            "enable_item": false,
+            "item_link_text": "Shop all [name]",
+            "background_color": "#1b3731",
+            "text_color": "text--neutral",
+            "link_size": 2
+          }
+        }
+      },
+      "block_order": [
+        "list-collections-products-block-0"
+      ],
+      "custom_css": [
+        ".collection-list__product {grid-column: 2;}",
+        ".collection-list__heading__text {display: none;}",
+        ".kicker-flourished,.mb-r11 {font-family: \"PPEditorialNew-Light\" !important; font-size: clamp(1.25rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); padding-top: 2rem;}",
+        ".kicker-flourished:after {display: none;}"
+      ],
+      "settings": {
+        "title": "Fewer better things.",
+        "bg": "palette--light bg--accent",
+        "grid": 3,
+        "rows": 3,
+        "enable_scroll_mobile": true,
+        "grid_small": 1.2,
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 108
+      }
+    }
+  },
+  "order": [
+    "secondary"
+  ]
+}

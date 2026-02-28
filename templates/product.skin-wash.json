@@ -1,0 +1,369 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "liquid_Pa6Pch": {
+          "type": "liquid",
+          "name": "Title (Liquid)",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<div class=\"headline-pdp-container\">\n<h1 class=\"skin-he\">{{ \"SKIN\" }}</h1>\n<h1 class=\"wash-he\">{{ \"WASH\" }}</h1>\n\n{% assign rating_raw = product.metafields.reviews.rating.value %}\n{% assign rating = rating_raw | slice: 0, 3 %}\n\n<div class=\"product__rating\" role=\"img\" aria-label=\"{{ rating }} out of 5.0 stars\">\n  <span class=\"product__rating__value\" aria-hidden=\"true\">{{ rating }}</span>\n  <span aria-hidden=\"true\" class=\"product__rating__star\"></span>\n</div>\n\n\n</div>"
+          }
+        },
+        "title_mjbia9": {
+          "type": "title",
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": false,
+            "show_rating_count": false,
+            "padding_bottom": 20
+          }
+        },
+        "klaviyo_reviews_average_rating_aet3H3": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/average-rating/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "klaviyo_email_marketing_sms_form_embed_block_9ERGWU": {
+          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
+          "settings": {
+            "formId": ""
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "price_size": 5,
+            "padding_bottom": 40
+          }
+        },
+        "klaviyo_email_marketing_sms_form_embed_block_VGwQzn": {
+          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
+          "settings": {
+            "formId": ""
+          }
+        },
+        "variants": {
+          "type": "variant-selectors",
+          "settings": {
+            "option_size_swatch": 30,
+            "option_size_radio": 50,
+            "option_space": 0,
+            "padding_bottom": 8
+          }
+        },
+        "subscriptions": {
+          "type": "subscription",
+          "disabled": true,
+          "settings": {
+            "subscriptions_enable_selectors": true,
+            "padding_bottom": 20
+          }
+        },
+        "quantity": {
+          "type": "quantity",
+          "disabled": true,
+          "settings": {
+            "show_quantity": true,
+            "padding_bottom": 20
+          }
+        },
+        "sizes-remaining": {
+          "type": "size-remaining",
+          "disabled": true,
+          "settings": {
+            "info_page": "",
+            "title": "",
+            "show_remaining": true,
+            "show_remaining_style": "low",
+            "countdown": 10,
+            "padding_bottom": 0
+          }
+        },
+        "buttons": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": true,
+            "enable_gift_card_recipient": true,
+            "padding_bottom": 20
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "style": "tabs",
+            "enable_description": true,
+            "read_more": true,
+            "icon_description": "",
+            "description_expanded": true,
+            "title_1": "Benefits",
+            "icon_name_1": "",
+            "raw_content_1": "<p><strong>Barrier‑friendly cleansing:</strong> pH‑balanced gentle surfactants and glycerin blend wash away makeup, oil and impurities without stripping your skin’s natural moisture barrier.<br/><br/><strong>Microbiome support:</strong> Prebiotic oat extract helps nurture a healthy skin microbiome, leaving your complexion calm and resilient.<br/><br/><strong>Multi‑use convenience:</strong> One bottle replaces six products— use it as a makeup remover, facial cleanser, body wash, hand soap, bubble bath or shaving gel.<br/><br/><strong>Gentle for all:</strong> Dermatologist‑tested,  clinically proven to be safe for sensitive skin, kids and during pregnancy. <br/><br/><strong>Sustainable & ethical:</strong> Vegan, cruelty‑free and free from sulfates, silicones, parabens, phthalates and microplastics. Packaged in refillable, recyclable bottles produced in a carbon‑neutral facility, with a portion of proceeds supporting plastic recovery. </p>",
+            "title_2": "Key Ingredients",
+            "icon_name_2": "",
+            "raw_content_2": "<p><strong>Glycerin: </strong>A humectant that attracts and retains moisture, helping to keep skin soft and hydrated while protecting the natural moisture barrier.</p><p><strong>Aloe</strong>: A classic skin‑soother beloved for its ability to calm, hydrate and replenish. </p><p><strong>Gentle Surfactants:</strong> Mild, plant‑derived surfactants that lift away impurities without disrupting the skin’s pH or microbiome.</p><p><strong>Gntl Signature Fragrance</strong>: A warm yet fresh gender-neutral scent developed to be safe for sensitive skin </p><p>All ingredients are vegan and cruelty‑free. The formula contains <strong>no sulfates, silicones, parabens, phthalates, PEGs or microplastics</strong>.</p><p>Full ingredients: Water (Aqua), Sodium Methyl Oleoyl Taurate, Sodium Lauroyl Methyl Isethionate, Cocamidopropyl Betaine, Lauryl Glucoside, Coco-Glucoside, Fragrance (Parfum), Glycerin, Sodium Chloride, Sodium Benzoate, Citric Acid, Potassium Sorbate, Aloe Barbadensis Leaf Juice, Linalool, Limonene, Geraniol, Citral.</p>",
+            "title_3": "How to Use",
+            "icon_name_3": "",
+            "raw_content_3": "<p>Apply to wet hands, washcloth, or loofa and massage lather onto damp skin. Rinse thoroughly with warm water. </p><p>Skin Wash is tough enough to remove daily makeup and SPF, but if you wear waterproof mascara, consider using an oil-based cleanser, then follow with Skin Wash. </p>",
+            "title_4": "Packaging",
+            "icon_name_4": "",
+            "raw_content_4": "<p>Skin Wash is housed in aluminum bottles, a material that is infinitely recyclable. It features a food-grade liner that serves as an alternative to typical BPA liners, ensuring the product remains safe and stable.</p><p>The pump is the only component that cannot be recycled, so please treat it with care by refilling and reusing your bottle multiple times before recycling.</p><p>Our refill pouch is made with minimal material from a bio-based, carbon negative source that's recyclable in your local #4 stream, making our entire packaging system environmentally responsible from start to finish.</p>",
+            "title_5": "",
+            "icon_name_5": "",
+            "raw_content_5": "",
+            "padding_bottom": 20
+          }
+        },
+        "upsell": {
+          "type": "upsell",
+          "disabled": true,
+          "settings": {
+            "title": "Buy it with",
+            "upsell_type": "product_single",
+            "product": "",
+            "upsell_product_list": [],
+            "upsell_list_limit": 1,
+            "padding_bottom": 20
+          }
+        },
+        "pickup": {
+          "type": "pickup",
+          "disabled": true,
+          "settings": {
+            "padding_bottom": 20
+          }
+        },
+        "sharing": {
+          "type": "sharing",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share",
+            "target_device": "",
+            "padding_bottom": 20
+          }
+        }
+      },
+      "block_order": [
+        "liquid_Pa6Pch",
+        "title_mjbia9",
+        "klaviyo_reviews_average_rating_aet3H3",
+        "klaviyo_email_marketing_sms_form_embed_block_9ERGWU",
+        "price",
+        "klaviyo_email_marketing_sms_form_embed_block_VGwQzn",
+        "variants",
+        "subscriptions",
+        "quantity",
+        "sizes-remaining",
+        "buttons",
+        "description",
+        "upsell",
+        "pickup",
+        "sharing"
+      ],
+      "custom_css": [
+        ".headline-pdp-container {display: flex; gap: 8px;}",
+        ".skin-he {font-family: \"PPNeueMontreal\" !important; font-size: 3rem; line-height: 3.8rem; margin-bottom: 0px;}",
+        ".wash-he {font-family: \"PPEditorialNew\"; font-size: 2.6rem; line-height: 3.8rem; margin: 0px 8px 0px 0px;}",
+        ".product__rating {align-items: flex-start !important; margin-top: 8px;}",
+        "legend > span:nth-child(2) {display: none;}"
+      ],
+      "settings": {
+        "layout": "thumbnails-left@slides",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--accent",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": true,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper",
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    },
+    "1770677414f972bf28": {
+      "type": "apps",
+      "blocks": {
+        "moast_carousel_m4dUTa": {
+          "type": "shopify://apps/moast/blocks/carousel/1ac7547b-5443-446c-868c-7fab4566ee16",
+          "settings": {
+            "dynamic": false,
+            "feed": "97143c4a-fec5-4d45-a9a2-b8171ee069c4",
+            "feed_usage": "back_up",
+            "header": "",
+            "slide_type": "cards",
+            "product_cards": "none",
+            "autoplay_mode": "none",
+            "autoscroll_duration": 0,
+            "slide_size": "250",
+            "border": 0,
+            "border_color": "linear-gradient(to right, #833ab4, #fd1d1d, #fcb045)",
+            "slide_rounding": "20",
+            "slide_spacing": 16,
+            "padding_top": 40,
+            "pagination": "below",
+            "alignment": "center",
+            "click_action": "fullscreen",
+            "float_location": "bottom_right",
+            "float_size": "small",
+            "show_captions": false,
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "moast_carousel_m4dUTa"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related": {
+      "type": "related",
+      "disabled": true,
+      "settings": {
+        "heading": "You might also like",
+        "bg": "palette--light bg--neutral",
+        "grid_large": 4,
+        "grid_medium": 3,
+        "grid_small": 1.2,
+        "related_products_enable": true,
+        "limit": 6,
+        "product_recommendations_heading": "Related products",
+        "show_recently_viewed": true,
+        "product_recently_limit": 6,
+        "product_recently_minimum": 4,
+        "product_recently_heading": "Recently viewed",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_faq_4mrHcA": {
+      "type": "section-faq",
+      "blocks": {
+        "text_V3abL8": {
+          "type": "text",
+          "name": "What is Skin Wash used for?",
+          "settings": {
+            "title": "What is Skin Wash and what makes it different from a regular body wash?",
+            "content": "<p>Skin Wash is a 6-in-1 multi-use cleanser formulated to facial-grade standards, meaning it’s gentle enough for your face, yet effective enough to replace your body wash, hand soap, makeup remover, shaving gel, and bubble bath. </p><p>Most body washes are formulated for body skin only and use harsh sulfates that can strip moisture. Skin Wash soap-free, uses baby-safe surfactants, is pH-balanced, and is free from sulfates, silicones, parabens, phthalates, and alcohols for a gentle yet effective cleanse. </p>"
+          }
+        },
+        "text_w3ncCf": {
+          "type": "text",
+          "name": "Is it a facial cleanser or body wash?",
+          "settings": {
+            "title": "Does it actually remove makeup and SPF?",
+            "content": "<p>Yes. Skin Wash is formulated to effectively remove makeup, including foundation and mascara, as well as SPF. For waterproof eye makeup, we recommend using a dedicated makeup remover first.</p>"
+          }
+        },
+        "text_gWBybL": {
+          "type": "text",
+          "name": "Is it safe for sensitive skin?",
+          "settings": {
+            "title": "What does it smell like?",
+            "content": "<p>Skin Wash has a clean, grounding scent — bright orange blossom and marjoram with grounding sandalwood. It's cleanly formulated, and free from potential irritants like essential oils and phthalates. </p>"
+          }
+        },
+        "text_8VE3Fe": {
+          "type": "text",
+          "name": "Does it remove makeup?",
+          "settings": {
+            "title": "Is Skin Wash safe for sensitive skin?",
+            "content": "<p>Yes. Skin Was has passed clinical testing on a panel of sensitive skin. It uses baby-safe surfactants, is pH-balanced, and is free from known irritants including sulfates, artificial dyes, and synthetic fragrance allergens regulated by EU standards. </p><p>However, if you are sensitive to fragrance, we recommend waiting for our fragrance-free version. </p>"
+          }
+        },
+        "text_fArmLD": {
+          "type": "text",
+          "name": "Is it safe during pregnancy and for kids?",
+          "settings": {
+            "title": "Is Skin Wash safe during pregnancy, postpartum, and for kids?",
+            "content": "<p>Yes. Skin Wash was deigned for the every life stage and for the whole family. It is formulated without ingredients of concern for pregnancy, including retinoids, salicylic acid, and certain essential oils.</p><p>If using on young children or infants, we recommend checking with your pediatrician. </p>"
+          }
+        },
+        "text_ezhJbm": {
+          "type": "text",
+          "name": "How long does a bottle last?",
+          "settings": {
+            "title": "How long does one bottle last?",
+            "content": "<p>With full-body daily use, a 16.9oz bottle typically lasts 5–6 weeks. The 33.8oz Refill Pouch lasts approximately 3–4 months for the same use pattern.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_V3abL8",
+        "text_w3ncCf",
+        "text_gWBybL",
+        "text_8VE3Fe",
+        "text_fArmLD",
+        "text_ezhJbm"
+      ],
+      "custom_css": [
+        ".standard__kicker {font-weight: normal; font-family: \"PPEditorialNew\" !important; font-size: 48px;}"
+      ],
+      "name": "FAQs Accordion group",
+      "settings": {
+        "title": "FAQs",
+        "title_align": "text-left",
+        "title_size": 6,
+        "heading_size": 4,
+        "text_size": 5,
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "1743609767405fe28f": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_reviews_product_reviews_pk7nnh": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/product-reviews/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "klaviyo_reviews_product_reviews_pk7nnh"
+      ],
+      "custom_css": [
+        ".kl_reviews__summary__header {font-weight: normal; font-family: \"PPEditorialNew\" !important; font-size: 48px;}"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1770677414f972bf28",
+    "related",
+    "section_faq_4mrHcA",
+    "1743609767405fe28f"
+  ]
+}

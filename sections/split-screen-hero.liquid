@@ -1,0 +1,189 @@
+{% schema %}
+{
+  "name": "Gntl Hero",
+  "tag": "section",
+  "class": "gntl-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Background Image"
+    },
+    {
+  "type": "url",
+  "id": "button_link",
+  "label": "Button Link"
+  },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gntl Hero",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="gntl-hero-wrapper">
+  <div class="gntl-hero-container">
+    <div class="gntl-hero-layout gntl-left" style="background-image: url({{ section.settings.left_image | image_url }});">
+      <div class="gntl-left-inner">
+        <h1 class="gntl-hero-headline">Ease<br><span class="gntl-meets">meets<br></span>Efficacy</h1>
+      </div>
+    </div>
+    <div class="gntl-hero-layout gntl-right" style="background-image: url({{ section.settings.right_image | image_url }});">
+      <div class="gntl-hero-content">
+        <p class="gntl-overline">INTRODUCING</p>
+        <h2 class="gntl-headline"><span class="gntl-skin">Skin<br><span class="gntl-emulsion">Emulsion</span></span></h2>
+        <p class="gntl-subtext">• Made in Japan.</p>
+        {% if section.settings.button_link %}
+  <a href="{{ section.settings.button_link }}" class="gntl-button">Shop now →</a>
+{% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.gntl-hero {
+  margin-top: -116px;
+}
+  
+.gntl-hero-wrapper {
+  width: 100vw;
+  height: 50vw;
+  min-height: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+.gntl-hero-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.gntl-hero-layout {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(95%);
+  position: relative;
+}
+
+.gntl-left {
+  display: flex;
+  align-items: flex-end;
+}
+
+.gntl-left-inner {
+  padding: 0 0 4.5vw 1.5vw;
+}
+
+.gntl-hero-headline {
+  text-transform: uppercase;
+  font-size: 10vw;
+  line-height: 45%;
+  font-family: "PPEditorialNew-Light", serif;
+  font-weight: 100;
+  color: #F5F3EE;
+  margin: 0;
+}
+
+.gntl-meets {
+  font-size: 2vw;
+  position: relative;
+  top: -1.5vw;
+}
+
+.gntl-hero-content {
+  width: 100%;
+  text-align: center;
+  margin-top: 15.2vw;
+  color: #F5F3EE;
+}
+
+.gntl-overline {
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  font-family: "PPEditorialNew", sans-serif;
+  margin: 0;
+}
+
+.gntl-headline {
+  font-family: "PPEditorialNew", serif;
+  font-weight: 100;
+  margin: 0;
+  font-size: 4vw;
+  text-transform: uppercase;
+  line-height: 90%;
+  color: #F5F3EE;
+}
+
+.gntl-skin {
+  font-family: "PPNeueMontreal", sans-serif;
+}
+
+.gntl-emulsion {
+  font-family: "PPEditorialNew", serif !important;
+  all: unset;
+  font-style:italic;
+  text-transform: uppercase;
+}
+
+.gntl-subtext {
+  font-family: "PPNeueMontreal", sans-serif;
+  margin-top: 0.5em;
+  font-size: 16px;
+}
+
+.gntl-button {
+  font-size: 16px;
+  padding: 12px 10px;
+  background: #1D1D1D;
+  color: #F5F3EE;
+  border: none;
+  border-radius: 2px;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .gntl-hero-wrapper{
+    min-height:1440px;
+  }
+  
+  .gntl-hero-container {
+    flex-direction: column;
+  }
+
+  .gntl-left-inner {
+    padding: 3vw 5vw;
+  }
+
+  .gntl-hero-headline {
+    font-size: 14vw;
+    line-height: 8vw;
+    padding-bottom: 10vw;
+  }
+
+  .gntl-meets {
+    font-size: 4vw;
+    top: -2vw;
+  }
+
+  .gntl-headline {
+    font-size: 14vw;
+    line-height: 15vw;
+  }
+}
+</style>

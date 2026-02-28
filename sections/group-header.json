@@ -1,0 +1,157 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": {
+      "type": "announcement",
+      "blocks": {
+        "text_MgjayU": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Foundational essentials for everywhere<strong>  | Free shipping $125+ </strong></p>",
+            "target_url_enabled": false,
+            "target_url": "",
+            "target_referrer_enabled": false,
+            "target_referrer": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        }
+      },
+      "block_order": [
+        "text_MgjayU"
+      ],
+      "custom_css": [],
+      "settings": {
+        "text_size": 2,
+        "layout": "slider",
+        "speed": 5,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "header-block-toolbar": {
+          "type": "toolbar",
+          "disabled": true,
+          "settings": {
+            "announcement_text": "<p>This is announcement <em><strong>richtext</strong></em> from an announcement block</p>",
+            "secondary_linklist": "",
+            "show_menu_desktop": true,
+            "show_menu_mobile": true,
+            "show_locale_desktop": true,
+            "show_locale_mobile": true,
+            "show_currency_desktop": true,
+            "show_currency_mobile": true
+          }
+        },
+        "header-block-image-1": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "position": "1",
+            "wh_ratio": 2,
+            "wide_element": false,
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "Pinned to item 1",
+            "title_color": "text--neutral",
+            "button_style": "is-on-image",
+            "link_text": "Shop All",
+            "link": "shopify://collections/all",
+            "button_color": "btn--neutral",
+            "display": "all"
+          }
+        },
+        "header-block-image-2": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "position": "2",
+            "wh_ratio": 0.8,
+            "wide_element": false,
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "Pinned to item 2",
+            "title_color": "text--neutral",
+            "button_style": "is-below-image",
+            "link_text": "Shop All",
+            "link": "shopify://collections/all",
+            "button_color": "btn--neutral",
+            "display": "all"
+          }
+        },
+        "header-block-image-3": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "position": "2",
+            "wh_ratio": 0.8,
+            "wide_element": false,
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "Pinned to item 2",
+            "title_color": "text--neutral",
+            "button_style": "is-below-image",
+            "link_text": "Shop All",
+            "link": "shopify://collections/all",
+            "button_color": "btn--neutral",
+            "display": "all"
+          }
+        }
+      },
+      "block_order": [
+        "header-block-toolbar",
+        "header-block-image-1",
+        "header-block-image-2",
+        "header-block-image-3"
+      ],
+      "custom_css": [
+        ".js__header__stuck.js__header__stuck__backdrop .theme__header {-webkit-backdrop-filter: none !important; backdrop-filter: none !important; background-color: #1b3731 !important;}",
+        ".navtext {font-size: 16px;}",
+        ".sliderow__title {font-size: 1.5rem;}",
+        ".navtext {font-family: \"PPNeueMontreal\" !important; font-weight: 500; font-size: 1rem;}"
+      ],
+      "settings": {
+        "header_style": "menu_center",
+        "logo": "shopify://shop_images/Gntl.svg",
+        "logo_max_limit": 80,
+        "logo_padding": 24,
+        "logo_text_size": 15,
+        "main_menu_linklist": "main-menu-v3",
+        "mobile_menu_linklist": "",
+        "full_width": true,
+        "underline_current": false,
+        "enable_search": true,
+        "enable_account": true,
+        "use_icons": true,
+        "icons_type": "modern",
+        "cart_icon": "cart",
+        "header_sticky": "sticky",
+        "transparent_home": true,
+        "transparent_collection": true,
+        "transparent_blog": true,
+        "transparent_article": true,
+        "transparent_page": true,
+        "transparent_text_color": "#fff8e9",
+        "show_collection_images": true,
+        "collection_wh_ratio": 2.5
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header"
+  ]
+}

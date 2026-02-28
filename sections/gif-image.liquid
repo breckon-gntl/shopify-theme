@@ -1,0 +1,603 @@
+<!-- /sections/section-double.liquid -->
+
+{% liquid
+  assign blockList = ''
+  for block in section.blocks
+    assign blockList = blockList | append: block.type | append: ','
+    assign blockList = blockList | replace: 'video', 'image'
+  endfor
+  assign blockArray = blockList | split: ","
+
+  assign swaparoo_class = ''
+  if blockArray[0] != 'image' and blockArray[1] == 'image'
+    assign swaparoo_class = 'brick__section--reverse'
+  endif
+
+  assign border_class = ''
+  if section.settings.borders
+    assign border_class = 'brick--border'
+  endif
+
+  assign margin_class = ''
+  if section.settings.brick_gutter > 0
+    assign margin_class = 'brick--margin'
+  endif
+
+  assign transparent_header = false
+  assign non_image_block_types = 'text, newsletter, reviews, product, collection' | split: ','
+  unless non_image_block_types contains section.blocks[0].type and non_image_block_types contains section.blocks[1].type
+    assign transparent_header = true
+  endunless
+
+  assign animation_anchor = "[data-section-id='" | append: section.id | append: "']"
+
+  if section.settings.preload_image
+    assign preload = true
+    assign loading = 'eager'
+    assign fetchpriority = 'high'
+  else
+    assign preload = false
+    assign loading = 'lazy'
+  endif
+%}
+
+{%- capture image_block_sizes -%}
+  {%- render 'image-grid-sizes',
+    columns_desktop: section.blocks.size,
+    columns_tablet: section.blocks.size,
+    columns_mobile: 1.0,
+    section_width: section.settings.width
+  %}
+{%- endcapture -%}
+
+{%- capture video_block_sizes -%}
+  {%- render 'image-grid-sizes',
+    columns_desktop: 2,
+    columns_tablet: 2,
+    columns_mobile: 1.0,
+    section_width: section.settings.width
+  %}
+{%- endcapture -%}
+
+<section data-section-id="{{ section.id }}"
+  data-section-type="custom-content"
+  {% if transparent_header and section.settings.width == "wrapper--none" and section.settings.padding_top == 0 %}data-overlay-header{% endif %}
+  style="--PT: {{ section.settings.padding_top }}px;
+         --PB: {{ section.settings.padding_bottom }}px;
+         --BRICK-GUTTER: {{ section.settings.brick_gutter }}px;
+         {% if section.settings.bg_color != blank %}background-color: {{ section.settings.bg_color }};{% endif %}">
+  <div class="section-padding {{ section.settings.width }}" data-wrapper>
+    <div class="brick__section brick--{{ section.blocks.size }} {{ margin_class }} {{ border_class }} {{ section.settings.height }} {{ swaparoo_class }}"
+      data-overflow-wrapper>
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'image' %}
+
+<div class="image-gif-wrapper" style="position: relative; overflow: hidden;">
+  {% assign images = '' | split: ',' %}
+  {% if block.settings.image_1 != blank %}
+    {% assign images = images | push: block.settings.image_1 %}
+  {% endif %}
+  {% if block.settings.image_2 != blank %}
+    {% assign images = images | push: block.settings.image_2 %}
+  {% endif %}
+  {% if block.settings.image_3 != blank %}
+    {% assign images = images | push: block.settings.image_3 %}
+  {% endif %}
+
+  {% for image in images %}
+    <img
+      src="{{ image | image_url }}"
+      class="gif-frame"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: auto; display: {% if forloop.first %}block{% else %}none{% endif %};"
+      loading="lazy"
+    />
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const wrapper = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!wrapper) return;
+    const frames = wrapper.querySelectorAll('.gif-frame');
+    let index = 0;
+    const duration = {{ block.settings.frame_duration | default: 1000 }};
+
+    setInterval(() => {
+      if (!frames[index]) return;
+      frames[index].style.display = 'none';
+      index = (index + 1) % frames.length;
+      if (frames[index]) frames[index].style.display = 'block';
+    }, duration);
+  });
+</script>
+
+            
+<div class="brick__block" data-overflow-frame {{ block.shopify_attributes }}>
+  <div class="brick__block__image {{ block.settings.text_color }}">
+    <div class="image-gif-wrapper" style="position: relative; width: 100%; height: 100%;">
+      {% assign image_list = '' | split: ',' %}
+      {% for i in (1..7) %}
+        {% assign id = 'image_' | append: i %}
+        {% if block.settings[id] != blank %}
+          {% assign image_list = image_list | push: block.settings[id] %}
+        {% endif %}
+      {% endfor %}
+
+      {% for image in image_list %}
+        <img
+          src="{{ image | image_url }}"
+          class="gif-frame"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: {% if forloop.first %}block{% else %}none{% endif %};"
+          loading="lazy"
+        />
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.querySelector('[data-section-id="{{ section.id }}"] .image-gif-wrapper');
+    if (!wrapper) return;
+    const frames = wrapper.querySelectorAll('.gif-frame');
+    if (frames.length <= 1) return;
+
+    let index = 0;
+    const duration = {{ block.settings.frame_duration | default: 1000 }};
+
+    setInterval(() => {
+      if (!frames[index]) return;
+      frames[index].style.display = 'none';
+      index = (index + 1) % frames.length;
+      if (frames[index]) frames[index].style.display = 'block';
+    }, duration);
+  });
+</script>
+
+
+          {% when 'text' %}
+            {%- liquid
+              assign kicker_line_class = ''
+              if block.settings.title == blank
+                assign kicker_line_class = 'kicker__line'
+              endif
+
+              assign characters = block.settings.text | size
+              assign justify_class = ''
+              if characters > 400 and block.settings.align_text == 'text-center' and block.settings.text_columns > 1
+                assign justify_class = 'text-justify'
+              endif
+
+              assign bg_color = block.settings.bg_color
+              assign transparent_spacing_class = ""
+              if bg_color == 'rgba(0,0,0,0)' or bg_color == blank
+                assign transparent_spacing_class = "brick__block__text--transparent"
+              endif
+            -%}
+            
+<div class="brick__block" data-overflow-frame {{ block.shopify_attributes }}>
+  <div class="brick__block__image {{ block.settings.text_color }}">
+    <div class="image-gif-wrapper" style="position: relative; width: 100%; height: 100%;">
+      {% assign image_list = '' | split: ',' %}
+      {% for i in (1..7) %}
+        {% assign id = 'image_' | append: i %}
+        {% if block.settings[id] != blank %}
+          {% assign image_list = image_list | push: block.settings[id] %}
+        {% endif %}
+      {% endfor %}
+
+      {% for image in image_list %}
+        <img
+          src="{{ image | image_url }}"
+          class="gif-frame"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: {% if forloop.first %}block{% else %}none{% endif %};"
+          loading="lazy"
+        />
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.querySelector('[data-section-id="{{ section.id }}"] .image-gif-wrapper');
+    if (!wrapper) return;
+    const frames = wrapper.querySelectorAll('.gif-frame');
+    if (frames.length <= 1) return;
+
+    let index = 0;
+    const duration = {{ block.settings.frame_duration | default: 1000 }};
+
+    setInterval(() => {
+      if (!frames[index]) return;
+      frames[index].style.display = 'none';
+      index = (index + 1) % frames.length;
+      if (frames[index]) frames[index].style.display = 'block';
+    }, duration);
+  });
+</script>
+
+              </div>
+            </div>
+
+          {% when 'newsletter' %}
+            {%- liquid
+              assign kicker_line_class = ''
+              if block.settings.title == blank
+                assign kicker_line_class = 'kicker__line'
+              endif
+
+              assign ratio = block.settings.bg_color | color_desaturate: 100 | color_contrast: '#ffffff'
+              assign dark_class = ''
+              if ratio > 4
+                assign dark_class = 'palette--dark'
+              endif
+            -%}
+            <div class="brick__block {{ dark_class }}" data-prevent-transparent-header {{ block.shopify_attributes }}>
+              <div class="brick__block__text {{ block.settings.text_color }}" data-overflow-frame style="--bg: {{ block.settings.bg_color }};">
+                <div class="brick__block__text__inner">
+                  <div class="text__standard {{ block.settings.align_text }}" data-overflow-content>
+
+                    {% if block.settings.kicker != blank %}
+                      <p class="standard__kicker {{ kicker_line_class }}"
+                        data-aos="hero"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-order="1">
+                        {{ block.settings.kicker }}
+                      </p>
+                    {% endif %}
+
+                    {% if block.settings.title != blank %}
+                      <h2 class="standard__heading heading-size-9"
+                        data-aos="hero"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-order="2">
+                        {{ block.settings.title }}
+                      </h2>
+                    {% endif %}
+
+                    {% if block.settings.text != blank %}
+                      {% assign font_size_class = block.settings.font_size | prepend: 'body-size-' %}
+                      {% assign text_columns_class = block.settings.text_columns | prepend: 'columns--' %}
+                      <div class="standard__rte rte {{ font_size_class }}"
+                        data-aos="hero"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-order="3">
+                        {{ block.settings.text }}
+                      </div>
+                    {% endif %}
+
+                    <div class="standard__newsletter {{ block.settings.button_color }}"
+                      style="--bg: {{ block.settings.bg_color }}"
+                      data-aos="hero"
+                      data-aos-anchor="{{ animation_anchor }}"
+                      data-aos-order="4">
+                      {% assign unique =  'section-newsletter' | append: block.id %}
+                      {% render 'newsletter-form', unique: unique, text: block.settings.button_text, style: block.settings.button_style, color: block.settings.button_color %}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% when 'video' %}
+            
+<div class="brick__block" data-overflow-frame {{ block.shopify_attributes }}>
+  <div class="brick__block__image {{ block.settings.text_color }}">
+    <div class="image-gif-wrapper" style="position: relative; width: 100%; height: 100%;">
+      {% assign image_list = '' | split: ',' %}
+      {% for i in (1..7) %}
+        {% assign id = 'image_' | append: i %}
+        {% if block.settings[id] != blank %}
+          {% assign image_list = image_list | push: block.settings[id] %}
+        {% endif %}
+      {% endfor %}
+
+      {% for image in image_list %}
+        <img
+          src="{{ image | image_url }}"
+          class="gif-frame"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: {% if forloop.first %}block{% else %}none{% endif %};"
+          loading="lazy"
+        />
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.querySelector('[data-section-id="{{ section.id }}"] .image-gif-wrapper');
+    if (!wrapper) return;
+    const frames = wrapper.querySelectorAll('.gif-frame');
+    if (frames.length <= 1) return;
+
+    let index = 0;
+    const duration = {{ block.settings.frame_duration | default: 1000 }};
+
+    setInterval(() => {
+      if (!frames[index]) return;
+      frames[index].style.display = 'none';
+      index = (index + 1) % frames.length;
+      if (frames[index]) frames[index].style.display = 'block';
+    }, duration);
+  });
+</script>
+
+
+                <div class="image-overlay" style="--bg:{{ block.settings.overlay_color }}; opacity:{{ block.settings.overlay_opacity | times: 0.01 }};"></div>
+
+                {%- if block.settings.video_bg != nil -%}
+                  <div class="video-autoplay-wrapper">
+                    {%- assign video_styles = block.settings.object_position | replace: '-', ' ' | prepend: 'object-position: ' -%}
+                    {{ block.settings.video_bg | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, image_size: '1200x', style: video_styles, data-video-autoplay: '' }}
+                  </div>
+                {%- else -%}
+                  {%- capture srcset -%}
+                    {%- render 'image-grid-srcset',
+                      image: block.settings.image.src,
+                      columns_desktop: 2,
+                      columns_tablet: 2,
+                      columns_mobile: 1.0,
+                      section_width: section.settings.width
+                    %}
+                  {%- endcapture -%}
+
+                  {% render 'image-parallax', img_object: block.settings.image.src, frame_height_class: section.settings.height, srcset: srcset, sizes: video_block_sizes, preload: preload, loading: loading, fetchpriority: fetchpriority %}
+                {% endif %}
+              </div>
+            </div>
+
+          {% when 'product' %}
+            {%- liquid
+              assign kicker_line_class = ''
+              if block.settings.title == blank
+                assign kicker_line_class = 'kicker__line'
+              endif
+
+              assign ratio = block.settings.bg_color | color_desaturate: 100 | color_contrast: '#ffffff'
+              assign ratio = block.settings.bg_color | color_desaturate: 100 | color_contrast: '#ffffff'
+              assign ratio_accent = block.settings.bg_color | color_desaturate: 100 | color_contrast: '#ffffff'
+              assign dark_class = ''
+              assign dark_class_accent = ''
+              if ratio > 4
+                assign dark_class = 'palette--dark'
+              endif
+
+              if ratio_accent > 4
+                assign dark_class_accent = 'palette--dark'
+              endif
+            -%}
+            <div class="brick__block {{ dark_class }}" data-prevent-transparent-header {{ block.shopify_attributes }}>
+              <div class="brick__block__text {{ block.settings.text_color }}" data-overflow-frame style="--bg: {{ block.settings.bg_color }};">
+                <div class="brick__block__product__inner">
+                  <div class="text__standard {{ block.settings.align_text }}" data-overflow-content>
+                    {% if block.settings.kicker != blank %}
+                      <p class="standard__kicker {{ kicker_line_class }}"
+                        data-aos="hero"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-order="1">
+                        {{ block.settings.kicker }}
+                      </p>
+                    {% endif %}
+
+                    <div class="brick__product {{ dark_class_accent }}" style="--bg-accent: {{ block.settings.bg_accent }};">
+                      {%- assign product = all_products[block.settings.product] -%}
+                      {% if product != blank %}
+                        {% render 'product-grid-item', product: product, text_align: block.settings.align_text, badge_string: block.settings.badge_string %}
+                      {% else %}
+                        {% render 'onboarding-product-grid-item' %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% when 'collection' %}
+            {%- liquid
+              assign kicker_line_class = ''
+              if block.settings.title == blank
+                assign kicker_line_class = 'kicker__line'
+              endif
+
+              assign ratio = block.settings.bg_color | color_desaturate: 100 | color_contrast: '#ffffff'
+              assign ratio_accent = block.settings.bg_color | color_desaturate: 100 | color_contrast: '#ffffff'
+              assign dark_class = ''
+              assign dark_class_accent = ''
+              if ratio > 4
+                assign dark_class = 'palette--dark'
+              endif
+
+              if ratio_accent > 4
+                assign dark_class_accent = 'palette--dark'
+              endif
+
+              assign featured_collection = collections[block.settings.collection]
+            -%}
+            <div class="brick__block {{ dark_class }}" data-prevent-transparent-header {{ block.shopify_attributes }}>
+              <div class="brick__block__text brick__block__text--slider {{ block.settings.text_color }}" data-overflow-frame style="--bg: {{ block.settings.bg_color }}; --bg-accent: {{ block.settings.bg_accent }};">
+                <div class="brick__block__product__inner">
+                  <div class="text__standard {{ block.settings.align_text }}" data-overflow-content>
+                    {% if block.settings.kicker != blank %}
+                      <p class="standard__kicker {{ kicker_line_class }}"
+                        data-aos="hero"
+                        data-aos-anchor="{{ animation_anchor }}"
+                        data-aos-order="1">
+                        {{ block.settings.kicker }}
+                      </p>
+                    {% endif %}
+
+                    <div class="brick__collection flickity-badge-dots flickity-disabled-mobile"
+                      data-slider
+                      data-show-dots="true"
+                      data-custom-scrollbar-items>
+                      {% for product in featured_collection.products limit: 8 %}
+                        <div class="brick__product {{ dark_class_accent }}" style="--bg-accent: {{ block.settings.bg_accent }};">
+                          {% render 'product-grid-item', product: product, text_align: block.settings.align_text, badge_string: block.settings.badge_string %}
+                        </div>
+                      {% else %}
+                        {% render 'onboarding-product-grid-item', limit: 3, wrap: 'brick__product' %}
+                      {% endfor %}
+                    </div>
+
+                    <div class="custom-scrollbar small-down--show" data-custom-scrollbar>
+                      <div class="custom-scrollbar__track" data-custom-scrollbar-track></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% when 'article' %}
+            
+<div class="brick__block" data-overflow-frame {{ block.shopify_attributes }}>
+  <div class="brick__block__image {{ block.settings.text_color }}">
+    <div class="image-gif-wrapper" style="position: relative; width: 100%; height: 100%;">
+      {% assign image_list = '' | split: ',' %}
+      {% for i in (1..7) %}
+        {% assign id = 'image_' | append: i %}
+        {% if block.settings[id] != blank %}
+          {% assign image_list = image_list | push: block.settings[id] %}
+        {% endif %}
+      {% endfor %}
+
+      {% for image in image_list %}
+        <img
+          src="{{ image | image_url }}"
+          class="gif-frame"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: {% if forloop.first %}block{% else %}none{% endif %};"
+          loading="lazy"
+        />
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.querySelector('[data-section-id="{{ section.id }}"] .image-gif-wrapper');
+    if (!wrapper) return;
+    const frames = wrapper.querySelectorAll('.gif-frame');
+    if (frames.length <= 1) return;
+
+    let index = 0;
+    const duration = {{ block.settings.frame_duration | default: 1000 }};
+
+    setInterval(() => {
+      if (!frames[index]) return;
+      frames[index].style.display = 'none';
+      index = (index + 1) % frames.length;
+      if (frames[index]) frames[index].style.display = 'block';
+    }, duration);
+  });
+</script>
+
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+    {% if section.blocks.size == 0 %}
+      <div class="text-center">{{ 'home_page.onboarding.no_content' | t }}</div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pair GIF with text",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "kicker",
+          "label": "Kicker",
+          "default": "Image with text"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        }
+      ]
+    },
+    {
+      "type": "gif_images",
+      "name": "GIF Images",
+      "settings": [
+        {
+          "type": "range",
+          "id": "frame_delay",
+          "min": 500,
+          "max": 5000,
+          "step": 100,
+          "unit": "ms",
+          "label": "Frame delay",
+          "default": 1000
+        },
+        {
+          "type": "image_picker",
+          "id": "frame_0",
+          "label": "Frame 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "frame_1",
+          "label": "Frame 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "frame_2",
+          "label": "Frame 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "frame_3",
+          "label": "Frame 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "frame_4",
+          "label": "Frame 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "frame_5",
+          "label": "Frame 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "frame_6",
+          "label": "Frame 7"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pair GIF with text",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "gif_images"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

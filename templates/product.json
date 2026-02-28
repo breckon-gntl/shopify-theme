@@ -1,0 +1,287 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "liquid_Pa6Pch": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<div class=\"headline-pdp-container\">\n<h1 class=\"skin-he\">{{ \"SKIN\" }}</h1>\n<h1 class=\"wash-he\">{{ \"WASH\" }}</h1>\n\n{% assign rating_raw = product.metafields.reviews.rating.value %}\n{% assign rating = rating_raw | slice: 0, 3 %}\n\n<div class=\"product__rating\" role=\"img\" aria-label=\"{{ rating }} out of 5.0 stars\">\n  <span class=\"product__rating__value\" aria-hidden=\"true\">{{ rating }}</span>\n  <span aria-hidden=\"true\" class=\"product__rating__star\"></span>\n</div>\n\n\n</div>"
+          }
+        },
+        "title_ht3wyg": {
+          "type": "title",
+          "settings": {
+            "text_size": 9,
+            "product_show_cutline": true,
+            "show_rating": true,
+            "show_rating_count": false,
+            "padding_bottom": 20
+          }
+        },
+        "klaviyo_reviews_average_rating_mUhNXR": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/average-rating/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "price_size": 5,
+            "padding_bottom": 40
+          }
+        },
+        "variants": {
+          "type": "variant-selectors",
+          "settings": {
+            "option_size_swatch": 30,
+            "option_size_radio": 50,
+            "option_space": 0,
+            "padding_bottom": 8
+          }
+        },
+        "subscriptions": {
+          "type": "subscription",
+          "settings": {
+            "subscriptions_enable_selectors": true,
+            "padding_bottom": 20
+          }
+        },
+        "quantity": {
+          "type": "quantity",
+          "settings": {
+            "show_quantity": true,
+            "padding_bottom": 20
+          }
+        },
+        "sizes-remaining": {
+          "type": "size-remaining",
+          "settings": {
+            "info_page": "",
+            "title": "",
+            "show_remaining": true,
+            "show_remaining_style": "low",
+            "countdown": 10,
+            "padding_bottom": 0
+          }
+        },
+        "buttons": {
+          "type": "add-buttons",
+          "settings": {
+            "enable_payment_button": true,
+            "enable_gift_card_recipient": true,
+            "padding_bottom": 20
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "style": "tabs",
+            "enable_description": true,
+            "read_more": true,
+            "icon_description": "",
+            "description_expanded": true,
+            "title_1": "Benefits",
+            "icon_name_1": "",
+            "raw_content_1": "<ul><li>Functions as makeup remover, facial cleanser, body wash, hand soap, bubble bath, and shaving gel for all your cleansing needs</li><li>Appropriate for all skin types</li><li>Removes dirt, SPF, makeup and impurities</li><li>Cleanses without stripping or drying skin</li><li>pH balanced to maintain skin’s natural acidity and reinforce skin’s barrier </li><li>EU compliant, clean fragrance is tested to be safe on sensitive skin </li></ul>",
+            "title_2": "Key Ingredients",
+            "icon_name_2": "",
+            "raw_content_2": "<ul><li>Baby-safe surfactants- gentle foaming agents to cleanse </li><li>Aloe- antioxidant-rich natural humectant to soothe</li><li>Glycerin- humectant to hydrate and soothe</li><li>Gntl Signature Fragrance- a sweet, green, gender-neutral scent developed to be safe for sensitive skin </li></ul><p></p><p>Full ingredients: </p><p>Water (Aqua), Sodium Methyl Oleoyl Taurate, Sodium Lauroyl Methyl Isethionate, Cocamidopropyl Betaine, Lauryl Glucoside, Coco-Glucoside, Fragrance (Parfum), Glycerin, Sodium Chloride, Sodium Benzoate, Citric Acid, Potassium Sorbate, Aloe Barbadensis Leaf Juice, Linalool, Limonene, Geraniol, Citral.</p>",
+            "title_3": "How to Use",
+            "icon_name_3": "",
+            "raw_content_3": "<p>Apply to wet hands, washcloth, or loofa and massage lather onto damp skinRinse thoroughly with warm water. </p><p>Skin Wash is tough enough to remove daily makeup and SPF, but if you wear waterproof mascara, consider using an oil-based cleanser, then follow with Skin Wash. </p>",
+            "title_4": "Packaging",
+            "icon_name_4": "",
+            "raw_content_4": "<p>Skin Wash is housed in aluminum bottles, a material that is infinitely recyclable. It features a food-grade liner that serves as an alternative to typical BPA liners, ensuring the product remains safe and stable.</p><p>The pump is the only component that cannot be recycled, so please treat it with care by refilling and reusing your bottle multiple times before recycling.</p><p>Our refill pouch is made with minimal material from a bio-based, carbon negative source that's recyclable in your local #4 stream, making our entire packaging system environmentally responsible from start to finish.</p>",
+            "title_5": "",
+            "icon_name_5": "",
+            "raw_content_5": "",
+            "padding_bottom": 20
+          }
+        },
+        "upsell": {
+          "type": "upsell",
+          "disabled": true,
+          "settings": {
+            "title": "Buy it with",
+            "upsell_type": "product_single",
+            "product": "",
+            "upsell_product_list": [],
+            "upsell_list_limit": 1,
+            "padding_bottom": 20
+          }
+        },
+        "pickup": {
+          "type": "pickup",
+          "disabled": true,
+          "settings": {
+            "padding_bottom": 20
+          }
+        },
+        "sharing": {
+          "type": "sharing",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share",
+            "target_device": "",
+            "padding_bottom": 20
+          }
+        }
+      },
+      "block_order": [
+        "liquid_Pa6Pch",
+        "title_ht3wyg",
+        "klaviyo_reviews_average_rating_mUhNXR",
+        "price",
+        "variants",
+        "subscriptions",
+        "quantity",
+        "sizes-remaining",
+        "buttons",
+        "description",
+        "upsell",
+        "pickup",
+        "sharing"
+      ],
+      "custom_css": [
+        ".headline-pdp-container {display: flex; gap: 8px;}",
+        ".skin-he {font-family: \"PPNeueMontreal\" !important; font-size: 3rem; line-height: 3.8rem; margin-bottom: 0px;}",
+        ".wash-he {font-family: \"PPEditorialNew\"; font-size: 2.6rem; line-height: 3.8rem; margin: 0px 8px 0px 0px;}",
+        ".product__rating {align-items: flex-start !important; margin-top: 8px;}",
+        "legend > span:nth-child(2) {display: none;}"
+      ],
+      "settings": {
+        "layout": "thumbnails-left@slides",
+        "image_width": "half",
+        "image_spacing": 10,
+        "align": "left",
+        "bg": "palette--light bg--accent",
+        "mobile_layout": "carousel",
+        "enable_video_looping": true,
+        "zoom_enable": true,
+        "alt_text_enable": true,
+        "alt_text_icon": "icon-ruler",
+        "product_breadcrumbs_enable": false,
+        "product_breadcrumbs_list": [],
+        "width": "wrapper",
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    },
+    "section_double_ErbNmr": {
+      "type": "section-double",
+      "blocks": {
+        "text_E3KKiw": {
+          "type": "text",
+          "settings": {
+            "kicker": "Description",
+            "title": "",
+            "text": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>{{ product.description }}",
+            "font_size": 5,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_color": "btn--neutral",
+            "button_style": "btn-text-thick-line",
+            "text_color": "text--neutral",
+            "bg_color": ""
+          }
+        },
+        "image_cWxC7k": {
+          "type": "image",
+          "settings": {
+            "image": "{{ product.featured_image }}",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "enable_overlay_text": false,
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn"
+          }
+        }
+      },
+      "block_order": [
+        "text_E3KKiw",
+        "image_cWxC7k"
+      ],
+      "disabled": true,
+      "name": "Image with text",
+      "settings": {
+        "height": "use_screen_one_half",
+        "brick_gutter": 0,
+        "borders": false,
+        "bg_color": "",
+        "preload_image": false,
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related": {
+      "type": "related",
+      "settings": {
+        "heading": "",
+        "bg": "palette--light bg--neutral",
+        "grid_large": 4,
+        "grid_medium": 3,
+        "grid_small": 1.2,
+        "related_products_enable": true,
+        "limit": 6,
+        "product_recommendations_heading": "Explore All You Need",
+        "show_recently_viewed": true,
+        "product_recently_limit": 6,
+        "product_recently_minimum": 4,
+        "product_recently_heading": "Recently viewed",
+        "width": "wrapper",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1743609767405fe28f": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_reviews_product_reviews_pk7nnh": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/product-reviews/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "klaviyo_reviews_product_reviews_pk7nnh"
+      ],
+      "custom_css": [
+        ".kl_reviews__summary__header {font-weight: normal; font-family: \"PPEditorialNew\" !important; font-size: 48px;}"
+      ],
+      "settings": {
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "width": "wrapper",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_double_ErbNmr",
+    "related",
+    "1743609767405fe28f"
+  ]
+}
