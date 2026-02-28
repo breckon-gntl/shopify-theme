@@ -23,22 +23,22 @@
         "heading_cbkhtK": {
           "type": "heading",
           "settings": {
-            "title": "All you need is less.",
+            "title": "Facial\u2011grade care for your whole body.",
             "text_size": 10
           }
         },
         "text_MaPf9F": {
           "type": "text",
           "settings": {
-            "richtext": "<p>Fewer bottles. Fewer decisions. Facial-grade care that supports all skin, head-to-toe.</p>",
+            "richtext": "<p>Save 10% on our 2\u2011Step Ritual.</p>",
             "text_size": 5
           }
         },
         "button_KyWTDa": {
           "type": "button",
           "settings": {
-            "link_text_1": "Start here",
-            "link_1": "shopify://collections/all",
+            "link_text_1": "Shop Ritual",
+            "link_1": "shopify://products/2-step-ritual",
             "button_size_1": "btn--medium",
             "button_style_1": "btn",
             "button_color_1": "btn--black",
