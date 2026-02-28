@@ -1,0 +1,7 @@
+[environments.staging]
+store = "gntl-body.myshopify.com"
+theme = "154097025182"
+
+[environments.production]
+store = "gntl-body.myshopify.com"
+theme = "153871253662"
