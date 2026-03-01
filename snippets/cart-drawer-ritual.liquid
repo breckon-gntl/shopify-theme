@@ -152,6 +152,38 @@
       }
     }
 
+    // Re-render the cart drawer's line items and totals using the
+    // Section Rendering API so the new item appears immediately.
+    function refreshDrawerDOM() {
+      var sectionEl = document.querySelector('[data-section-type="cart-drawer"]');
+      var sectionId = sectionEl ? sectionEl.dataset.sectionId : null;
+      if (!sectionId) return Promise.resolve();
+
+      return fetch('/?sections=' + sectionId)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var html = data[sectionId];
+          if (!html) return;
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, 'text/html');
+
+          // Swap line items
+          var newItems = doc.querySelector('[data-line-items]');
+          var curItems = document.querySelector('[data-line-items]');
+          if (newItems && curItems) curItems.innerHTML = newItems.innerHTML;
+
+          // Swap subtotal
+          var newSub = doc.querySelector('[data-cart-subtotal]');
+          var curSub = document.querySelector('[data-cart-subtotal]');
+          if (newSub && curSub) curSub.innerHTML = newSub.innerHTML;
+
+          // Swap checkout button total
+          var newFinal = doc.querySelector('[data-cart-final]');
+          var curFinal = document.querySelector('[data-cart-final]');
+          if (newFinal && curFinal) curFinal.innerHTML = newFinal.innerHTML;
+        });
+    }
+
     function bindButtons() {
       document.querySelectorAll('[data-xsell-add]').forEach(function (btn) {
         if (btn.dataset.xsellBound) return;
@@ -171,9 +203,12 @@
           .then(function (r) { return r.ok ? fetch('/cart.js') : Promise.reject(r); })
           .then(function (r) { return r.json(); })
           .then(function (cart) {
+            // 1. Hide the cross-sell prompt
             updateXsell(cart);
-            // Notify theme — updates free-shipping bar and cart count
+            // 2. Update free-shipping bar and cart count badge
             document.dispatchEvent(new CustomEvent('theme:cart:change', { detail: { cart: cart } }));
+            // 3. Re-render drawer line items in-place
+            return refreshDrawerDOM();
           })
           .catch(function () {
             btn.classList.remove('is-loading');
