@@ -54,7 +54,6 @@
         },
         "subscriptions": {
           "type": "subscription",
-          "disabled": true,
           "settings": {
             "subscriptions_enable_selectors": true,
             "padding_bottom": 20
