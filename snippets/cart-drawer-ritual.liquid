@@ -1,18 +1,18 @@
 <!-- /snippets/cart-drawer-ritual.liquid -->
 {% comment %}
   Shows a cross-sell prompt in the cart drawer when only one ritual item
-  (Skin Wash or Skin Emulsion) is present. Pre-renders both offer cards;
-  JavaScript shows/hides the correct one based on live cart state.
+  (Skin Wash or Skin Emulsion) is present.
 
-  Uses plain <button type="button"> (no <form>) so the theme's own
-  cart-form interceptor cannot double-handle the add-to-cart request.
+  Uses {%- form 'product' -%} so the theme's own AJAX cart handler
+  processes the add and re-renders the drawer natively — no custom fetch
+  or Section Rendering needed. JavaScript only handles show/hide logic.
 {% endcomment %}
 
-{%- assign p_wash = all_products['skin-wash'] -%}
+{%- assign p_wash     = all_products['skin-wash'] -%}
 {%- assign p_emulsion = all_products['skin-emulsion'] -%}
 
 {%- if p_wash != blank and p_emulsion != blank -%}
-  {%- assign wash_variant = p_wash.selected_or_first_available_variant -%}
+  {%- assign wash_variant     = p_wash.selected_or_first_available_variant -%}
   {%- assign emulsion_variant = p_emulsion.selected_or_first_available_variant -%}
 
   <div class="cart-ritual-xsell" data-cart-ritual-xsell style="display: none;">
@@ -30,12 +30,13 @@
       <div class="cart-ritual-xsell__info">
         <p class="cart-ritual-xsell__name">{{ p_emulsion.title }}</p>
         <p class="cart-ritual-xsell__price">{{ emulsion_variant.price | money }}</p>
-        <button type="button"
-          class="btn btn--primary cart-ritual-xsell__btn"
-          data-xsell-add
-          data-variant-id="{{ emulsion_variant.id }}">
-          Add to Cart
-        </button>
+        {%- form 'product', p_emulsion, class: 'cart-ritual-xsell__form' -%}
+          <input type="hidden" name="id"       value="{{ emulsion_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" class="btn btn--primary cart-ritual-xsell__btn">
+            Add to Cart
+          </button>
+        {%- endform -%}
       </div>
     </div>
 
@@ -50,12 +51,13 @@
       <div class="cart-ritual-xsell__info">
         <p class="cart-ritual-xsell__name">{{ p_wash.title }}</p>
         <p class="cart-ritual-xsell__price">{{ wash_variant.price | money }}</p>
-        <button type="button"
-          class="btn btn--primary cart-ritual-xsell__btn"
-          data-xsell-add
-          data-variant-id="{{ wash_variant.id }}">
-          Add to Cart
-        </button>
+        {%- form 'product', p_wash, class: 'cart-ritual-xsell__form' -%}
+          <input type="hidden" name="id"       value="{{ wash_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" class="btn btn--primary cart-ritual-xsell__btn">
+            Add to Cart
+          </button>
+        {%- endform -%}
       </div>
     </div>
 
@@ -114,10 +116,6 @@
       padding: 8px 12px;
       font-size: 0.8rem;
     }
-    .cart-ritual-xsell__btn.is-loading {
-      opacity: 0.6;
-      pointer-events: none;
-    }
   </style>
 
   <script>
@@ -126,7 +124,7 @@
       var hasWash = false;
       var hasEmulsion = false;
       (items || []).forEach(function (item) {
-        if (item.handle === 'skin-wash') hasWash = true;
+        if (item.handle === 'skin-wash')     hasWash = true;
         if (item.handle === 'skin-emulsion') hasEmulsion = true;
       });
       if (hasWash && !hasEmulsion) return 'skin-emulsion';
@@ -152,86 +150,14 @@
       }
     }
 
-    // Re-render the cart drawer's line items and totals using the
-    // Section Rendering API so the new item appears immediately.
-    function refreshDrawerDOM() {
-      var sectionEl = document.querySelector('[data-section-type="cart-drawer"]');
-      var sectionId = sectionEl ? sectionEl.dataset.sectionId : null;
-      if (!sectionId) return Promise.resolve();
-
-      return fetch('/?sections=' + sectionId)
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          var html = data[sectionId];
-          if (!html) return;
-          var parser = new DOMParser();
-          var doc = parser.parseFromString(html, 'text/html');
-
-          // Swap line items
-          var newItems = doc.querySelector('[data-line-items]');
-          var curItems = document.querySelector('[data-line-items]');
-          if (newItems && curItems) curItems.innerHTML = newItems.innerHTML;
-
-          // Swap subtotal
-          var newSub = doc.querySelector('[data-cart-subtotal]');
-          var curSub = document.querySelector('[data-cart-subtotal]');
-          if (newSub && curSub) curSub.innerHTML = newSub.innerHTML;
-
-          // Swap checkout button total
-          var newFinal = doc.querySelector('[data-cart-final]');
-          var curFinal = document.querySelector('[data-cart-final]');
-          if (newFinal && curFinal) curFinal.innerHTML = newFinal.innerHTML;
-        });
-    }
-
-    function bindButtons() {
-      document.querySelectorAll('[data-xsell-add]').forEach(function (btn) {
-        if (btn.dataset.xsellBound) return;
-        btn.dataset.xsellBound = '1';
-
-        btn.addEventListener('click', function () {
-          var variantId = btn.dataset.variantId;
-          var originalText = btn.textContent.trim();
-          btn.classList.add('is-loading');
-          btn.textContent = 'Adding\u2026';
-
-          fetch('/cart/add.js', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: parseInt(variantId, 10), quantity: 1 })
-          })
-          .then(function (r) { return r.ok ? fetch('/cart.js') : Promise.reject(r); })
-          .then(function (r) { return r.json(); })
-          .then(function (cart) {
-            // 1. Hide the cross-sell prompt
-            updateXsell(cart);
-            // 2. Update free-shipping bar and cart count badge
-            document.dispatchEvent(new CustomEvent('theme:cart:change', { detail: { cart: cart } }));
-            // 3. Re-render drawer line items in-place
-            return refreshDrawerDOM();
-          })
-          .catch(function () {
-            btn.classList.remove('is-loading');
-            btn.textContent = originalText;
-          });
-        });
-      });
-    }
-
-    // Initial state
+    // Initial state on page load
     fetch('/cart.js')
       .then(function (r) { return r.json(); })
-      .then(function (cart) {
-        updateXsell(cart);
-        bindButtons();
-      });
+      .then(updateXsell);
 
-    // Keep in sync with other cart changes
+    // Re-evaluate whenever the theme updates the cart
     document.addEventListener('theme:cart:change', function (e) {
-      if (e.detail && e.detail.cart) {
-        updateXsell(e.detail.cart);
-        bindButtons();
-      }
+      if (e.detail && e.detail.cart) updateXsell(e.detail.cart);
     });
   })();
   </script>
