@@ -1,0 +1,130 @@
+<!-- /snippets/pdp-trust-badges.liquid -->
+{% comment %}
+  Renders a horizontal row of trust badges below the ATC form.
+
+  All labels can be overridden by passing variables to the render tag:
+    badge_secure_text     {String}  default: "Secure checkout"
+    badge_guarantee_text  {String}  default: "30-day guarantee"
+    badge_shipping_text   {String}  default: "$5 flat-rate shipping"
+    badge_rating_text     {String}  fallback label when rating metafield is absent
+    guarantee_body        {String}  default: "We stand behind our ritual…"
+
+  Usage:
+    {% render 'pdp-trust-badges' %}
+{% endcomment %}
+
+{%- assign _secure    = badge_secure_text    | default: 'Secure checkout' -%}
+{%- assign _guarantee = badge_guarantee_text | default: '30-day guarantee' -%}
+{%- assign _shipping  = badge_shipping_text  | default: '$5 flat-rate shipping' -%}
+{%- assign _body      = guarantee_body       | default: 'We stand behind our ritual with a no-questions-asked 30-day guarantee.' -%}
+
+{%- assign _rating = product.metafields.reviews.rating.value -%}
+
+<div class="pdp-trust-badges">
+
+  <div class="pdp-trust-badges__row">
+
+    <div class="pdp-trust-badge">
+      <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-lock-shield' -%}</span>
+      <span class="pdp-trust-badge__label">{{ _secure }}</span>
+    </div>
+
+    <div class="pdp-trust-badge">
+      <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-basket-return' -%}</span>
+      <span class="pdp-trust-badge__label">{{ _guarantee }}</span>
+    </div>
+
+    <div class="pdp-trust-badge">
+      <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-truck' -%}</span>
+      <span class="pdp-trust-badge__label">{{ _shipping }}</span>
+    </div>
+
+    {%- if _rating != blank -%}
+      <div class="pdp-trust-badge">
+        <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-star-rating' -%}</span>
+        <a href="#product-reviews" class="pdp-trust-badge__label pdp-trust-badge__label--link">
+          {{- _rating | round: 1 -}}&thinsp;&#9733;&thinsp;rating
+        </a>
+      </div>
+    {%- elsif badge_rating_text != blank -%}
+      <div class="pdp-trust-badge">
+        <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-star-rating' -%}</span>
+        <span class="pdp-trust-badge__label">{{ badge_rating_text }}</span>
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  <p class="pdp-trust-badges__guarantee">{{ _body }}</p>
+
+</div>
+
+<style>
+  .pdp-trust-badges {
+    margin-top: 16px;
+  }
+  .pdp-trust-badges__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 0;
+    padding: 14px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .pdp-trust-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    flex: 1 1 25%;   /* 4 columns on desktop */
+    min-width: 72px;
+    text-align: center;
+    padding: 0 8px;
+  }
+  .pdp-trust-badge + .pdp-trust-badge {
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .pdp-trust-badge__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    color: #1b3731;
+  }
+  .pdp-trust-badge__icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+  }
+  .pdp-trust-badge__label {
+    font-size: 0.68rem;
+    line-height: 1.3;
+    opacity: 0.7;
+    color: inherit;
+    text-decoration: none;
+  }
+  .pdp-trust-badge__label--link:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+  .pdp-trust-badges__guarantee {
+    font-size: 0.72rem;
+    font-style: italic;
+    opacity: 0.55;
+    margin: 10px 0 0;
+  }
+  /* On very narrow screens, allow horizontal scroll rather than wrapping */
+  @media (max-width: 360px) {
+    .pdp-trust-badges__row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pdp-trust-badge {
+      flex: 0 0 auto;
+    }
+  }
+</style>
