@@ -1,0 +1,100 @@
+<!-- /snippets/product-hero-copy.liquid -->
+{% comment %}
+  CRO-optimized hero copy block: title + subheading + benefit bullets.
+  Replaces the default 'title' block for GNTL's three core products.
+  Falls back to the standard product-title snippet for any other product.
+
+  Params:
+    product {Object}
+    block   {Object} — for shopify_attributes, text_size, padding_bottom, etc.
+    section {Object}
+{% endcomment %}
+
+{%- liquid
+  case product.handle
+
+    when 'skin-wash'
+      assign hero_subheading = "A facial-grade cleanser that cleans without the cost."
+      assign b1 = "Cleans without stripping — no tight, dry feeling after. Barrier intact, ready for what comes next."
+      assign b2 = "Keeps your skin's natural balance — fewer breakouts, less redness, less of that noon oil surge"
+      assign b3 = "Replaces 6 products: face wash, body wash, hand soap, makeup remover, shaving gel & bubble bath"
+
+    when 'skin-emulsion'
+      assign hero_subheading = "Lightweight hydration that actually lasts."
+      assign b1 = "Absorbs in seconds — zero greasy residue, zero midday shine"
+      assign b2 = "Rebuilds your skin barrier daily, so chronic dryness and flaking stop coming back"
+      assign b3 = "Safe for face and body — the only moisturizer you need"
+
+    when '2-step-ritual'
+      assign hero_subheading = "Everything your skin needs. Two products. 90 seconds."
+      assign b1 = "Cleanse + moisturize in under 2 minutes — the routine you'll actually stick to"
+      assign b2 = "Paired formulas rebuild your barrier faster than either product alone"
+      assign b3 = "Save 10% versus buying separately — one purchase, complete skin care"
+
+    else
+      assign hero_subheading = nil
+
+  endcase
+  assign heading_size_class = block.settings.text_size | prepend: 'heading-size-'
+-%}
+
+{%- if hero_subheading -%}
+
+  <div class="product__block__title product-hero-copy" style="--PB: {{ block.settings.padding_bottom }}px;" {{ block.shopify_attributes }}>
+
+    <h1 class="product__title {{ heading_size_class }}">{{ product.title }}</h1>
+
+    {%- if product.metafields.theme.cutline != blank and product.metafields.theme.cutline.type == 'single_line_text_field' and block.settings.product_show_cutline -%}
+      <p class="product__page__cutline">{{ product.metafields.theme.cutline.value }}</p>
+    {%- endif -%}
+
+    <p class="product-subheading">{{ hero_subheading }}</p>
+
+    <ul class="product-benefits">
+      <li>{{ b1 }}</li>
+      <li>{{ b2 }}</li>
+      <li>{{ b3 }}</li>
+    </ul>
+
+  </div>
+
+  <style>
+    .product-hero-copy .product__title {
+      margin-bottom: 5px;
+    }
+    .product-subheading {
+      font-size: 0.88rem;
+      font-style: italic;
+      opacity: 0.6;
+      margin: 0 0 14px;
+      line-height: 1.5;
+    }
+    .product-benefits {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .product-benefits li {
+      font-size: 0.875rem;
+      line-height: 1.45;
+      padding-left: 22px;
+      position: relative;
+    }
+    .product-benefits li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 1px;
+      color: #1b3731;
+      font-weight: 700;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+  </style>
+
+{%- else -%}
+  {%- render 'product-title', product: product, block: block, section: section -%}
+{%- endif -%}

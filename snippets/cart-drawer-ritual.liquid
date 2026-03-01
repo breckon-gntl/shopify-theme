@@ -1,0 +1,165 @@
+<!-- /snippets/cart-drawer-ritual.liquid -->
+{% comment %}
+  Shows a cross-sell prompt in the cart drawer when only one ritual item
+  (Skin Wash or Skin Emulsion) is present.
+
+  Uses {%- form 'product' -%} so the theme's own AJAX cart handler
+  processes the add and re-renders the drawer natively — no custom fetch
+  or Section Rendering needed. JavaScript only handles show/hide logic.
+{% endcomment %}
+
+{%- assign p_wash     = all_products['skin-wash'] -%}
+{%- assign p_emulsion = all_products['skin-emulsion'] -%}
+
+{%- if p_wash != blank and p_emulsion != blank -%}
+  {%- assign wash_variant     = p_wash.selected_or_first_available_variant -%}
+  {%- assign emulsion_variant = p_emulsion.selected_or_first_available_variant -%}
+
+  <div class="cart-ritual-xsell" data-cart-ritual-xsell style="display: none;">
+
+    <p class="cart-ritual-xsell__heading">Complete your ritual & save 10%</p>
+
+    {%- comment %} Shown when only Skin Wash is in cart → suggest Skin Emulsion {%- endcomment -%}
+    <div class="cart-ritual-xsell__offer" data-xsell-offer="skin-emulsion" style="display: none;">
+      {%- if p_emulsion.featured_image -%}
+        {%- assign emulsion_alt = p_emulsion.featured_image.alt | escape -%}
+        <a href="{{ p_emulsion.url }}" class="cart-ritual-xsell__img-wrap" tabindex="-1" aria-hidden="true">
+          {{ p_emulsion.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', class: 'cart-ritual-xsell__img', alt: emulsion_alt }}
+        </a>
+      {%- endif -%}
+      <div class="cart-ritual-xsell__info">
+        <p class="cart-ritual-xsell__name">{{ p_emulsion.title }}</p>
+        <p class="cart-ritual-xsell__price">{{ emulsion_variant.price | money }}</p>
+        {%- form 'product', p_emulsion, class: 'cart-ritual-xsell__form' -%}
+          <input type="hidden" name="id"       value="{{ emulsion_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" class="btn btn--primary cart-ritual-xsell__btn">
+            Add to Cart
+          </button>
+        {%- endform -%}
+      </div>
+    </div>
+
+    {%- comment %} Shown when only Skin Emulsion is in cart → suggest Skin Wash {%- endcomment -%}
+    <div class="cart-ritual-xsell__offer" data-xsell-offer="skin-wash" style="display: none;">
+      {%- if p_wash.featured_image -%}
+        {%- assign wash_alt = p_wash.featured_image.alt | escape -%}
+        <a href="{{ p_wash.url }}" class="cart-ritual-xsell__img-wrap" tabindex="-1" aria-hidden="true">
+          {{ p_wash.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', class: 'cart-ritual-xsell__img', alt: wash_alt }}
+        </a>
+      {%- endif -%}
+      <div class="cart-ritual-xsell__info">
+        <p class="cart-ritual-xsell__name">{{ p_wash.title }}</p>
+        <p class="cart-ritual-xsell__price">{{ wash_variant.price | money }}</p>
+        {%- form 'product', p_wash, class: 'cart-ritual-xsell__form' -%}
+          <input type="hidden" name="id"       value="{{ wash_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" class="btn btn--primary cart-ritual-xsell__btn">
+            Add to Cart
+          </button>
+        {%- endform -%}
+      </div>
+    </div>
+
+  </div>
+
+  <style>
+    .cart-ritual-xsell {
+      margin: 12px 16px;
+      padding: 14px;
+      background: #f5f2ee;
+      border-radius: 8px;
+    }
+    .cart-ritual-xsell__heading {
+      font-family: "PPEditorialNew", Georgia, serif;
+      font-size: 0.95rem;
+      color: #1b3731;
+      margin: 0 0 10px;
+    }
+    .cart-ritual-xsell__offer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cart-ritual-xsell__img-wrap {
+      flex: 0 0 auto;
+      width: 64px;
+      height: 64px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .cart-ritual-xsell__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cart-ritual-xsell__info {
+      flex: 1;
+      min-width: 0;
+    }
+    .cart-ritual-xsell__name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin: 0 0 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cart-ritual-xsell__price {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      margin: 0 0 8px;
+    }
+    .cart-ritual-xsell__btn {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+    }
+  </style>
+
+  <script>
+  (function () {
+    function getCrossSellHandle(items) {
+      var hasWash = false;
+      var hasEmulsion = false;
+      (items || []).forEach(function (item) {
+        if (item.handle === 'skin-wash')     hasWash = true;
+        if (item.handle === 'skin-emulsion') hasEmulsion = true;
+      });
+      if (hasWash && !hasEmulsion) return 'skin-emulsion';
+      if (hasEmulsion && !hasWash) return 'skin-wash';
+      return null;
+    }
+
+    function updateXsell(cart) {
+      var container = document.querySelector('[data-cart-ritual-xsell]');
+      if (!container) return;
+      var target = getCrossSellHandle(cart.items);
+      container.querySelectorAll('[data-xsell-offer]').forEach(function (el) {
+        el.style.display = 'none';
+      });
+      if (target) {
+        var offer = container.querySelector('[data-xsell-offer="' + target + '"]');
+        if (offer) {
+          offer.style.display = '';
+          container.style.display = '';
+        }
+      } else {
+        container.style.display = 'none';
+      }
+    }
+
+    // Initial state on page load
+    fetch('/cart.js')
+      .then(function (r) { return r.json(); })
+      .then(updateXsell);
+
+    // Re-evaluate whenever the theme updates the cart
+    document.addEventListener('theme:cart:change', function (e) {
+      if (e.detail && e.detail.cart) updateXsell(e.detail.cart);
+    });
+  })();
+  </script>
+
+{%- endif -%}

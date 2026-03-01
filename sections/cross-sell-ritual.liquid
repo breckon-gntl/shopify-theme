@@ -1,0 +1,254 @@
+<!-- /sections/cross-sell-ritual.liquid -->
+
+{%- assign complementary = product.metafields.custom.complementary_product.value -%}
+
+{%- if complementary != blank and complementary.available -%}
+  {%- assign comp_variant = complementary.selected_or_first_available_variant -%}
+
+  <section class="cross-sell-ritual" id="cross-sell-ritual">
+    <div class="wrapper">
+
+      <p class="cross-sell__heading">{{ section.settings.heading }}</p>
+
+      <div class="cross-sell__card">
+
+        {%- if complementary.featured_image -%}
+          {%- assign comp_alt = complementary.featured_image.alt | escape -%}
+          <a href="{{ complementary.url }}" class="cross-sell__image-wrap" tabindex="-1" aria-hidden="true">
+            {{ complementary.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'cross-sell__image', alt: comp_alt }}
+          </a>
+        {%- endif -%}
+
+        <div class="cross-sell__info">
+
+          {%- if section.settings.show_discount_badge -%}
+            <span class="cross-sell__badge">Save 10%</span>
+          {%- endif -%}
+
+          <a href="{{ complementary.url }}" class="cross-sell__title-link">
+            <h3 class="cross-sell__title">{{ complementary.title }}</h3>
+          </a>
+
+          <p class="cross-sell__tagline">{{ section.settings.tagline }}</p>
+
+          <p class="cross-sell__price">{{ comp_variant.price | money }}</p>
+
+          <form method="post" action="/cart/add" class="cross-sell-form" data-cross-sell-form>
+            <input type="hidden" name="id" value="{{ comp_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="cross-sell__cta btn btn--primary" data-cross-sell-btn>
+              {{ section.settings.cta_text }}
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .cross-sell-ritual {
+      background: #f5f2ee;
+      padding: 32px 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .cross-sell__heading {
+      font-family: "PPEditorialNew", Georgia, serif;
+      font-size: 1.5rem;
+      margin: 0 0 20px;
+      color: #1b3731;
+    }
+    .cross-sell__card {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+    .cross-sell__image-wrap {
+      flex: 0 0 auto;
+      width: 120px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .cross-sell__image {
+      display: block;
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .cross-sell__info {
+      flex: 1;
+      min-width: 0;
+    }
+    .cross-sell__badge {
+      display: inline-block;
+      background: #1b3731;
+      color: #fff;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+    .cross-sell__title-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    .cross-sell__title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 4px;
+    }
+    .cross-sell__tagline {
+      font-size: 0.82rem;
+      opacity: 0.65;
+      margin: 0 0 8px;
+    }
+    .cross-sell__price {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0 0 12px;
+    }
+    .cross-sell__cta {
+      width: 100%;
+    }
+    .cross-sell__cta.is-loading {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    /* Mobile — tighter image */
+    @media (max-width: 480px) {
+      .cross-sell__image-wrap { width: 88px; }
+      .cross-sell__image { height: 88px; }
+    }
+    /* Desktop — larger image, price + CTA share a row */
+    @media (min-width: 768px) {
+      .cross-sell__card {
+        gap: 32px;
+        padding: 28px;
+      }
+      .cross-sell__image-wrap {
+        width: 200px;
+      }
+      .cross-sell__image {
+        height: 200px;
+      }
+      .cross-sell__info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 16px;
+        flex: 0 0 auto;
+        max-width: 460px;
+      }
+      .cross-sell__badge,
+      .cross-sell__title-link,
+      .cross-sell__tagline {
+        flex: 0 0 100%;
+      }
+      .cross-sell__price {
+        flex: 1 1 auto;
+        margin-bottom: 0;
+      }
+      .cross-sell-form {
+        flex: 0 0 auto;
+      }
+      .cross-sell__cta {
+        width: auto;
+        min-width: 150px;
+      }
+    }
+  </style>
+
+  <script>
+  (function () {
+    document.querySelectorAll('[data-cross-sell-form]').forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('[data-cross-sell-btn]');
+        var originalText = btn.textContent.trim();
+        btn.classList.add('is-loading');
+        btn.textContent = 'Adding\u2026';
+
+        var body = new URLSearchParams();
+        body.append('id', form.querySelector('[name="id"]').value);
+        body.append('quantity', '1');
+
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: body.toString()
+        })
+        .then(function (r) { return r.ok ? fetch('/cart.js') : Promise.reject(r); })
+        .then(function (r) { return r.json(); })
+        .then(function (cart) {
+          btn.textContent = 'Added!';
+          btn.classList.remove('is-loading');
+
+          // Update free-shipping bar + cart count
+          document.dispatchEvent(new CustomEvent('theme:cart:change', { detail: { cart: cart } }));
+
+          // Open the cart drawer
+          document.dispatchEvent(new CustomEvent('theme:cart:open'));
+          var drawerTrigger = document.querySelector('[data-cart-toggle], [data-cart-open], [data-open-cart]');
+          if (drawerTrigger) drawerTrigger.click();
+
+          setTimeout(function () { btn.textContent = originalText; }, 2500);
+        })
+        .catch(function () {
+          btn.classList.remove('is-loading');
+          btn.textContent = originalText;
+          form.submit(); // fallback: standard page redirect
+        });
+      });
+    });
+  })();
+  </script>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Complete Your Ritual",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Complete Your Ritual"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Save 10% when you add both products"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_discount_badge",
+      "label": "Show discount badge",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cross-sell ritual",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
