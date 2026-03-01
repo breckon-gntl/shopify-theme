@@ -74,4 +74,10 @@
       {% endif %}
     </div>
   </div>
+  {%- assign fs_limit = settings.free_shipping_limit | plus: 0 -%}
+  {%- if fs_limit > 0 -%}
+    <p class="product__shipping-note body-size-3" style="margin-top:8px;opacity:0.7;">
+      Spend ${{ fs_limit }}+ for free shipping&thinsp;&middot;&thinsp;add 2 or more to unlock.
+    </p>
+  {%- endif -%}
 </div>

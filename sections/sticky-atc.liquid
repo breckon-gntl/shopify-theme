@@ -1,0 +1,428 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign atc_text = 'products.product.add_to_cart' | t
+  assign sold_out_text = 'products.product.sold_out' | t
+-%}
+
+<div class="sticky-atc"
+  id="sticky-atc"
+  data-sticky-atc
+  aria-hidden="true"
+  role="region"
+  aria-label="Quick add to cart">
+
+  <div class="sticky-atc__inner wrapper">
+
+    {%- comment -%} Product info: title + price {%- endcomment -%}
+    <div class="sticky-atc__product">
+      <p class="sticky-atc__title">{{ product.title }}</p>
+      <p class="sticky-atc__price" data-sticky-atc-price>
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="sticky-atc__compare">{{ current_variant.compare_at_price | money }}</span>
+        {%- endif -%}
+        <span class="sticky-atc__current-price">{{ current_variant.price | money }}</span>
+      </p>
+    </div>
+
+    {%- comment -%} Trust badges + shipping note — hidden on mobile {%- endcomment -%}
+    <div class="sticky-atc__trust">
+      <ul class="sticky-atc__badges" aria-label="Trust signals">
+        <li class="sticky-atc__badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>{{ section.settings.badge_1 }}</span>
+        </li>
+        <li class="sticky-atc__badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>{{ section.settings.badge_2 }}</span>
+        </li>
+        <li class="sticky-atc__badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h3l3 3v5h-6V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span>{{ section.settings.shipping_note }}</span>
+        </li>
+      </ul>
+    </div>
+
+    {%- comment -%} Quantity + Add to Cart form {%- endcomment -%}
+    {%- form 'product', product, id: 'sticky-atc-form', class: 'sticky-atc__form' -%}
+      <input type="hidden" name="id" id="sticky-atc-variant-id" value="{{ current_variant.id }}">
+
+      <div class="sticky-atc__actions">
+
+        <div class="sticky-atc__qty" role="group" aria-label="Quantity">
+          <button type="button"
+            class="sticky-atc__qty-btn"
+            data-sticky-qty-dec
+            aria-label="Decrease quantity">
+            <svg width="10" height="2" viewBox="0 0 10 2" fill="currentColor" aria-hidden="true"><rect width="10" height="2"/></svg>
+          </button>
+          <input type="number"
+            name="quantity"
+            id="sticky-atc-quantity"
+            value="1"
+            min="1"
+            class="sticky-atc__qty-input"
+            aria-label="Quantity">
+          <button type="button"
+            class="sticky-atc__qty-btn"
+            data-sticky-qty-inc
+            aria-label="Increase quantity">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><rect x="4" width="2" height="10"/><rect y="4" width="10" height="2"/></svg>
+          </button>
+        </div>
+
+        <button type="submit"
+          name="add"
+          id="sticky-atc-btn"
+          class="sticky-atc__add-btn btn btn--primary"
+          data-sticky-atc-btn
+          {% unless current_variant.available %}disabled{% endunless %}>
+          <span data-sticky-atc-btn-text>
+            {%- if current_variant.available -%}
+              {{ atc_text }}
+            {%- else -%}
+              {{ sold_out_text }}
+            {%- endif -%}
+          </span>
+        </button>
+
+      </div>
+    {%- endform -%}
+
+  </div>
+</div>
+
+<style>
+/* ─── Sticky ATC bar ─────────────────────────────────────── */
+.sticky-atc {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.sticky-atc.is-visible {
+  transform: translateY(0);
+}
+
+.sticky-atc__inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+/* Product title + price */
+.sticky-atc__product {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.sticky-atc__title {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  line-height: 1.3;
+}
+
+.sticky-atc__price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 3px 0 0;
+  font-size: 13px;
+}
+
+.sticky-atc__compare {
+  text-decoration: line-through;
+  opacity: 0.45;
+}
+
+/* Trust badges */
+.sticky-atc__trust {
+  flex: 1;
+  min-width: 0;
+}
+
+.sticky-atc__badges {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sticky-atc__badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0.75;
+}
+
+/* Form */
+.sticky-atc__form {
+  flex: 0 0 auto;
+}
+
+.sticky-atc__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Quantity stepper */
+.sticky-atc__qty {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sticky-atc__qty-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+.sticky-atc__qty-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sticky-atc__qty-input {
+  width: 36px;
+  height: 100%;
+  text-align: center;
+  border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0;
+  font-size: 13px;
+  background: transparent;
+  -moz-appearance: textfield;
+}
+
+.sticky-atc__qty-input::-webkit-inner-spin-button,
+.sticky-atc__qty-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Add to cart button */
+.sticky-atc__add-btn {
+  height: 42px;
+  padding: 0 24px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media screen and (max-width: 959px) {
+  .sticky-atc__trust {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .sticky-atc__inner {
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .sticky-atc__title {
+    max-width: 110px;
+    font-size: 12px;
+  }
+
+  .sticky-atc__price {
+    font-size: 12px;
+  }
+
+  .sticky-atc__qty {
+    height: 38px;
+  }
+
+  .sticky-atc__qty-btn {
+    width: 30px;
+  }
+
+  .sticky-atc__qty-input {
+    width: 30px;
+    font-size: 12px;
+  }
+
+  .sticky-atc__add-btn {
+    height: 38px;
+    padding: 0 16px;
+    font-size: 12px;
+  }
+}
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  var bar = document.getElementById('sticky-atc');
+  if (!bar) return;
+
+  var buyBox       = document.querySelector('[data-product-form-wrapper]');
+  var variantInput = document.getElementById('sticky-atc-variant-id');
+  var priceEl      = bar.querySelector('[data-sticky-atc-price]');
+  var btnTextEl    = bar.querySelector('[data-sticky-atc-btn-text]');
+  var addBtn       = document.getElementById('sticky-atc-btn');
+  var qtyInput     = document.getElementById('sticky-atc-quantity');
+
+  var atcText     = {{ atc_text | json }};
+  var soldOutText = {{ sold_out_text | json }};
+
+  /* ── Show / hide on scroll ─────────────────────────────── */
+  function checkScroll() {
+    if (!buyBox) return;
+    var isPast = buyBox.getBoundingClientRect().bottom < 0;
+    bar.classList.toggle('is-visible', isPast);
+    bar.setAttribute('aria-hidden', String(!isPast));
+  }
+
+  window.addEventListener('scroll', checkScroll, { passive: true });
+  checkScroll();
+
+  /* ── Quantity stepper ──────────────────────────────────── */
+  bar.querySelector('[data-sticky-qty-dec]').addEventListener('click', function () {
+    var v = parseInt(qtyInput.value, 10) || 1;
+    if (v > 1) qtyInput.value = v - 1;
+  });
+
+  bar.querySelector('[data-sticky-qty-inc]').addEventListener('click', function () {
+    qtyInput.value = (parseInt(qtyInput.value, 10) || 1) + 1;
+  });
+
+  /* ── Sync variant state ────────────────────────────────── */
+  function updateBar(variantId, priceHtml, available) {
+    if (variantInput) variantInput.value = variantId;
+
+    if (priceEl && priceHtml) priceEl.innerHTML = priceHtml;
+
+    if (addBtn) {
+      addBtn.disabled = !available;
+      if (btnTextEl) btnTextEl.textContent = available ? atcText : soldOutText;
+    }
+  }
+
+  /* Priority 1: theme dispatches a "variant:change" custom event */
+  document.addEventListener('variant:change', function (e) {
+    var d = e.detail || {};
+    var variant = d.variant || d;
+    if (!variant || !variant.id) return;
+
+    var price = variant.price_formatted
+      || (typeof Shopify !== 'undefined' && Shopify.formatMoney
+          ? Shopify.formatMoney(variant.price)
+          : '$' + (variant.price / 100).toFixed(2));
+
+    var html = '';
+    if (variant.compare_at_price && variant.compare_at_price > variant.price) {
+      var cp = variant.compare_at_price_formatted
+        || (typeof Shopify !== 'undefined' && Shopify.formatMoney
+            ? Shopify.formatMoney(variant.compare_at_price)
+            : '$' + (variant.compare_at_price / 100).toFixed(2));
+      html += '<span class="sticky-atc__compare">' + cp + '</span>';
+    }
+    html += '<span class="sticky-atc__current-price">' + price + '</span>';
+
+    updateBar(variant.id, html, variant.available);
+  });
+
+  /* Priority 2: mirror the main product form's hidden variant <input> */
+  var mainVariantInputs = document.querySelectorAll(
+    '[data-product-select], form[action="/cart/add"] input[name="id"]:not(#sticky-atc-variant-id)'
+  );
+  mainVariantInputs.forEach(function (input) {
+    input.addEventListener('change', function () {
+      if (variantInput) variantInput.value = this.value;
+    });
+  });
+
+  /* Priority 3: mirror price HTML via MutationObserver as a final fallback */
+  var mainPriceEl = document.querySelector('[data-product-price]');
+  if (mainPriceEl && window.MutationObserver) {
+    new MutationObserver(function () {
+      if (priceEl) priceEl.innerHTML = mainPriceEl.innerHTML;
+    }).observe(mainPriceEl, { childList: true, subtree: true, characterData: true });
+  }
+
+  /* Sync ATC button availability when main button state changes */
+  var mainAddBtn = document.querySelector('[data-add-to-cart]:not(#sticky-atc-btn)');
+  if (mainAddBtn && window.MutationObserver) {
+    new MutationObserver(function () {
+      if (addBtn) {
+        var isDisabled = mainAddBtn.disabled || mainAddBtn.hasAttribute('disabled');
+        addBtn.disabled = isDisabled;
+        if (btnTextEl) btnTextEl.textContent = isDisabled ? soldOutText : atcText;
+      }
+    }).observe(mainAddBtn, { attributes: true });
+  }
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Sticky Add to Cart",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Slides up from the bottom of the screen after the customer scrolls past the buy box. Only renders on product pages."
+    },
+    {
+      "type": "text",
+      "id": "badge_1",
+      "label": "Trust badge 1 text",
+      "default": "Secure Checkout"
+    },
+    {
+      "type": "text",
+      "id": "badge_2",
+      "label": "Trust badge 2 text",
+      "default": "Easy Returns"
+    },
+    {
+      "type": "text",
+      "id": "shipping_note",
+      "label": "Shipping note",
+      "info": "Displayed as the third trust badge.",
+      "default": "$5 shipping or free over $125"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky Add to Cart"
+    }
+  ]
+}
+{% endschema %}
