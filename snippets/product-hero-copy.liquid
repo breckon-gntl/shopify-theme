@@ -48,6 +48,24 @@
       <p class="product__page__cutline">{{ product.metafields.theme.cutline.value }}</p>
     {%- endif -%}
 
+    {%- assign _rev_rating = product.metafields.reviews.rating.value.rating -%}
+    {%- assign _rev_count  = product.metafields.reviews.rating_count.value -%}
+    <p class="review-summary">
+      <a href="#reviews" data-scroll-to-reviews>
+        {%- if _rev_rating != blank -%}
+          {{- _rev_rating | round: 1 -}}&thinsp;&#9733; average
+        {%- else -%}
+          4.9&thinsp;&#9733; average
+        {%- endif -%}
+        &nbsp;|&nbsp;
+        {%- if _rev_count != blank and _rev_count != '0' -%}
+          {{- _rev_count -}}+ happy customers
+        {%- else -%}
+          180+ happy customers
+        {%- endif -%}
+      </a>
+    </p>
+
     <p class="product-subheading">{{ hero_subheading }}</p>
 
     <ul class="product-benefits">
@@ -61,6 +79,19 @@
   <style>
     .product-hero-copy .product__title {
       margin-bottom: 5px;
+    }
+    .review-summary {
+      margin: 4px 0 12px;
+    }
+    .review-summary a {
+      font-size: 0.82rem;
+      opacity: 0.72;
+      text-decoration: none;
+      color: inherit;
+    }
+    .review-summary a:hover {
+      opacity: 1;
+      text-decoration: underline;
     }
     .product-subheading {
       font-size: 0.88rem;
