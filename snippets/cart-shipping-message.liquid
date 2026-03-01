@@ -78,12 +78,13 @@
       </small>
     {% endif %}
 
-    {% if qualified_shipping_message != blank %}
-      <span class="cart__message-success">{{ qualified_shipping_message }}</span>
-    {% endif %}
-
-    <span class="cart__message-default">
-      {{ free_shipping_message }}
+    <span class="cart__message-text">
+      {% if qualified_shipping_message != blank %}
+        <span class="cart__message-success">{{ qualified_shipping_message }}</span>
+      {% endif %}
+      <span class="cart__message-default">
+        {{ free_shipping_message }}
+      </span>
     </span>
     <a class="cart__message-cta" href="/products/2-step-ritual">Add 2-Step Ritual →</a>
   </p>
@@ -106,10 +107,21 @@
   }
   .gntl-fs-bar.is-hidden,
   .gntl-fs-bar.is-success { display: none; }
+  .cart__message {
+    display: flex !important;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+  }
+  .cart__message-text {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
   .cart__message.is-success .cart__message-cta { display: none; }
   .cart__message-cta {
-    display: block;
-    margin-top: 6px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
     font-size: 0.8rem;
     text-decoration: underline;
     opacity: 0.75;
