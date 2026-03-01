@@ -42,7 +42,7 @@
     {%- if _rating != blank -%}
       <div class="pdp-trust-badge">
         <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-star-rating' -%}</span>
-        <a href="#shopify-product-reviews" class="pdp-trust-badge__label pdp-trust-badge__label--link">
+        <a href="#" data-scroll-to-reviews class="pdp-trust-badge__label pdp-trust-badge__label--link">
           {{- _rating | round: 1 -}}&thinsp;&#9733;&thinsp;rating
         </a>
       </div>
@@ -128,3 +128,20 @@
     }
   }
 </style>
+
+<script>
+(function () {
+  document.querySelectorAll('[data-scroll-to-reviews]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      // Klaviyo Reviews widget root — most reliable selector
+      var target = document.querySelector('[class*="kl_reviews__"]');
+      // Fallback: any section marked as product-reviews
+      if (!target) target = document.querySelector('[data-section-type="product-reviews"]');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+</script>
