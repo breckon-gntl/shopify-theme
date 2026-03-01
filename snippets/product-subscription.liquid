@@ -51,18 +51,44 @@
           </label>
 
           <div class="product__subs__plans {% unless preselected %}hide{% endunless %}" data-group-toggle="{{ selling_plan_group.id }}">
-            {%- for plan in selling_plan_group.selling_plans -%}
-              <label class="product__subs__chip">
-                <input type="radio"
-                  name="selling_plan"
-                  form="{{ uniq_id }}"
-                  value="{{ plan.id }}"
-                  {% if plan.selected %}checked
-                  {%- elsif product.selected_selling_plan == blank and first_selling_plan.id == plan.id -%}checked
-                  {% endif %}/>
-                <span>{{ plan.name }}</span>
-              </label>
-            {%- endfor -%}
+            <span class="product__subs__delivery-label">Delivery every</span>
+            <div class="product__subs__chips">
+              {%- for plan in selling_plan_group.selling_plans -%}
+                {%- liquid
+                  assign ic = plan.billing_policy.interval_count
+                  assign iv = plan.billing_policy.interval
+                  if ic != blank
+                    if iv == 'day'
+                      assign chip_label = ic | append: 'd'
+                    elsif iv == 'week'
+                      assign chip_label = ic | append: 'wk'
+                    elsif iv == 'month'
+                      if ic == 1
+                        assign chip_label = '1mo'
+                      else
+                        assign chip_label = ic | append: 'mo'
+                      endif
+                    elsif iv == 'year'
+                      assign chip_label = ic | append: 'yr'
+                    else
+                      assign chip_label = plan.name
+                    endif
+                  else
+                    assign chip_label = plan.name
+                  endif
+                -%}
+                <label class="product__subs__chip">
+                  <input type="radio"
+                    name="selling_plan"
+                    form="{{ uniq_id }}"
+                    value="{{ plan.id }}"
+                    {% if plan.selected %}checked
+                    {%- elsif product.selected_selling_plan == blank and first_selling_plan.id == plan.id -%}checked
+                    {% endif %}/>
+                  <span>{{ chip_label }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
           </div>
         </div>
       {% endfor %}
@@ -208,16 +234,31 @@
       font-weight: 400;
     }
 
-    /* ── Frequency chips ── */
+    /* ── Delivery frequency row ── */
     .product__subs__plans {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 6px;
       margin-top: 8px;
       padding-top: 8px;
       border-top: 1px solid rgba(27, 55, 49, 0.1);
+      flex-wrap: wrap;
     }
     .product__subs__plans.hide { display: none; }
+
+    .product__subs__delivery-label {
+      font-size: 0.75rem;
+      opacity: 0.55;
+      white-space: nowrap;
+      flex-shrink: 0;
+      letter-spacing: 0.01em;
+    }
+
+    .product__subs__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
 
     .product__subs__chip {
       display: inline-flex;
@@ -233,11 +274,12 @@
     .product__subs__chip span {
       display: inline-flex;
       align-items: center;
-      padding: 3px 10px;
+      padding: 2px 9px;
       border: 1px solid #c8c4bc;
       border-radius: 20px;
-      font-size: 0.76rem;
-      line-height: 1.5;
+      font-size: 0.74rem;
+      font-weight: 500;
+      line-height: 1.6;
       transition: border-color 0.15s, background 0.15s, color 0.15s;
     }
     .product__subs__chip input[type="radio"]:checked + span {
