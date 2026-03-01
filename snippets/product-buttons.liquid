@@ -99,17 +99,19 @@
                 <span class="btn-state-complete">&nbsp;</span>
               </button>
 
-              {%- if buybutton_setting -%}
-                <div class="product__submit__quick">
-                  {{ form | payment_button }}
-                </div>
-              {%- endif -%}
             </div>
           </div>
         </div>
 
-        {% comment %} Shop pay split payment terms {% endcomment %}
-        <div class="shop-pay-terms">{{- form | payment_terms -}}</div>
+        {% render 'pdp-trust-badges' %}
+
+        {%- if buybutton_setting -%}
+          <div class="pdp-express-checkout">
+            <p class="pdp-express-checkout__label">Express checkout (optional)</p>
+            {{ form | payment_button }}
+          </div>
+        {%- endif -%}
+
       {%- endunless -%}
 
       {% comment %} The input with name="id" submits to cart {% endcomment %}
@@ -122,10 +124,25 @@
   </div>
 </product-form>
 
-{% render 'pdp-trust-badges' %}
-
-
-
+<style>
+  /* ── Express checkout: visually secondary, below trust badges ── */
+  .pdp-express-checkout {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    /* Shopify-supported CSS custom properties for accelerated checkout buttons */
+    --shopify-accelerated-checkout-button-block-size: 34px;
+    --shopify-accelerated-checkout-button-border-radius: 8px;
+  }
+  .pdp-express-checkout__label {
+    font-size: 0.7rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.45;
+    margin: 0 0 6px;
+  }
+</style>
 
 
 
