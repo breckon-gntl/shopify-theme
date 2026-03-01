@@ -43,15 +43,20 @@
     {% comment %} {% assign class_message = 'is-hidden' %} {% endcomment %}
   {% endif %}
 
+  {% assign percent = limit | minus: subtotal_without_currency | times: 100 | divided_by: limit %}
+  {% assign percent = 100 | minus: percent %}
+  {% if percent > 100 %}{% assign percent = 100 %}{% endif %}
+
+  <div class="gntl-fs-bar {{ class_message }}" aria-hidden="true">
+    <div class="gntl-fs-bar__track">
+      <div class="gntl-fs-bar__fill" data-gntl-bar-fill
+           style="width: {{ percent | at_most: 100 }}%;"></div>
+    </div>
+  </div>
+
   <p class="cart__message {{ class_message }} {{ font_size_class }}" data-cart-message="{% if qualified_shipping_message != blank %}true{% else %}false{% endif %}" data-limit="{{ limit }}">
     {% comment %} TODO: add wheel setting to cart block {% endcomment %}
     {% if show_wheel %}
-      {% assign percent = limit | minus: subtotal_without_currency | times: 100 | divided_by: limit %}
-      {% assign percent = 100 | minus: percent %}
-
-      {% if percent > 100 %}
-        {% assign percent = 100 %}
-      {% endif %}
 
       <small class="cart__graph">
         {% for i in (1..6) %}
@@ -80,5 +85,51 @@
     <span class="cart__message-default">
       {{ free_shipping_message }}
     </span>
+    <a class="cart__message-cta" href="/products/2-step-ritual">Add 2-Step Ritual →</a>
   </p>
 {% endif %}
+
+<style>
+  .gntl-fs-bar { padding: 0 16px 6px; }
+  .gntl-fs-bar__track {
+    height: 4px;
+    background: #d9d5cc;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .gntl-fs-bar__fill {
+    height: 100%;
+    background: #1b3731;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    will-change: width;
+  }
+  .gntl-fs-bar.is-hidden,
+  .gntl-fs-bar.is-success { display: none; }
+  .cart__message.is-success .cart__message-cta { display: none; }
+  .cart__message-cta {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    opacity: 0.75;
+  }
+</style>
+
+<script>
+(function () {
+  var limitCents = {{ limit_currency }};
+  function updateBar(totalCents) {
+    var pct = Math.min(100, totalCents / limitCents * 100);
+    document.querySelectorAll('[data-gntl-bar-fill]').forEach(function (el) {
+      el.style.width = pct + '%';
+    });
+    document.querySelectorAll('.gntl-fs-bar').forEach(function (el) {
+      el.classList.toggle('is-success', totalCents >= limitCents);
+    });
+  }
+  document.addEventListener('theme:cart:change', function (e) {
+    updateBar(e.detail.cart.total_price);
+  });
+})();
+</script>
