@@ -62,9 +62,11 @@
       display: flex;
       align-items: center;
       gap: 24px;
+      max-width: 640px;
+      margin: 0 auto;
       background: #fff;
       border-radius: 8px;
-      padding: 16px;
+      padding: 20px;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
     }
     .cross-sell__image-wrap {
@@ -120,9 +122,45 @@
       opacity: 0.6;
       pointer-events: none;
     }
+    /* Mobile — tighter image */
     @media (max-width: 480px) {
       .cross-sell__image-wrap { width: 88px; }
       .cross-sell__image { height: 88px; }
+    }
+    /* Desktop — larger image, price + CTA share a row */
+    @media (min-width: 768px) {
+      .cross-sell__card {
+        gap: 32px;
+        padding: 28px;
+      }
+      .cross-sell__image-wrap {
+        width: 200px;
+      }
+      .cross-sell__image {
+        height: 200px;
+      }
+      .cross-sell__info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 16px;
+      }
+      .cross-sell__badge,
+      .cross-sell__title-link,
+      .cross-sell__tagline {
+        flex: 0 0 100%;
+      }
+      .cross-sell__price {
+        flex: 1 1 auto;
+        margin-bottom: 0;
+      }
+      .cross-sell-form {
+        flex: 0 0 auto;
+      }
+      .cross-sell__cta {
+        width: auto;
+        min-width: 150px;
+      }
     }
   </style>
 
