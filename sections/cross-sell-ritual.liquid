@@ -1,9 +1,6 @@
 <!-- /sections/cross-sell-ritual.liquid -->
 
-{%- assign complementary_handle = product.metafields.custom.complementary_product.value -%}
-{%- if complementary_handle != blank -%}
-  {%- assign complementary = all_products[complementary_handle] -%}
-{%- endif -%}
+{%- assign complementary = product.metafields.custom.complementary_product.value -%}
 
 {%- if complementary != blank and complementary.available -%}
   {%- assign comp_variant = complementary.selected_or_first_available_variant -%}
