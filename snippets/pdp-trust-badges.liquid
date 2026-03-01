@@ -2,22 +2,17 @@
 {% comment %}
   Renders a horizontal row of trust badges below the ATC form.
 
-  All labels can be overridden by passing variables to the render tag:
-    badge_secure_text     {String}  default: "Secure checkout"
-    badge_guarantee_text  {String}  default: "30-day guarantee"
-    badge_shipping_text   {String}  default: "$5 flat-rate shipping"
-    badge_rating_text     {String}  fallback label when rating metafield is absent
-    guarantee_body        {String}  default: "We stand behind our ritual…"
+  Label overrides (plain text, no HTML) can be passed via the render tag:
+    badge_secure_text     {String}
+    badge_guarantee_text  {String}
+    badge_shipping_text   {String}
+    guarantee_body        {String}
 
   Usage:
     {% render 'pdp-trust-badges' %}
 {% endcomment %}
 
-{%- assign _secure    = badge_secure_text    | default: 'Secure checkout' -%}
-{%- assign _guarantee = badge_guarantee_text | default: '30-day guarantee' -%}
-{%- assign _shipping  = badge_shipping_text  | default: '$5 flat-rate shipping' -%}
-{%- assign _body      = guarantee_body       | default: 'We stand behind our ritual with a no-questions-asked 30-day guarantee.' -%}
-
+{%- assign _body  = guarantee_body | default: 'We stand behind our ritual with a no-questions-asked 30-day guarantee.' -%}
 {%- assign _rating = product.metafields.reviews.rating.value.rating -%}
 
 <div class="pdp-trust-badges">
@@ -26,32 +21,35 @@
 
     <div class="pdp-trust-badge">
       <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-lock-shield' -%}</span>
-      <span class="pdp-trust-badge__label">{{ _secure }}</span>
+      <span class="pdp-trust-badge__label">
+        {%- if badge_secure_text != blank -%}{{ badge_secure_text }}{%- else -%}Secure<br>checkout{%- endif -%}
+      </span>
     </div>
 
     <div class="pdp-trust-badge">
       <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-basket-return' -%}</span>
-      <span class="pdp-trust-badge__label">{{ _guarantee }}</span>
+      <span class="pdp-trust-badge__label">
+        {%- if badge_guarantee_text != blank -%}{{ badge_guarantee_text }}{%- else -%}30-day<br>guarantee{%- endif -%}
+      </span>
     </div>
 
     <div class="pdp-trust-badge">
       <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-truck' -%}</span>
-      <span class="pdp-trust-badge__label">{{ _shipping }}</span>
+      <span class="pdp-trust-badge__label">
+        {%- if badge_shipping_text != blank -%}{{ badge_shipping_text }}{%- else -%}$5 flat-rate<br>shipping{%- endif -%}
+      </span>
     </div>
 
-    {%- if _rating != blank -%}
-      <div class="pdp-trust-badge">
-        <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-star-rating' -%}</span>
-        <a href="#" data-scroll-to-reviews class="pdp-trust-badge__label pdp-trust-badge__label--link">
-          {{- _rating | round: 1 -}}&thinsp;&#9733;&thinsp;rating
-        </a>
-      </div>
-    {%- elsif badge_rating_text != blank -%}
-      <div class="pdp-trust-badge">
-        <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-star-rating' -%}</span>
-        <span class="pdp-trust-badge__label">{{ badge_rating_text }}</span>
-      </div>
-    {%- endif -%}
+    <div class="pdp-trust-badge">
+      <span class="pdp-trust-badge__icon">{%- render 'icon-setting', filename: 'icon-star-rating' -%}</span>
+      <a href="#" data-scroll-to-reviews class="pdp-trust-badge__label pdp-trust-badge__label--link">
+        {%- if _rating != blank -%}
+          {{- _rating | round: 1 -}}&thinsp;&#9733;<br>rating
+        {%- else -%}
+          Verified<br>reviews
+        {%- endif -%}
+      </a>
+    </div>
 
   </div>
 
@@ -76,7 +74,7 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    flex: 1 1 25%;   /* 4 columns on desktop */
+    flex: 1 1 25%;
     min-width: 72px;
     text-align: center;
     padding: 0 8px;
@@ -101,7 +99,7 @@
   }
   .pdp-trust-badge__label {
     font-size: 0.68rem;
-    line-height: 1.3;
+    line-height: 1.4;
     opacity: 0.7;
     color: inherit;
     text-decoration: none;
@@ -116,7 +114,6 @@
     opacity: 0.55;
     margin: 10px 0 0;
   }
-  /* On very narrow screens, allow horizontal scroll rather than wrapping */
   @media (max-width: 360px) {
     .pdp-trust-badges__row {
       flex-wrap: nowrap;
@@ -134,13 +131,17 @@
   document.querySelectorAll('[data-scroll-to-reviews]').forEach(function (link) {
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      // Klaviyo Reviews widget root — most reliable selector
-      var target = document.querySelector('[class*="kl_reviews__"]');
-      // Fallback: any section marked as product-reviews
+      // All three product templates share this Klaviyo Reviews section ID
+      var target = document.getElementById('shopify-section-1743609767405fe28f');
+      // Fallback: find the full reviews list, not the inline average-rating widget
+      if (!target) target = document.querySelector('[class*="kl_reviews__list"], [class*="kl_reviews__summary"]');
       if (!target) target = document.querySelector('[data-section-type="product-reviews"]');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (!target) return;
+      // Offset for sticky header
+      var header = document.querySelector('[data-header-sticky]');
+      var offset = header ? header.offsetHeight : 0;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - offset - 16;
+      window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
 })();
