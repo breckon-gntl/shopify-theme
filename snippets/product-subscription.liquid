@@ -1,54 +1,127 @@
 <!-- /snippets/product-subscription.liquid -->
-{%- comment -%}
-  This block injects CRO visual styling for the Recharge subscription widget.
-  Recharge's app embed provides all functional HTML/JS — we only add CSS here.
-  Covers both the legacy class-based widget and the newer web component (::part).
-{%- endcomment -%}
 
 {%- if product.selling_plan_groups.size > 0 -%}
+  {%- liquid
+    assign first_selling_group  = product.selling_plan_groups[0]
+    assign first_selling_plan   = first_selling_group.selling_plans[0]
+    assign current_variant      = product.selected_or_first_available_variant
 
-  <div class="product__block__subscription" style="--PB: {{ block.settings.padding_bottom }}px;" {{ block.shopify_attributes }}></div>
+    assign first_plan_alloc = current_variant.selling_plan_allocations | where: 'selling_plan_id', first_selling_plan.id | first
+
+    assign discount_adj = first_selling_plan.price_adjustments | first
+    if discount_adj.value_type == 'percentage'
+      assign discount_pct = discount_adj.value
+    else
+      assign discount_pct = nil
+    endif
+  -%}
+
+  <div class="product__block__subscription" style="--PB: {{ block.settings.padding_bottom }}px;" {{ block.shopify_attributes }}>
+    <fieldset class="product__subs" data-subscription-selectors>
+      <legend class="visually-hidden">{{ 'products.product.subscription' | t }}</legend>
+
+      {% comment %} — Subscribe & Save (pre-selected) — {% endcomment %}
+      {% for selling_plan_group in product.selling_plan_groups %}
+        {%- assign preselected = false -%}
+        {%- if selling_plan_group.selling_plan_selected -%}
+          {%- assign preselected = true -%}
+        {%- elsif product.selected_selling_plan == blank and first_selling_group.id == selling_plan_group.id -%}
+          {%- assign preselected = true -%}
+        {%- endif -%}
+
+        <div class="product__subs__group" data-subscription-group data-selling-plan-group="{{ selling_plan_group.id }}">
+          <label class="product__subs__option">
+            <input type="radio"
+              data-toggles-group
+              name="selling-plan-group"
+              form="{{ uniq_id }}"
+              value="{{ selling_plan_group.id }}"
+              {% if preselected %}checked{% endif %}/>
+            <span class="product__subs__label">
+              <span class="product__subs__label-row">
+                <strong>Subscribe &amp; Save</strong>
+                {%- if discount_pct -%}
+                  <span class="product__subs__badge">{{ discount_pct }}% off</span>
+                {%- endif -%}
+              </span>
+              {%- if first_plan_alloc != nil -%}
+                <span class="product__subs__price" data-subscription-price>{{ first_plan_alloc.price | money }}</span>
+              {%- endif -%}
+            </span>
+          </label>
+
+          <div class="product__subs__plans {% unless preselected %}hide{% endunless %}" data-group-toggle="{{ selling_plan_group.id }}">
+            {%- for plan in selling_plan_group.selling_plans -%}
+              <label class="product__subs__chip">
+                <input type="radio"
+                  name="selling_plan"
+                  form="{{ uniq_id }}"
+                  value="{{ plan.id }}"
+                  {% if plan.selected %}checked
+                  {%- elsif product.selected_selling_plan == blank and first_selling_plan.id == plan.id -%}checked
+                  {% endif %}/>
+                <span>{{ plan.name }}</span>
+              </label>
+            {%- endfor -%}
+          </div>
+        </div>
+      {% endfor %}
+
+      {% comment %} — One-time purchase — {% endcomment %}
+      {% unless product.requires_selling_plan %}
+        <div class="product__subs__group product__subs__group--one-time">
+          <label class="product__subs__option">
+            <input
+              type="radio"
+              name="selling-plan-group"
+              form="{{ uniq_id }}"
+              value=""
+              data-toggles-group
+              />
+            <span class="product__subs__label">
+              <span class="product__subs__label-row">{{ 'products.product.one_time_purchase' | t }}</span>
+              <span class="product__subs__price product__subs__price--regular">{{ current_variant.price | money }}</span>
+            </span>
+          </label>
+        </div>
+      {% endunless %}
+
+    </fieldset>
+
+    <p data-plan-description class="product__subs__description {% unless product.selected_selling_plan %}hide{% endunless %}">
+      {{ product.selected_selling_plan.description }}
+    </p>
+
+    <span data-subscription-watch-price></span>
+  </div>
 
   <style>
-    /* ── Recharge subscription widget — CRO card styles ── */
-
-    /* CSS custom properties that Recharge reads (penetrate Shadow DOM) */
-    :root {
-      --rc-color-brand: #1b3731;
-      --rc-color-brand-secondary: #1b3731;
-      --rc-contrast-color: #fff6e4;
-    }
-
-    /* Widget container */
-    .rc-container { margin-bottom: 0; }
-    .rc-widget {
+    /* ── Subscription selector ── */
+    .product__subs {
+      border: none;
+      padding: 0;
+      margin: 0;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    /* === Card shell for each option === */
-    .rc-option {
-      border: 1.5px solid #dedad3 !important;
-      border-radius: 8px !important;
-      padding: 12px 14px !important;
+    /* Card shell */
+    .product__subs__group {
+      border: 1.5px solid #dedad3;
+      border-radius: 8px;
+      padding: 12px 14px;
       cursor: pointer;
       position: relative;
       transition: border-color 0.2s ease, background 0.2s ease;
-      margin: 0 !important;
+    }
+    .product__subs__group:has(input[name="selling-plan-group"]:checked) {
+      border-color: #1b3731;
+      background: rgba(27, 55, 49, 0.04);
     }
 
-    /* Active / selected card */
-    .rc-option--active {
-      border-color: #1b3731 !important;
-      background: rgba(27, 55, 49, 0.04) !important;
-    }
-
-    /* "Best Value" badge — floats above the subscribe & save card */
-    .rc-option__subsave {
-      position: relative;
-    }
-    .rc-option__subsave::before {
+    /* "Best Value" badge */
+    .product__subs__group[data-subscription-group]:first-of-type::before {
       content: 'Best Value';
       position: absolute;
       top: -10px;
@@ -61,92 +134,126 @@
       padding: 2px 8px;
       border-radius: 20px;
       text-transform: uppercase;
-      pointer-events: none;
     }
 
-    /* Custom radio button */
-    .rc-radio__input {
+    /* Option row */
+    .product__subs__option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* Custom radio */
+    .product__subs__option input[type="radio"] {
       -webkit-appearance: none;
       appearance: none;
-      width: 17px !important;
-      height: 17px !important;
-      border: 1.5px solid #c8c4bc !important;
-      border-radius: 50% !important;
-      cursor: pointer;
+      width: 17px;
+      height: 17px;
+      border: 1.5px solid #c8c4bc;
+      border-radius: 50%;
       flex-shrink: 0;
+      cursor: pointer;
       transition: all 0.15s ease;
-      background: transparent;
     }
-    .rc-option--active .rc-radio__input {
-      border-color: #1b3731 !important;
-      background: #1b3731 !important;
-      box-shadow: inset 0 0 0 3px #fff6e4 !important;
-    }
-
-    /* Discount % pill */
-    .rc-option__discount {
-      background: rgba(27, 55, 49, 0.1) !important;
-      color: #1b3731 !important;
-      border-radius: 12px !important;
-      padding: 2px 8px !important;
-      font-size: 0.72rem !important;
-      font-weight: 600 !important;
-      border: none !important;
+    .product__subs__group:has(input[name="selling-plan-group"]:checked) input[type="radio"][name="selling-plan-group"] {
+      border-color: #1b3731;
+      background: #1b3731;
+      box-shadow: inset 0 0 0 3px #fff6e4;
     }
 
-    /* De-emphasize one-time */
-    .rc-option__onetime {
-      opacity: 0.72;
-    }
-    .rc-option__onetime.rc-option--active {
-      opacity: 1;
-    }
-
-    /* Selling plan frequency — compact dropdown */
-    .rc-selling-plans { margin-top: 8px; }
-    .rc-selling-plans__dropdown {
-      font-size: 0.82rem !important;
-      border: 1px solid #dedad3 !important;
-      border-radius: 6px !important;
-      padding: 4px 8px !important;
-      background: transparent;
-    }
-
-    /* === Newer Recharge web component ::part() selectors === */
-    *::part(rc-content-wrap) {
+    /* Label area — name + price side by side */
+    .product__subs__label {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      flex: 1;
       gap: 8px;
     }
-    *::part(rc-purchase-option) {
-      border: 1.5px solid #dedad3;
-      border-radius: 8px;
-      padding: 12px 14px;
-      position: relative;
-      transition: border-color 0.2s ease, background 0.2s ease;
+    .product__subs__label-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
     }
-    *::part(rc-purchase-option__selected) {
-      border-color: #1b3731;
-      background: rgba(27, 55, 49, 0.04);
+    .product__subs__label-row strong {
+      font-weight: 600;
     }
-    *::part(rc-purchase-option__badge) {
+
+    /* Price */
+    .product__subs__price {
+      font-size: 0.88rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .product__subs__price--regular {
+      opacity: 0.72;
+      font-weight: 400;
+    }
+
+    /* Discount % badge */
+    .product__subs__badge {
+      font-size: 0.7rem;
+      font-weight: 600;
       background: rgba(27, 55, 49, 0.1);
       color: #1b3731;
       border-radius: 12px;
-      padding: 2px 8px;
-      font-weight: 600;
-      font-size: 0.72rem;
-      border: none;
+      padding: 2px 7px;
     }
-    *::part(rc-purchase-option__onetime) {
+
+    /* De-emphasise one-time */
+    .product__subs__group--one-time .product__subs__label-row {
       opacity: 0.72;
+      font-weight: 400;
     }
-    *::part(rc-plans-button) {
-      font-size: 0.78rem;
+
+    /* ── Frequency chips ── */
+    .product__subs__plans {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(27, 55, 49, 0.1);
+    }
+    .product__subs__plans.hide { display: none; }
+
+    .product__subs__chip {
+      display: inline-flex;
+      cursor: pointer;
+    }
+    .product__subs__chip input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+    .product__subs__chip span {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
       border: 1px solid #c8c4bc;
       border-radius: 20px;
-      padding: 3px 10px;
+      font-size: 0.76rem;
+      line-height: 1.5;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
     }
+    .product__subs__chip input[type="radio"]:checked + span {
+      border-color: #1b3731;
+      background: #1b3731;
+      color: #fff6e4;
+    }
+
+    /* Plan description */
+    .product__subs__description {
+      font-size: 0.82rem;
+      opacity: 0.65;
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+    .product__subs__description.hide { display: none; }
   </style>
 
 {%- endif -%}
