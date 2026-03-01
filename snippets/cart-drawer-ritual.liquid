@@ -3,6 +3,9 @@
   Shows a cross-sell prompt in the cart drawer when only one ritual item
   (Skin Wash or Skin Emulsion) is present. Pre-renders both offer cards;
   JavaScript shows/hides the correct one based on live cart state.
+
+  Uses plain <button type="button"> (no <form>) so the theme's own
+  cart-form interceptor cannot double-handle the add-to-cart request.
 {% endcomment %}
 
 {%- assign p_wash = all_products['skin-wash'] -%}
@@ -16,7 +19,7 @@
 
     <p class="cart-ritual-xsell__heading">Complete your ritual</p>
 
-    {%- comment %} Card shown when only Skin Wash is in cart → suggest Skin Emulsion {%- endcomment -%}
+    {%- comment %} Shown when only Skin Wash is in cart → suggest Skin Emulsion {%- endcomment -%}
     <div class="cart-ritual-xsell__offer" data-xsell-offer="skin-emulsion" style="display: none;">
       {%- if p_emulsion.featured_image -%}
         {%- assign emulsion_alt = p_emulsion.featured_image.alt | escape -%}
@@ -27,17 +30,16 @@
       <div class="cart-ritual-xsell__info">
         <p class="cart-ritual-xsell__name">{{ p_emulsion.title }}</p>
         <p class="cart-ritual-xsell__price">{{ emulsion_variant.price | money }}</p>
-        <form class="cart-ritual-xsell__form" data-xsell-form>
-          <input type="hidden" name="id" value="{{ emulsion_variant.id }}">
-          <input type="hidden" name="quantity" value="1">
-          <button type="submit" class="btn btn--primary cart-ritual-xsell__btn" data-xsell-btn>
-            Add to Cart
-          </button>
-        </form>
+        <button type="button"
+          class="btn btn--primary cart-ritual-xsell__btn"
+          data-xsell-add
+          data-variant-id="{{ emulsion_variant.id }}">
+          Add to Cart
+        </button>
       </div>
     </div>
 
-    {%- comment %} Card shown when only Skin Emulsion is in cart → suggest Skin Wash {%- endcomment -%}
+    {%- comment %} Shown when only Skin Emulsion is in cart → suggest Skin Wash {%- endcomment -%}
     <div class="cart-ritual-xsell__offer" data-xsell-offer="skin-wash" style="display: none;">
       {%- if p_wash.featured_image -%}
         {%- assign wash_alt = p_wash.featured_image.alt | escape -%}
@@ -48,13 +50,12 @@
       <div class="cart-ritual-xsell__info">
         <p class="cart-ritual-xsell__name">{{ p_wash.title }}</p>
         <p class="cart-ritual-xsell__price">{{ wash_variant.price | money }}</p>
-        <form class="cart-ritual-xsell__form" data-xsell-form>
-          <input type="hidden" name="id" value="{{ wash_variant.id }}">
-          <input type="hidden" name="quantity" value="1">
-          <button type="submit" class="btn btn--primary cart-ritual-xsell__btn" data-xsell-btn>
-            Add to Cart
-          </button>
-        </form>
+        <button type="button"
+          class="btn btn--primary cart-ritual-xsell__btn"
+          data-xsell-add
+          data-variant-id="{{ wash_variant.id }}">
+          Add to Cart
+        </button>
       </div>
     </div>
 
@@ -124,7 +125,7 @@
     function getCrossSellHandle(items) {
       var hasWash = false;
       var hasEmulsion = false;
-      items.forEach(function (item) {
+      (items || []).forEach(function (item) {
         if (item.handle === 'skin-wash') hasWash = true;
         if (item.handle === 'skin-emulsion') hasEmulsion = true;
       });
@@ -136,13 +137,10 @@
     function updateXsell(cart) {
       var container = document.querySelector('[data-cart-ritual-xsell]');
       if (!container) return;
-
-      var target = getCrossSellHandle(cart.items || []);
-
+      var target = getCrossSellHandle(cart.items);
       container.querySelectorAll('[data-xsell-offer]').forEach(function (el) {
         el.style.display = 'none';
       });
-
       if (target) {
         var offer = container.querySelector('[data-xsell-offer="' + target + '"]');
         if (offer) {
@@ -154,58 +152,50 @@
       }
     }
 
-    // Wire up AJAX add-to-cart on each offer form
-    function bindForms() {
-      document.querySelectorAll('[data-xsell-form]').forEach(function (form) {
-        if (form.dataset.xsellBound) return;
-        form.dataset.xsellBound = '1';
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          var btn = form.querySelector('[data-xsell-btn]');
+    function bindButtons() {
+      document.querySelectorAll('[data-xsell-add]').forEach(function (btn) {
+        if (btn.dataset.xsellBound) return;
+        btn.dataset.xsellBound = '1';
+
+        btn.addEventListener('click', function () {
+          var variantId = btn.dataset.variantId;
           var originalText = btn.textContent.trim();
           btn.classList.add('is-loading');
           btn.textContent = 'Adding\u2026';
 
-          var body = new URLSearchParams();
-          body.append('id', form.querySelector('[name="id"]').value);
-          body.append('quantity', '1');
-
           fetch('/cart/add.js', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'X-Requested-With': 'XMLHttpRequest'
-            },
-            body: body.toString()
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: parseInt(variantId, 10), quantity: 1 })
           })
           .then(function (r) { return r.ok ? fetch('/cart.js') : Promise.reject(r); })
           .then(function (r) { return r.json(); })
           .then(function (cart) {
-            document.dispatchEvent(new CustomEvent('theme:cart:change', { detail: { cart: cart } }));
             updateXsell(cart);
+            // Notify theme — updates free-shipping bar and cart count
+            document.dispatchEvent(new CustomEvent('theme:cart:change', { detail: { cart: cart } }));
           })
           .catch(function () {
             btn.classList.remove('is-loading');
             btn.textContent = originalText;
-            form.submit();
           });
         });
       });
     }
 
-    // Initial load
+    // Initial state
     fetch('/cart.js')
       .then(function (r) { return r.json(); })
       .then(function (cart) {
         updateXsell(cart);
-        bindForms();
+        bindButtons();
       });
 
-    // Live updates
+    // Keep in sync with other cart changes
     document.addEventListener('theme:cart:change', function (e) {
       if (e.detail && e.detail.cart) {
         updateXsell(e.detail.cart);
-        bindForms();
+        bindButtons();
       }
     });
   })();
