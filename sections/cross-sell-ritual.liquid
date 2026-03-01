@@ -16,16 +16,9 @@
       <div class="cross-sell__card">
 
         {%- if complementary.featured_image -%}
+          {%- assign comp_alt = complementary.featured_image.alt | escape -%}
           <a href="{{ complementary.url }}" class="cross-sell__image-wrap" tabindex="-1" aria-hidden="true">
-            {{
-              complementary.featured_image
-              | image_url: width: 400
-              | image_tag:
-                loading: 'lazy',
-                class: 'cross-sell__image',
-                alt: complementary.featured_image.alt | escape,
-                widths: '200, 400'
-            }}
+            {{ complementary.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'cross-sell__image', alt: comp_alt }}
           </a>
         {%- endif -%}
 
