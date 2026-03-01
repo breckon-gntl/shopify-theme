@@ -237,7 +237,7 @@
               {%- when '@app' -%}
                 {% render block %}
               {% when 'title' %}
-                {% render 'product-title', product: product, block: block, section: section %}
+                {% render 'product-hero-copy', product: product, block: block, section: section %}
               {% when 'price' %}
                 {% render 'product-price', product: product, block: block, section: section %}
               {% when 'add-buttons' %}
