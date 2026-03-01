@@ -127,9 +127,16 @@
       .cross-sell__image-wrap { width: 88px; }
       .cross-sell__image { height: 88px; }
     }
-    /* Desktop — larger image, price + CTA share a row */
+    /* Desktop — right-aligned, larger image, price + CTA share a row */
     @media (min-width: 768px) {
+      .cross-sell__heading {
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: 0;
+      }
       .cross-sell__card {
+        margin-left: auto;
+        margin-right: 0;
         gap: 32px;
         padding: 28px;
       }
