@@ -197,6 +197,15 @@
         "padding_bottom": 36
       }
     },
+    "cross_sell_ritual": {
+      "type": "cross-sell-ritual",
+      "settings": {
+        "heading": "Complete Your Ritual",
+        "tagline": "Save 10% when you add both products",
+        "cta_text": "Add to Cart",
+        "show_discount_badge": true
+      }
+    },
     "1770677414f972bf28": {
       "type": "apps",
       "blocks": {
@@ -369,6 +378,7 @@
   },
   "order": [
     "main",
+    "cross_sell_ritual",
     "1770677414f972bf28",
     "related",
     "section_faq_4mrHcA",
