@@ -83,11 +83,11 @@
     "blocks": {
       "17151115064775110295": {
         "type": "shopify://apps/recharge-subscriptions/blocks/recharge-theme/371eed76-0b44-4869-9813-730372ea378e",
-        "disabled": true,
+        "disabled": false,
         "settings": {
-          "color_brand": "#467C99",
-          "contrast_color": "#FFFFFF",
-          "color_brand_secondary": "#467C99",
+          "color_brand": "#1b3731",
+          "contrast_color": "#fff6e4",
+          "color_brand_secondary": "#1b3731",
           "corners": "8px",
           "app_background": "#f9f8f4",
           "app_container": 1200,
