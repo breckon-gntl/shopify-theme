@@ -20309,7 +20309,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
             handleSuccess (response) {
                 const variant = response.data;
                 this.state = STATES$1.SUCCESS;
-                this.updateHeaderTotal();
+                const _cartUpdatePromise = this.updateHeaderTotal();
                 // Reset the state back to initial after a duration
                 setTimeout(()=>{
                     this.state = STATES$1.INITIAL;
@@ -20323,8 +20323,9 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
                 if (window.theme.state.cartOpen || this.isInCartPage || this.isOnCartPage) {
                     this.reloadCart();
                 } else if (_cartDrawer) {
-                    this.reloadCart();
-                    _cartDrawer.dispatchEvent(new CustomEvent('theme:drawer:open', { bubbles: false }));
+                    _cartUpdatePromise.then(() => {
+                        _cartDrawer.dispatchEvent(new CustomEvent('theme:drawer:open', { bubbles: false }));
+                    });
                 } else {
                     this.openPopdown(variant);
                 }
