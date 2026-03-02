@@ -105,7 +105,7 @@
           {%- assign wrap_class = 'collection-split__product grid__item' -%}
           {%- if products != blank -%}
             {%- for _product in products limit: section.settings.limit -%}
-              {%- if _product.handle == 'tube-key' -%}{%- continue -%}{%- endif -%}
+              {%- if _product.handle == 'tube-key-design' -%}{%- continue -%}{%- endif -%}
               <div class="{{ wrap_class }}" data-item>
                 {%- render 'collection-split-tile', product: _product -%}
               </div>
