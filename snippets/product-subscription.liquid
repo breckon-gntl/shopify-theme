@@ -310,4 +310,34 @@
     .product__subs__description.hide { display: none; }
   </style>
 
+  <script>
+  (function () {
+    // When the "One-time purchase" group radio (value="") is selected,
+    // uncheck all selling_plan radios so the form submits no selling_plan.
+    // When a subscription group is re-selected, re-check the first plan.
+    var subs = document.querySelector('[data-subscription-selectors]');
+    if (!subs) return;
+
+    subs.addEventListener('change', function (e) {
+      if (e.target.name !== 'selling-plan-group') return;
+
+      var planRadios = subs.querySelectorAll('[name="selling_plan"]');
+
+      if (e.target.value === '') {
+        // One-time selected — uncheck all plan radios
+        planRadios.forEach(function (r) { r.checked = false; });
+      } else {
+        // Subscription group selected — check the first plan in that group
+        var groupDiv = subs.querySelector(
+          '[data-selling-plan-group="' + e.target.value + '"]'
+        );
+        if (groupDiv) {
+          var first = groupDiv.querySelector('[name="selling_plan"]');
+          if (first) first.checked = true;
+        }
+      }
+    });
+  })();
+  </script>
+
 {%- endif -%}

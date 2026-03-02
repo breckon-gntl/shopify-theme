@@ -45,6 +45,7 @@
     {%- comment -%} Quantity + Add to Cart form {%- endcomment -%}
     {%- form 'product', product, id: 'sticky-atc-form', class: 'sticky-atc__form' -%}
       <input type="hidden" name="id" id="sticky-atc-variant-id" value="{{ current_variant.id }}">
+      <input type="hidden" name="selling_plan" id="sticky-atc-selling-plan" value="">
 
       <div class="sticky-atc__actions">
 
@@ -290,12 +291,13 @@
   var bar = document.getElementById('sticky-atc');
   if (!bar) return;
 
-  var buyBox       = document.querySelector('[data-product-form-wrapper]');
-  var variantInput = document.getElementById('sticky-atc-variant-id');
-  var priceEl      = bar.querySelector('[data-sticky-atc-price]');
-  var btnTextEl    = bar.querySelector('[data-sticky-atc-btn-text]');
-  var addBtn       = document.getElementById('sticky-atc-btn');
-  var qtyInput     = document.getElementById('sticky-atc-quantity');
+  var buyBox          = document.querySelector('[data-product-form-wrapper]');
+  var variantInput    = document.getElementById('sticky-atc-variant-id');
+  var sellingPlanInput = document.getElementById('sticky-atc-selling-plan');
+  var priceEl         = bar.querySelector('[data-sticky-atc-price]');
+  var btnTextEl       = bar.querySelector('[data-sticky-atc-btn-text]');
+  var addBtn          = document.getElementById('sticky-atc-btn');
+  var qtyInput        = document.getElementById('sticky-atc-quantity');
 
   var atcText     = {{ atc_text | json }};
   var soldOutText = {{ sold_out_text | json }};
@@ -386,6 +388,41 @@
       }
     }).observe(mainAddBtn, { attributes: true });
   }
+
+  /* ── Sync selling_plan ─────────────────────────────────── */
+  // Reads the selected selling_plan from the main form and keeps
+  // the sticky ATC hidden input in sync. Clears to "" when
+  // one-time purchase is selected.
+  function syncSellingPlan() {
+    if (!sellingPlanInput) return;
+
+    // Check if one-time is selected (selling-plan-group radio with value="")
+    var groupRadios = document.querySelectorAll('[name="selling-plan-group"]');
+    var oneTimeSelected = false;
+    groupRadios.forEach(function (r) {
+      if (r.checked && r.value === '') oneTimeSelected = true;
+    });
+
+    if (oneTimeSelected) {
+      sellingPlanInput.value = '';
+      return;
+    }
+
+    // Otherwise, read the checked selling_plan radio
+    var planRadio = document.querySelector('[name="selling_plan"]:checked');
+    sellingPlanInput.value = planRadio ? planRadio.value : '';
+  }
+
+  // Sync on page load
+  syncSellingPlan();
+
+  // Sync whenever the subscription selector changes
+  document.addEventListener('change', function (e) {
+    var name = e.target && e.target.name;
+    if (name === 'selling_plan' || name === 'selling-plan-group') {
+      syncSellingPlan();
+    }
+  });
 
 })();
 </script>
