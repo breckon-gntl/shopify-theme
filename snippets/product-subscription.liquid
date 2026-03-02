@@ -73,10 +73,10 @@
                   {% if plan.selected %}checked
                   {%- elsif product.selected_selling_plan == blank and first_selling_plan.id == plan.id -%}checked
                   {% endif %}/>
-                <span>
-                  {{- chip_label -}}
-                  {%- if plan_disc -%}&thinsp;&middot;&thinsp;{{ plan_disc }}% off{%- endif -%}
+                <span class="product__subs__chip-badge">
+                  {%- if plan_disc -%}{{ plan_disc }}% off{%- endif -%}
                 </span>
+                <span class="product__subs__chip-label">{{- chip_label -}}</span>
               </label>
             {%- endfor -%}
           </div>
@@ -228,6 +228,7 @@
     .product__subs__plans {
       display: flex;
       flex-wrap: wrap;
+      align-items: flex-end;
       gap: 5px;
       margin-top: 8px;
       padding-top: 8px;
@@ -237,7 +238,10 @@
 
     .product__subs__chip {
       display: inline-flex;
+      flex-direction: column;
+      align-items: center;
       cursor: pointer;
+      gap: 3px;
     }
     .product__subs__chip input[type="radio"] {
       position: absolute;
@@ -246,10 +250,43 @@
       height: 0;
       pointer-events: none;
     }
-    .product__subs__chip span {
+
+    /* Badge — hidden but reserves space on all chips */
+    .product__subs__chip-badge {
+      visibility: hidden;
+      position: relative;
       display: inline-flex;
       align-items: center;
-      padding: 2px 9px;
+      background: #1b3731;
+      color: #fff6e4;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+    .product__subs__chip-badge::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #1b3731;
+    }
+    .product__subs__chip input[type="radio"]:checked ~ .product__subs__chip-badge {
+      visibility: visible;
+    }
+
+    /* Chip label — the pill button */
+    .product__subs__chip-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
       border: 1px solid #c8c4bc;
       border-radius: 20px;
       font-size: 0.74rem;
@@ -257,7 +294,7 @@
       line-height: 1.6;
       transition: border-color 0.15s, background 0.15s, color 0.15s;
     }
-    .product__subs__chip input[type="radio"]:checked + span {
+    .product__subs__chip input[type="radio"]:checked ~ .product__subs__chip-label {
       border-color: #1b3731;
       background: #1b3731;
       color: #fff6e4;
