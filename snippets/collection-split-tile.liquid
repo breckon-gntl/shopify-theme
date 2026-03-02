@@ -1,0 +1,66 @@
+<!-- /snippets/collection-split-tile.liquid -->
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign plan_id = product.selling_plan_groups.first.selling_plans.first.id
+  assign on_sale = false
+  if variant.compare_at_price > variant.price
+    assign on_sale = true
+  endif
+-%}
+
+<div class="cs-tile">
+  <a href="{{ product.url }}" class="cs-tile__img-wrap">
+    {%- if product.featured_media -%}
+      <img
+        src="{{ product.featured_media | image_url: width: 600 }}"
+        alt="{{ product.title | escape }}"
+        loading="lazy"
+        width="600"
+        height="{{ 600 | divided_by: product.featured_media.aspect_ratio | round }}">
+    {%- endif -%}
+  </a>
+
+  <div class="cs-tile__body">
+    <a href="{{ product.url }}" class="cs-tile__title">{{ product.title | escape }}</a>
+
+    {%- if product.metafields.reviews.rating.value != blank -%}
+      {%- render 'product-rating', product: product, show_rating_count: true -%}
+    {%- endif -%}
+
+    <p class="cs-tile__price">
+      <span class="price">{{ variant.price | money }}</span>
+      {%- if on_sale -%}
+        <span class="compare-at">{{ variant.compare_at_price | money }}</span>
+      {%- endif -%}
+    </p>
+
+    {%- if plan_id -%}
+      <div class="cs-tile__options">
+        <label class="cs-tile__opt">
+          <input type="radio" name="cs-purchase-type-{{ product.id }}" value="one-time" checked
+            onchange="document.getElementById('cs-sp-{{ product.id }}').disabled=true">
+          One-time
+        </label>
+        <label class="cs-tile__opt">
+          <input type="radio" name="cs-purchase-type-{{ product.id }}" value="subscribe"
+            onchange="document.getElementById('cs-sp-{{ product.id }}').disabled=false">
+          Subscribe &amp; save 10%
+        </label>
+      </div>
+    {%- endif -%}
+
+    <div x-data="productAddButtonForm()">
+      {%- form 'product', product -%}
+        <input type="hidden" name="id" value="{{ variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        {%- if plan_id -%}
+          <input type="hidden" name="selling_plan" value="{{ plan_id }}"
+            id="cs-sp-{{ product.id }}" disabled>
+        {%- endif -%}
+        <button type="submit" name="add" class="btn btn--primary cs-tile__btn">
+          Add to cart
+        </button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
