@@ -20318,9 +20318,13 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
                 if (this.isInsideQuickViewModal) {
                     this.closeQuickView();
                 }
-                // If cart is open, reload the cart instead of opening a popdown
+                // Always open the cart drawer on successful ATC
+                const _cartDrawer = document.querySelector('[data-drawer="drawer-cart"]');
                 if (window.theme.state.cartOpen || this.isInCartPage || this.isOnCartPage) {
                     this.reloadCart();
+                } else if (_cartDrawer) {
+                    this.reloadCart();
+                    _cartDrawer.dispatchEvent(new CustomEvent('theme:drawer:open', { bubbles: false }));
                 } else {
                     this.openPopdown(variant);
                 }

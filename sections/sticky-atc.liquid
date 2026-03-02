@@ -424,6 +424,40 @@
     }
   });
 
+  /* ── AJAX submit → open cart drawer ───────────────────────── */
+  var form = document.getElementById('sticky-atc-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var btn = document.getElementById('sticky-atc-btn');
+      if (btn) btn.disabled = true;
+
+      var data = new URLSearchParams(new FormData(form)).toString();
+
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: data
+      })
+      .then(function (res) { return res.json(); })
+      .then(function () {
+        document.dispatchEvent(new CustomEvent('theme:cart:change', { bubbles: true }));
+        var drawer = document.querySelector('[data-drawer="drawer-cart"]');
+        if (drawer) {
+          drawer.dispatchEvent(new CustomEvent('theme:drawer:open', { bubbles: false }));
+        }
+        if (btn) btn.disabled = false;
+      })
+      .catch(function () {
+        if (btn) btn.disabled = false;
+      });
+    });
+  }
+
 })();
 </script>
 
