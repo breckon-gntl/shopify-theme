@@ -65,7 +65,7 @@
               <button
                 type="submit"
                 name="add"
-                class="btn--outline btn--full btn--primary btn--add-to-cart"
+                class="btn btn--full btn--primary btn--add-to-cart"
                 data-add-to-cart
                 {% comment %} Explicitly add aria label so that button text isn't read out in screen readers in uppercase {% endcomment %}
                 aria-label="{{ button_text }}"
@@ -125,6 +125,23 @@
 </product-form>
 
 <style>
+  /* ── ATC button: solid filled, prominent ── */
+  .btn--add-to-cart {
+    min-height: 58px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+                background-color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .btn--add-to-cart:not([disabled]):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(27, 55, 49, 0.22);
+  }
+  .btn--add-to-cart:not([disabled]):active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
   /* ── Express checkout: visually secondary, below trust badges ── */
   .pdp-express-checkout {
     margin-top: 12px;
@@ -149,7 +166,6 @@
     --shopify-accelerated-checkout-button-block-size: 28px;
   }
 </style>
-
 
 
 
