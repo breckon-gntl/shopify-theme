@@ -11,15 +11,32 @@
 <style>
   #shopify-section-{{ section.id }} .kl_reviews__carousel__header,
   #shopify-section-{{ section.id }} .kl_reviews__carousel__header p,
+  #shopify-section-{{ section.id }} .kl_reviews__carousel__header span,
+  #shopify-section-{{ section.id }} .kl_reviews__carousel__header strong,
   #shopify-section-{{ section.id }} .moast-header,
+  #shopify-section-{{ section.id }} .moast-header p,
+  #shopify-section-{{ section.id }} .moast-header span,
+  #shopify-section-{{ section.id }} .moast-header strong {
+    font-family: var(--FONT-STACK-HEADING) !important;
+    font-style: var(--FONT-STYLE-HEADING) !important;
+    font-weight: var(--FONT-WEIGHT-HEADING) !important;
+    letter-spacing: var(--FONT-HEADING-LETTER-SPACING) !important;
+    text-transform: var(--FONT-HEADING-TRANSFORM) !important;
+    font-size: calc(var(--font-9) * var(--FONT-ADJUST-HEADING)) !important;
+    line-height: var(--leading-tight) !important;
+    text-align: center !important;
+    color: inherit !important;
+  }
+
+  #shopify-section-{{ section.id }} .kl_reviews__carousel__header,
+  #shopify-section-{{ section.id }} .moast-header {
+    margin: 0 0 var(--space-6) !important;
+    padding: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .kl_reviews__carousel__header p,
   #shopify-section-{{ section.id }} .moast-header p {
-    font-family: var(--FONT-STACK-HEADING);
-    font-style: var(--FONT-STYLE-HEADING);
-    font-weight: var(--FONT-WEIGHT-HEADING);
-    letter-spacing: var(--FONT-HEADING-LETTER-SPACING);
-    text-transform: var(--FONT-HEADING-TRANSFORM);
-    font-size: calc(var(--font-9) * var(--FONT-ADJUST-HEADING));
-    line-height: var(--leading-tight);
+    margin: 0 !important;
   }
 </style>
 
