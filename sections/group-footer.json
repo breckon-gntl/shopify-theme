@@ -24,9 +24,9 @@
             "use_klaviyo_form": true,
             "klaviyo_form_id": "R5NcFR",
             "recaptcha_enabled": false,
-            "kicker": "",
-            "heading": "",
-            "richtext": "",
+            "kicker": "Newsletter",
+            "heading": "Get 15% off your first order.",
+            "richtext": "<p>Join for new launches, field notes, and routines that keep things simple.</p>",
             "text_size": 4,
             "background_color": "#1b3731",
             "text_color_value": "#fff6e4"
