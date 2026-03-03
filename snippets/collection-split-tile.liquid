@@ -2,7 +2,10 @@
 {%- liquid
   assign variant = product.selected_or_first_available_variant
   assign plan_id = product.selling_plan_groups.first.selling_plans.first.id
-  assign has_rating = product.metafields.reviews.rating.value != blank
+  assign has_rating = false
+  if product.metafields.reviews.rating.value != blank
+    assign has_rating = true
+  endif
   assign on_sale = false
   if variant.compare_at_price > variant.price
     assign on_sale = true
