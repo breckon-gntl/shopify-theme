@@ -2,13 +2,14 @@
 {%- liquid
   assign variant = product.selected_or_first_available_variant
   assign plan_id = product.selling_plan_groups.first.selling_plans.first.id
+  assign has_rating = product.metafields.reviews.rating.value != blank
   assign on_sale = false
   if variant.compare_at_price > variant.price
     assign on_sale = true
   endif
 -%}
 
-<div class="cs-tile">
+<div class="cs-tile{% if plan_id %} cs-tile--has-options{% endif %}">
   <a href="{{ product.url }}" class="cs-tile__img-wrap">
     {%- if product.featured_media -%}
       <img
@@ -21,18 +22,22 @@
   </a>
 
   <div class="cs-tile__body">
-    <a href="{{ product.url }}" class="cs-tile__title">{{ product.title | escape }}</a>
+    <div class="cs-tile__content">
+      <a href="{{ product.url }}" class="cs-tile__title">{{ product.title | escape }}</a>
 
-    {%- if product.metafields.reviews.rating.value != blank -%}
-      {%- render 'product-rating', product: product, show_rating_count: true -%}
-    {%- endif -%}
+      <div class="cs-tile__rating{% unless has_rating %} cs-tile__rating--empty{% endunless %}">
+        {%- if has_rating -%}
+          {%- render 'product-rating', product: product, show_rating_count: true -%}
+        {%- endif -%}
+      </div>
 
-    <p class="cs-tile__price">
-      <span class="price">{{ variant.price | money }}</span>
-      {%- if on_sale -%}
-        <span class="compare-at">{{ variant.compare_at_price | money }}</span>
-      {%- endif -%}
-    </p>
+      <p class="cs-tile__price">
+        <span class="price">{{ variant.price | money }}</span>
+        {%- if on_sale -%}
+          <span class="compare-at">{{ variant.compare_at_price | money }}</span>
+        {%- endif -%}
+      </p>
+    </div>
 
     {%- if plan_id -%}
       <div class="cs-tile__options">
@@ -49,7 +54,7 @@
       </div>
     {%- endif -%}
 
-    <div x-data="productAddButtonForm()">
+    <div class="cs-tile__form" x-data="productAddButtonForm()">
       {%- form 'product', product -%}
         <input type="hidden" name="id" value="{{ variant.id }}">
         <input type="hidden" name="quantity" value="1">
