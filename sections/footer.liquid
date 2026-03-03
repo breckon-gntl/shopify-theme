@@ -281,12 +281,12 @@
         {%- endif -%}
 
         {%- if block.settings.show_image or newsletter_logo_show or block.settings.kicker != blank or block.settings.heading != blank or block.settings.richtext != blank or block.settings.newsletter_enable -%}
-          <div class="footer__signup-shell"
+          <div class="footer__block footer__aside"
             style="--text: {{ block.settings.text_color_value | color_modify: 'alpha', 0.90 }}; --text-dark: {{ block.settings.text_color_value }}; --bg: {{ block.settings.background_color }};"
             {{ block.shopify_attributes }}>
-            <div class="footer__signup">
+            <div class="footer__newsletter{% if section.settings.width == 'wrapper' %} footer__newsletter--offset{% endif %}">
               {%- if block.settings.show_image -%}
-                <div class="footer__signup__image">
+                <div class="footer__newsletter__image">
                   {%- render 'image',
                     cover: true,
                     img_object: block.settings.image,
@@ -299,46 +299,30 @@
               {%- endif -%}
 
               {%- if newsletter_logo_show or block.settings.kicker != blank or block.settings.heading != blank or block.settings.richtext != blank or block.settings.newsletter_enable -%}
-                <div class="footer__signup__body">
-                  <div class="footer__signup__intro">
-                    {%- if newsletter_logo_show -%}
-                      @@@@footer-logo-placeholder@@@@
-                    {%- endif -%}
+                <div class="footer__newsletter__body">
+                  {%- if newsletter_logo_show -%}
+                    @@@@footer-logo-placeholder@@@@
+                  {%- endif -%}
 
-                    {%- if block.settings.kicker != blank -%}
-                      <p class="footer__signup__kicker">
-                        {{ block.settings.kicker }}
-                      </p>
-                    {%- endif -%}
+                  {%- if block.settings.kicker != blank -%}
+                    <p class="footer__title">
+                      {{ block.settings.kicker }}
+                    </p>
+                  {%- endif -%}
 
-                    {%- if block.settings.heading != blank -%}
-                      <h3>{{ block.settings.heading }}</h3>
-                    {%- endif -%}
+                  {%- if block.settings.heading != blank -%}
+                    <h3>{{ block.settings.heading }}</h3>
+                  {%- endif -%}
 
-                    {%- if block.settings.richtext != blank -%}
-                      {% assign font_size_class = block.settings.text_size | prepend: 'body-size-' %}
-                      <div class="rte footer__signup__text {{ font_size_class }}">
-                        {{ block.settings.richtext }}
-                      </div>
-                    {%- endif -%}
-                  </div>
+                  {%- if block.settings.richtext != blank -%}
+                    {% assign font_size_class = block.settings.text_size | prepend: 'body-size-' %}
+                    <div class="rte {{ font_size_class }}">
+                      {{ block.settings.richtext }}
+                    </div>
+                  {%- endif -%}
 
                   {%- if block.settings.newsletter_enable -%}
-                    <div class="footer__signup__form-wrap">
-                      {%- if block.settings.use_klaviyo_form and block.settings.klaviyo_form_id != blank -%}
-                        <div class="footer__signup__actions">
-                          <button
-                            type="button"
-                            class="footer__signup__trigger btn btn--white btn--large"
-                            data-klaviyo-form-trigger="{{ block.settings.klaviyo_form_id }}">
-                            Subscribe for 15% off
-                          </button>
-                          <p class="footer__signup__meta">Opens the full signup form for a quick first-order discount.</p>
-                        </div>
-                      {%- else -%}
-                        {% render 'newsletter-form' unique: 'footer-newsletter', show_icon: true, class_modifier: 'newsletter-block footer__form', terms: block.settings.recaptcha_enabled %}
-                      {%- endif -%}
-                    </div>
+                    {% render 'newsletter-form' unique: 'footer-newsletter', show_icon: true, class_modifier: 'newsletter-block footer__form', terms: block.settings.recaptcha_enabled %}
                   {%- endif -%}
                 </div>
               {%- endif -%}
@@ -402,19 +386,19 @@
   style="--PT: {{ section.settings.padding_top }}px; --PB: {{ section.settings.padding_bottom }}px;">
   <div class="footer__holder">
     <div class="{{ section.settings.width }} section-padding-custom">
-      {%- if newsletter_html != '' -%}
-        {{ newsletter_html | replace: '@@@@footer-logo-placeholder@@@@', footer_logo_html }}
-
-        {%- unless newsletter_html contains '@@@@footer-logo-placeholder@@@@' -%}
-          {%- if footer_logo_html != '' -%}
-            {%- assign logo_in_content = true -%}
-          {%- endif -%}
-        {%- endunless -%}
-      {%- elsif footer_logo_html != '' -%}
-        {%- assign logo_in_content = true -%}
-      {%- endif -%}
-
       <div class="footer__container{% if section.settings.menu_position == 'left' %} footer__container--reversed{% endif %}">
+        {%- if newsletter_html != '' -%}
+          {{ newsletter_html | replace: '@@@@footer-logo-placeholder@@@@', footer_logo_html }}
+
+          {%- unless newsletter_html contains '@@@@footer-logo-placeholder@@@@' -%}
+            {%- if footer_logo_html != '' -%}
+              {%- assign logo_in_content = true -%}
+            {%- endif -%}
+          {%- endunless -%}
+        {%- elsif footer_logo_html != '' -%}
+          {%- assign logo_in_content = true -%}
+        {%- endif -%}
+
         {%- if newsletter_html == '' and footer_logo_html != '' -%}
           {%- assign logo_in_content = true -%}
         {%- endif -%}
@@ -454,180 +438,6 @@
     </div>
   </div>
 </footer>
-
-<style>
-  #shopify-section-{{ section.id }} .footer__holder {
-    display: grid;
-    gap: clamp(30px, 3vw, 46px);
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup-shell {
-    margin-bottom: clamp(4px, 1vw, 14px);
-    color: var(--text);
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: center;
-    gap: 20px;
-    border: 1px solid rgba(255, 246, 228, 0.14);
-    border-radius: 26px;
-    background:
-      radial-gradient(circle at top left, rgba(255, 246, 228, 0.12), transparent 38%),
-      linear-gradient(180deg, rgba(255, 246, 228, 0.09) 0%, rgba(255, 246, 228, 0.04) 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 246, 228, 0.08);
-    overflow: hidden;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__body {
-    padding: clamp(24px, 4vw, 42px);
-    display: grid;
-    gap: clamp(24px, 3vw, 40px);
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__body > .footer__logo__wrapper {
-    padding-bottom: 0;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__intro {
-    display: grid;
-    gap: 12px;
-    align-content: start;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__kicker {
-    margin: 0;
-    color: rgba(255, 246, 228, 0.72);
-    font-family: var(--FONT-STACK-ACCENT);
-    font-style: var(--FONT-STYLE-ACCENT);
-    font-weight: var(--FONT-WEIGHT-ACCENT-BOLD);
-    letter-spacing: var(--FONT-ACCENT-LETTER-SPACING);
-    text-transform: var(--FONT-ACCENT-TRANSFORM);
-    font-size: calc(var(--font-2) * var(--FONT-ADJUST-ACCENT));
-    line-height: var(--leading-normal);
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__form-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__actions {
-    width: min(100%, 420px);
-    display: grid;
-    gap: 12px;
-    padding: 20px;
-    border-radius: 22px;
-    background: rgba(255, 246, 228, 0.08);
-    border: 1px solid rgba(255, 246, 228, 0.12);
-    box-shadow: inset 0 1px 0 rgba(255, 246, 228, 0.08);
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__trigger {
-    width: 100%;
-    min-height: 58px;
-    background: #fff6e4;
-    color: #1b3731;
-    border-radius: 999px;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__trigger:hover,
-  #shopify-section-{{ section.id }} .footer__signup__trigger:focus {
-    background: #fff6e4;
-    color: #102a25;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__meta {
-    margin: 0;
-    color: rgba(255, 246, 228, 0.72);
-    font-family: var(--FONT-STACK-BODY);
-    font-style: var(--FONT-STYLE-BODY);
-    font-weight: var(--FONT-WEIGHT-BODY);
-    letter-spacing: var(--FONT-BODY-LETTER-SPACING);
-    text-transform: var(--FONT-BODY-TRANSFORM);
-    font-size: calc(var(--font-2) * var(--FONT-ADJUST-BODY));
-    line-height: 1.45;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__body > h3 {
-    margin: 0;
-    color: #fff6e4;
-    font-family: var(--FONT-STACK-HEADING);
-    font-style: var(--FONT-STYLE-HEADING);
-    font-weight: var(--FONT-WEIGHT-HEADING);
-    letter-spacing: var(--FONT-HEADING-LETTER-SPACING);
-    text-transform: var(--FONT-HEADING-TRANSFORM);
-    font-size: clamp(2.2rem, 4vw, 3.8rem);
-    line-height: 0.98;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__intro h3 {
-    margin: 0;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__text {
-    max-width: 34ch;
-  }
-
-  #shopify-section-{{ section.id }} .footer__signup__text p {
-    margin-top: 0;
-  }
-
-  @media only screen and (min-width: 768px) {
-    #shopify-section-{{ section.id }} .footer__signup__body {
-      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
-      align-items: center;
-    }
-  }
-
-  @media only screen and (max-width: 767px) {
-    #shopify-section-{{ section.id }} .footer__signup-shell {
-      margin-bottom: 0;
-    }
-
-    #shopify-section-{{ section.id }} .footer__signup {
-      border-radius: 22px;
-    }
-
-    #shopify-section-{{ section.id }} .footer__signup__body {
-      padding: 22px 18px;
-    }
-
-    #shopify-section-{{ section.id }} .footer__signup__intro h3 {
-      font-size: clamp(2rem, 10vw, 3.1rem) !important;
-    }
-  }
-
-  @media only screen and (max-width: 1023px) {
-    #shopify-section-{{ section.id }} .footer__content__inner {
-      padding-right: 0;
-    }
-
-    #shopify-section-{{ section.id }} .footer__signup__form-wrap {
-      justify-content: stretch;
-    }
-  }
-</style>
-
-<script>
-  (() => {
-    const section = document.getElementById('shopify-section-{{ section.id }}');
-    if (!section) return;
-
-    section.addEventListener('click', (event) => {
-      const trigger = event.target.closest('[data-klaviyo-form-trigger]');
-      if (!trigger) return;
-
-      const formId = trigger.getAttribute('data-klaviyo-form-trigger');
-      if (!formId) return;
-
-      window._klOnsite = window._klOnsite || [];
-      window._klOnsite.push(['openForm', formId]);
-    });
-  })();
-</script>
 
 {% schema %}
 {

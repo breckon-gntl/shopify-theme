@@ -21,12 +21,12 @@
             "image": "",
             "wh_ratio": 2,
             "newsletter_enable": true,
-            "use_klaviyo_form": true,
+            "use_klaviyo_form": false,
             "klaviyo_form_id": "R5NcFR",
-            "recaptcha_enabled": false,
-            "kicker": "Newsletter",
-            "heading": "Get 15% off your first order.",
-            "richtext": "<p>Join for new launches, field notes, and routines that keep things simple.</p>",
+            "recaptcha_enabled": true,
+            "kicker": "",
+            "heading": "Subscribe to our newsletter",
+            "richtext": "<p>For 15% off your first order</p>",
             "text_size": 4,
             "background_color": "#1b3731",
             "text_color_value": "#fff6e4"
@@ -85,7 +85,11 @@
         "social"
       ],
       "custom_css": [
-        "footer > div > div > div > div.footer__block.footer__aside > div > div > h3 {font-size: clamp(1.5rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); font-family: PPEditorialNew; line-height: 3.4rem; margin-bottom: 24px;}"
+        "footer > div > div > div > div.footer__block.footer__aside > div > div > h3 {font-size: clamp(1.5rem, calc(1.5rem + 2vw), 3rem); line-height: clamp(1.2em, calc(1.2em + 1vw), 1.8em); font-family: PPEditorialNew; line-height: 3.4rem; margin-bottom: 24px;}",
+        ".footer__aside {padding: 20px;}",
+        ".footer__newsletter__body {padding: 0;}",
+        ".footer__newsletter {align-content: center; gap: 50px;}",
+        ".footer__newsletter__image .block {border-radius: 20px;}"
       ],
       "settings": {
         "menu_position": "left",
