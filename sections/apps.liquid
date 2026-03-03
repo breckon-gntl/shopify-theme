@@ -8,6 +8,21 @@
   </div>
 </div>
 
+<style>
+  #shopify-section-{{ section.id }} .kl_reviews__carousel__header,
+  #shopify-section-{{ section.id }} .kl_reviews__carousel__header p,
+  #shopify-section-{{ section.id }} .moast-header,
+  #shopify-section-{{ section.id }} .moast-header p {
+    font-family: var(--FONT-STACK-HEADING);
+    font-style: var(--FONT-STYLE-HEADING);
+    font-weight: var(--FONT-WEIGHT-HEADING);
+    letter-spacing: var(--FONT-HEADING-LETTER-SPACING);
+    text-transform: var(--FONT-HEADING-TRANSFORM);
+    font-size: calc(var(--font-9) * var(--FONT-ADJUST-HEADING));
+    line-height: var(--leading-tight);
+  }
+</style>
+
 {% schema %}
 {
 	"name": "Apps",
