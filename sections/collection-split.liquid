@@ -204,6 +204,7 @@
   }
   .collection-split__products .cs-tile__options {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
     margin: 0;
   }
@@ -211,8 +212,8 @@
     position: relative;
     border: 1px solid rgba(0,0,0,0.15);
     border-radius: 999px;
-    min-height: 42px;
-    padding: 9px 14px;
+    min-height: 0;
+    padding: 5px 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -222,9 +223,9 @@
     font-weight: var(--FONT-WEIGHT-BODY);
     letter-spacing: var(--FONT-BODY-LETTER-SPACING);
     text-transform: var(--FONT-BODY-TRANSFORM);
-    font-size: calc(var(--font-2) * var(--FONT-ADJUST-BODY));
+    font-size: calc(var(--font-1) * var(--FONT-ADJUST-BODY));
     cursor: pointer;
-    line-height: 1.4;
+    line-height: 1.2;
     transition: border-color 0.15s, background 0.15s, color 0.15s;
   }
   .collection-split__products .cs-tile__opt input[type="radio"] {
