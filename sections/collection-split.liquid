@@ -237,7 +237,7 @@
   }
   .collection-split__products .cs-tile__options {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
     gap: 8px;
     margin: 0;
   }
@@ -256,7 +256,7 @@
     font-weight: var(--FONT-WEIGHT-BODY);
     letter-spacing: var(--FONT-BODY-LETTER-SPACING);
     text-transform: var(--FONT-BODY-TRANSFORM);
-    font-size: calc(var(--font-1) * var(--FONT-ADJUST-BODY));
+    font-size: calc(var(--font-2) * var(--FONT-ADJUST-BODY));
     cursor: pointer;
     line-height: 1.2;
     transition: border-color 0.15s, background 0.15s, color 0.15s;
