@@ -2,10 +2,6 @@
 {%- liquid
   assign variant = product.selected_or_first_available_variant
   assign plan_id = product.selling_plan_groups.first.selling_plans.first.id
-  assign has_rating = false
-  if product.metafields.reviews.rating.value != blank
-    assign has_rating = true
-  endif
   assign on_sale = false
   if variant.compare_at_price > variant.price
     assign on_sale = true
@@ -28,10 +24,13 @@
     <div class="cs-tile__content">
       <a href="{{ product.url }}" class="cs-tile__title">{{ product.title | escape }}</a>
 
-      <div class="cs-tile__rating{% unless has_rating %} cs-tile__rating--empty{% endunless %}">
-        {%- if has_rating -%}
-          {%- render 'product-rating', product: product, show_rating_count: true -%}
-        {%- endif -%}
+      <div class="cs-tile__rating">
+        <span
+          class="klaviyo-star-rating-widget"
+          data-id="{{ product.id }}"
+          data-product-title="{{ product.title | escape }}"
+          data-product-type="{{ product.type | escape }}"
+          style="display: block;"></span>
       </div>
 
       <p class="cs-tile__price">
