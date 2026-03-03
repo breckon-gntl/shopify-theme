@@ -322,7 +322,13 @@
                   {%- endif -%}
 
                   {%- if block.settings.newsletter_enable -%}
-                    {% render 'newsletter-form' unique: 'footer-newsletter', show_icon: true, class_modifier: 'newsletter-block footer__form', terms: block.settings.recaptcha_enabled %}
+                    {%- if block.settings.use_klaviyo_form and block.settings.klaviyo_form_id != blank -%}
+                      <div class="footer__klaviyo">
+                        <div class="klaviyo-form-{{ block.settings.klaviyo_form_id }}"></div>
+                      </div>
+                    {%- else -%}
+                      {% render 'newsletter-form' unique: 'footer-newsletter', show_icon: true, class_modifier: 'newsletter-block footer__form', terms: block.settings.recaptcha_enabled %}
+                    {%- endif -%}
                   {%- endif -%}
                 </div>
               {%- endif -%}
@@ -434,6 +440,16 @@
     </div>
   </div>
 </footer>
+
+<style>
+  .footer__klaviyo {
+    width: 100%;
+  }
+
+  .footer__klaviyo > div {
+    width: 100%;
+  }
+</style>
 
 {% schema %}
 {
@@ -585,6 +601,18 @@
 					"label": "Show newsletter",
 					"info": "Subscribers are under 'Accepts Marketing' in your [customer admin](/admin/customers).",
 					"default": true
+				},
+				{
+					"type": "checkbox",
+					"id": "use_klaviyo_form",
+					"label": "Use Klaviyo embed",
+					"default": false
+				},
+				{
+					"type": "text",
+					"id": "klaviyo_form_id",
+					"label": "Klaviyo form ID",
+					"info": "Example: R5NcFR"
 				},
 				{
 					"type": "checkbox",
