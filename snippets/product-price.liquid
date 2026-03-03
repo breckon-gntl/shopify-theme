@@ -73,11 +73,100 @@
         </div>
       {% endif %}
     </div>
-  </div>
+</div>
   {%- assign fs_limit = settings.free_shipping_limit | plus: 0 -%}
   {%- if fs_limit > 0 -%}
-    <p class="product__shipping-note body-size-3" style="margin-top:8px;opacity:0.7;">
-      Spend ${{ fs_limit }}+ for free shipping&thinsp;&middot;&thinsp;add 2 or more to unlock.
+    {%- assign fs_limit_cents = fs_limit | times: 100 -%}
+    {%- assign remaining_cents = fs_limit_cents | minus: cart.total_price -%}
+    {%- if remaining_cents < 0 -%}{%- assign remaining_cents = 0 -%}{%- endif -%}
+    {%- assign additional_units = 0 -%}
+    {%- if remaining_cents > 0 and current_variant.price > 0 -%}
+      {%- assign additional_units = remaining_cents | plus: current_variant.price | minus: 1 | divided_by: current_variant.price -%}
+    {%- endif -%}
+    <p
+      class="product__shipping-note body-size-3"
+      style="margin-top:8px;opacity:0.7;"
+      data-pdp-shipping-note
+      data-free-shipping-limit="{{ fs_limit_cents }}"
+      data-cart-total="{{ cart.total_price }}"
+      data-variant-price="{{ current_variant.price }}">
+      <span data-pdp-shipping-default{% if remaining_cents <= 0 %} class="hide"{% endif %}>
+        Spend <span data-pdp-shipping-amount>{{ remaining_cents | money_without_trailing_zeros }}</span> more for free shipping
+        <span data-pdp-shipping-qty-wrap{% if additional_units <= 0 %} class="hide"{% endif %}>&thinsp;&middot;&thinsp;add <span data-pdp-shipping-qty>{{ additional_units }}</span> or more to unlock.</span>
+      </span>
+      <span data-pdp-shipping-success{% if remaining_cents > 0 %} class="hide"{% endif %}>You've unlocked free shipping.</span>
     </p>
+    <script>
+      (function () {
+        function formatPdpMoney(cents) {
+          var amount = Math.max(0, Number(cents) || 0) / 100;
+          var currency = (window.theme && window.theme.currencyCode) || '{{ cart.currency.iso_code }}';
+          var locale = document.documentElement.lang || undefined;
+          var hasWholeAmount = Math.round(amount * 100) % 100 === 0;
+
+          try {
+            return new Intl.NumberFormat(locale, {
+              style: 'currency',
+              currency: currency,
+              minimumFractionDigits: hasWholeAmount ? 0 : 2,
+              maximumFractionDigits: 2
+            }).format(amount);
+          } catch (error) {
+            return '$' + (hasWholeAmount ? amount.toFixed(0) : amount.toFixed(2));
+          }
+        }
+
+        function initShippingNote(note) {
+          if (!note || note.dataset.shippingReady === 'true') return;
+          note.dataset.shippingReady = 'true';
+
+          var section = note.closest('.shopify-section') || document;
+          var limitCents = parseInt(note.getAttribute('data-free-shipping-limit'), 10) || 0;
+          var cartTotalCents = parseInt(note.getAttribute('data-cart-total'), 10) || 0;
+          var variantPriceCents = parseInt(note.getAttribute('data-variant-price'), 10) || 0;
+
+          var defaultEl = note.querySelector('[data-pdp-shipping-default]');
+          var successEl = note.querySelector('[data-pdp-shipping-success]');
+          var amountEl = note.querySelector('[data-pdp-shipping-amount]');
+          var qtyWrapEl = note.querySelector('[data-pdp-shipping-qty-wrap]');
+          var qtyEl = note.querySelector('[data-pdp-shipping-qty]');
+
+          function render() {
+            var remainingCents = Math.max(limitCents - cartTotalCents, 0);
+            var additionalUnits = remainingCents > 0 && variantPriceCents > 0
+              ? Math.ceil(remainingCents / variantPriceCents)
+              : 0;
+
+            if (amountEl) amountEl.textContent = formatPdpMoney(remainingCents);
+            if (qtyEl) qtyEl.textContent = additionalUnits;
+            if (qtyWrapEl) qtyWrapEl.classList.toggle('hide', additionalUnits <= 0);
+            if (defaultEl) defaultEl.classList.toggle('hide', remainingCents <= 0);
+            if (successEl) successEl.classList.toggle('hide', remainingCents > 0);
+          }
+
+          section.addEventListener('theme:variant:change', function (event) {
+            var variant = event.detail && event.detail.variant;
+            if (!variant) return;
+
+            variantPriceCents = parseInt(variant.price, 10) || 0;
+            note.setAttribute('data-variant-price', variantPriceCents);
+            render();
+          });
+
+          document.addEventListener('theme:cart:change', function (event) {
+            var cart = event.detail && event.detail.cart;
+            if (!cart) return;
+
+            cartTotalCents = parseInt(cart.total_price, 10) || 0;
+            note.setAttribute('data-cart-total', cartTotalCents);
+            render();
+          });
+
+          render();
+        }
+
+        document.querySelectorAll('[data-pdp-shipping-note]').forEach(initShippingNote);
+      })();
+    </script>
   {%- endif -%}
 </div>
